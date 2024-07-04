@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THROW IT IN THE PIT</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #cadfd8;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #c6ba39;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>THROW IT IN THE PIT</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>Having brought the murmuring mummified head of a mad mystic to the Village Elders of Gutfish Ford, you've been turned away & banished from the Town. The elders insist that you take the Soothsayer's Head as far from the ford as possible & destroy it utterly! Meanwhile, the soothsayer begs to be brought home to the Stone Circle while a pair of powerful & monstrous hunters draw closer & closer to their prey.</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('If you are playing this mission as a standalone game, any one adventurer must take the <b>Soothsayer\'s Head</b> from the Loot deck. The Bounty Level is 2 & the party starts at <b>Gutfish Ford</b>.');</script></p>
+            <p style=" margin-left: 0px; ">The following Clues Ġ represent spaces where the Soothsayer's Head can be disposed of <i>(safely or otherwise)</i>. The Clue Ġ counters function as reminders of where the Soothsayer's Head can be destroyed or discarded. <i>The Soothsayer's magic protects him from being destroyed by things like fire, acid, explosives, Daemon's Blood, etc.</i></p>
+            <p style=" margin-left: 0px; ">The counter on Tomb Lake represents the option to throw the head into Tomb Lake from any Lake Port Đ space.</p>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse;  width: 400px"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ The Hell Pit</td><td style="text-align: left; line-height: 20px;">Ġ Stone Circle</td></tr><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ The Maze</td><td style="text-align: left; line-height: 20px;">Ġ Tomb Lake</td></tr><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ Skull Bridge</td><td style="text-align: left; line-height: 20px;"></td></tr></tbody></table>
+            <p style=" margin-left: 0px; "><i>The elders' concern is not unfounded. The Soothsayer has many enemies, even in his current state of living death. The Scroglin King covets the Soothsayer's mystical knowledge while a daemonic force climbs from the chasm to collect on a dark deal made in ages past. The elders foresee only disaster & doom if either of these malignant forces takes possession of the Soothsayer's Head & learn his secrets. For the sake of all mankind you must not allow this to happen!</i></p>
+            <p style=" margin-left: 0px; ">Place the following Epic Monster đ counters <i>face down</i> at the indicated Location:</p>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse; width: 500px"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 25px; padding: 0px; width: 70%;">ĝ <b>Scroglin King</b> <i>at</i> <b>Tower Island</b></td><td style="text-align: left;  line-height: 20px;;"><img style="max-width: 100px; border: 10px solid #000; border-radius: 50%; background-color: #000;" src="data/scroglinking.png"</img></td></tr></tbody></table>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse; width: 500px"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 25px; padding: 0px; width: 70%;">ĝ <b>Daemonic Voivod</b> <i>at</i> <b>Skull Bridge</b></td><td style="text-align: left;  line-height: 20px;;"><img style="max-width: 100px; border: 10px solid #000; border-radius: 50%; background-color: #000;" src="data/daemonicvoivod.png"</img></td></tr></tbody></table>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">There are seven ways to dispose of the Soothsayer's Head & thereby complete your mission. Each grants the adventurers a different '<i>Reward</i>', as described below. You cannot sell the Soothsayer's Head during this mission - you've missed your opportunity for a quick sale!</p>
+            <br><b>Throw him into the Hell Pit</b>
+            <p style=" margin-left: 0px; ">If you are at the <b>Hell Pit</b> at the end of a game turn, you may return the Soothsayer's Head to the game box <i>(remove the card from the game)</i>, then Rest at <b>Gutfish Ford</b> to complete the mission. When you do, each adventurer gains 1 Luck Ğ & you may remove one green counter & one red counter from the Doom track.</p>
+            <br><b>Leave him in the Maze</b>
+            <p style=" margin-left: 0px; ">If you are in <b>the Maze</b> at the end of the Encounter Phase, you may discard the Soothsayer's Head, then Rest at <b>Gutfish Ford</b> to complete the mission. When you do, each adventurer gains 1 Luck Ğ, then you must increase the Danger Level at each space with a Voidgate.</p>
+            <br><b>Throw him off Skull Bridge</b>
+            <p style=" margin-left: 0px; ">If you are at <b>Skull Bridge</b> at the end of the Encounter Phase, you may return the Soothsayer's Head to the game box <i>(remove the card from the game)</i>. Rest at <b>Gutfish Ford</b> to complete the mission. If you do, each adventurer gains 1 Luck Ğ, then you must increase the Danger Level at the Blasted Heath, Skull Bridge & the Wasteland.</p>
+            <br><b>Throw him in the Lake</b>
+            <p style=" margin-left: 0px; ">If you are at any Lake Port Đ space at the end of the Encounter Phase, you may discard the Soothsayer's Head. Rest at <b>Gutfish Ford</b> to complete the mission. If you do, you must increase the Danger Level at the Fishmonger Camp, Tomb Lake & Tower Island. Then, search the Doom deck for the <b>Crushing Menace</b> card & put it into play <i>(if it is not already in play)</i>.</p>
+            <br><b>Bring him home to Stone Circle</b>
+            <p style=" margin-left: 0px; ">If you Rest at <b>Stone Circle</b>, you may discard the Soothsayer's Head & complete the mission. If you do, each adventurer gains 1 Luck Ğ, then search the Doom deck for the <b>Bubbling Death</b> card & put it into play <i>(if it is not already in play)</i>.</p>
+            <br><b>Give him to the Scroglin King</b>
+            <p style=" margin-left: 0px; ">If you are in the <b>Scroglin King</b>'s space at the start of the Encounter Phase, you can offer the Soothsayer's Head to him to avoid a fight. Discard the Soothsayer's Head & remove the Scroglin King counter from the board - do not fight monsters this turn. You must Rest at a Town Ę to complete your mission. If you do, search the Doom deck for the <b>Fishoid Wars</b> card & put it into play <i>(if it is not already in play)</i>.</p>
+            <br><b>Give him to the Daemonic Voivod</b>
+            <p style=" margin-left: 0px; ">If you are in the <b>Daemonic Voivod</b>'s space at the start of the Encounter Phase, you can offer the Soothsayer's Head to the Daemonic Voivod to avoid a fight. Discard the Soothsayer's Head & remove the Daemonic Voivod counter from the board - do not fight monsters this turn. You must Rest at a Town Ę to complete your mission. If you do, search the Doom deck & discard pile for the <b>Technotonic Devastation</b> card & resolve it.</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>THE HEAD HUNTERS</center></h2>
+            <p style=" margin-left: 0px; ">If you enter a space with a face down Epic Monster đ counter, flip that counter face up.</p>
+            <p style=" margin-left: 0px; ">During the Danger Phase, if you draw a Danger card corresponding to a space with a Clue Ġ or Epic Monster đ counter, flip an Epic Monster đ counter in that Region face up.</p>
+            <p style=" margin-left: 0px; "><i><i>For example, if you draw the Stone Circle, Tomb Lake, or Tower Island Danger cards, flip the Scroglin King counter face up (at Tower Island). If you draw the Hell Pit or Skull Bridge Danger cards, flip the Daemonic Voivod counter face up (at Skull Bridge).</i></i></p>
+            <p style=" margin-left: 0px; ">Once face up, the Scroglin King & Daemonic Voivod will follow the adventurer carrying the Soothsayer's Head starting on the turn after they were flipped. If the Soothsayer's Head has already been discarded, they will follow the last adventurer to carry it & continue to do so until destroyed or otherwise removed.</p>
+            <p style=" margin-left: 0px; ">At the end of this mission, remove facedown Epic Monster đ counters remaining on the board. Faceup Epic Monsters will continue to hunt the party during the following mission<i>(s)</i>.</p>
+            <br><img src="data/separator.png" class="separator"><br></p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>If you returned the Soothsayer's Head to the Stone Circle, he thanks you for your efforts & whispers secrets about a wondrous palace-temple hidden deep in the Mountains of the Mouth. Do you dare follow the dubious directions of this delirious dead man? Continue on to </i><a href="./visionsatthepeak.html?head">İVisions at the Peak</a><i>, or choose to ignore the rotting fool & </i><a href="./establishabase.html">İEstablish a Base</a><i> here in the swamp.</i></p>
+            <p style=" margin-left: 0px; "><i>Otherwise you may claim to have destroyed the head & attempt to </i><a href="./establishabase.html">İEstablish a Base</a><i> in Gutfish Ford or another Settlement </i>Ė<i> outside of the Lowlands.</i></p>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUNT THE WITCH CULT</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #e2d3b9;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #e0a235;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>HUNT THE WITCH CULT</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>In every corner of the Würstreich worshippers gather to practice forbidden rites. They infiltrate the towns of the Lowlands, spreading jear & corruption in the feeble minds of the ignorant masses. The solution is clear: hunt them down & bring them to Witch Hill where they will be judged for their crimes!</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('If you are playing Hunt the Witch Cult as a standalone mission, the Bounty Level is 2 & the party starts at <b>Brüttelburg</b>.');</script></p>
+            <p style=" margin-left: 0px; ">Place Clue Ġ counters on the following Locations. these represent secret gathering places of the witch cult.</p>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse;  width: 450px"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ The Catacombs</td><td style="text-align: left; line-height: 20px;">Ġ The Crossroads</td></tr><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ Hag's Fork</td><td style="text-align: left; line-height: 20px;">Ġ Fishmonger Camp</td></tr></tbody></table>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse;  width: 700px"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ The Black Tree <i>(if there are 3 or more adventurers)</i></td></tr></tbody></table>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">When you destroy a Heretic or Witch, keep their card near your character sheet to represent that they have been taken as a captive <i>(unless you ate them using Gourmet)</i>. You may have up to 2 captives at one time. You may discard <i>(execute)</i> a captive to allow yourself to take a more valuable captive & you may exchange captives with your party.</p>
+            <p style=" margin-left: 0px; ">To complete the mission, the adventurers must bring a number of captives equal to the total number of adventurers to Witch Hill & Rest there in Bold č stance to conduct a witch trial (see The Trial, below). All adventurers must be at Witch Hill to begin the trial.</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>THEY GATHER IN SECRET</center></h2>
+            <p style=" margin-left: 0px; "><i>Hidden enclaves of cultists infest the South; hatching insidious plots, striking suddenly & plunging the countryside into chaos, then vanishing without a trace.</i></p>
+            <p style=" margin-left: 0px; ">When the first party draws a Danger card corresponding to a space with a Clue Ġ counter, flip that Clue Ġ counter faceup before resolving the Danger card. If the counter's value is greater than the current Danger Level in that space, increase the Danger Level to equal the counter's value before resolving your Danger card.</p>
+            <p style=" margin-left: 0px; "><i>For example, if you draw the Witchwood Danger card, flip the Clue </i>Ġ<i> counter at Hag's Fork (which is within the Witchwood). If you revealed </i>Ġ<i>5, you would increase the Danger Level at the Witchwood to 5, then resolve the Danger card, which would raise the Danger Level to 6.</i></p>
+            <p style=" margin-left: 0px; ">When you successfully Explore ġ a space with a facedown Clue Ġ counter, you may choose to fight monsters <i>(& draw a random Encounter </i>Ĥ<i>, if applicable)</i> this turn regardless of the value of your Danger card. When you destroy a Heretic or Witch in a space with a Clue Ġ counter, remove that Clue Ġ from the board.</p>
+            <br><br><h2><center>THE TRIAL</center></h2>
+            <p style=" margin-left: 0px; "><i>Inquisitors from the Holy Order stand ready at Witch Hill to judge the heretical scum you've captured while the cult sends forces to free their brothers & sisters from your clutches.</i></p>
+            <p style=" margin-left: 0px; ">When you begin the trial, flip each Clue Ġ counter remaining on the board. Increase the Danger Level of each space with a Clue Ġ counter to equal the value of that counter. If the Danger Level is already greater than the counter's value, there is no effect.</p>
+            <p style=" margin-left: 0px; ">Next, roll D6 on the table below to determine the cult's reaction. Roll an additional D6 for each Clue Ġ counter remaining on the board & use the lowest single die value. Compare your roll to the total XPĥ VAL of all captives.</p>
+            <p style=" margin-left: 0px; ">If random monster icons are indicated (Ĉ or đ), the cult attacks in a desperate attempt to free their allies. Draw the indicated number of monster cards & you must defeat them to complete the trial - if there are any Heretics or Witches in this group of monsters, you can include them in the trial. If no icons are indicated, the trial goes uninterrupted - your mission is complete.</p>
+            <p style=" margin-left: 0px; ">Regardless of your roll on the reaction table, ignore Monster Ĉ/đ & Encounter Ĥ icons on your Danger cards this turn - only fight monsters drawn as a result of your roll on this table.</p>
+            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 750px"><thead><tr><th style="background-color: #000; color: #e0a235;"></th><th colspan="7" style="background-color: #000; color: #e0a235;">TOTAL XPĥ VAL OF CAPTIVES</th></tr><tr><th style="text-align: center; width: auto; background-color: #000; color: #e0a235;">LOW DIE</th><th style="text-align: center; width: auto; background-color: #000; color: #e0a235;">1</th><th style="text-align: center; width: auto; background-color: #000; color: #e0a235;">2</th><th style="text-align: center; width: auto; background-color: #000; color: #e0a235;">3</th><th style="text-align: center; width: auto; background-color: #000; color: #e0a235;">4</th><th style="text-align: center; width: auto; background-color: #000; color: #e0a235;">5</th><th style="text-align: center; width: auto; background-color: #000; color: #e0a235;">6</th><th style="text-align: center; width: auto; background-color: #000; color: #e0a235;">7+</th></tr></thead><tbody><tr style="background-color: #e2d3b9;"><td style="text-align: center;">1</td><td style="text-align: center;">Ĉ2</td><td style="text-align: center;">Ĉ2</td><td style="text-align: center;">Ĉ3</td><td style="text-align: center;">Ĉ4</td><td style="text-align: center;">đĈ1</td><td style="text-align: center;">đĈ2</td><td style="text-align: center;">đĈ3</td></tr><tr style="background-color: #F0E9DC;"><td style="text-align: center;">2</td><td style="text-align: center;">Ĉ1</td><td style="text-align: center;">Ĉ1</td><td style="text-align: center;">Ĉ2</td><td style="text-align: center;">Ĉ3</td><td style="text-align: center;">Ĉ4</td><td style="text-align: center;">đĈ1</td><td style="text-align: center;">đĈ2</td></tr><tr style="background-color: #e2d3b9;"><td style="text-align: center;">3</td><td style="text-align: center;">-</td><td style="text-align: center;">Ĉ1</td><td style="text-align: center;">Ĉ1</td><td style="text-align: center;">Ĉ2</td><td style="text-align: center;">Ĉ3</td><td style="text-align: center;">Ĉ4</td><td style="text-align: center;">đĈ1</td></tr><tr style="background-color: #F0E9DC;"><td style="text-align: center;">4</td><td style="text-align: center;">-</td><td style="text-align: center;">-</td><td style="text-align: center;">Ĉ1</td><td style="text-align: center;">Ĉ1</td><td style="text-align: center;">Ĉ2</td><td style="text-align: center;">Ĉ3</td><td style="text-align: center;">Ĉ4</td></tr><tr style="background-color: #e2d3b9;"><td style="text-align: center;">5</td><td style="text-align: center;">-</td><td style="text-align: center;">-</td><td style="text-align: center;">-</td><td style="text-align: center;">-</td><td style="text-align: center;">-</td><td style="text-align: center;">-</td><td style="text-align: center;">Ĉ4</td></tr><tr style="background-color: #F0E9DC;"><td style="text-align: center;">6</td><td style="text-align: center;">-</td><td style="text-align: center;">-</td><td style="text-align: center;">-</td><td style="text-align: center;">-</td><td style="text-align: center;">-</td><td style="text-align: center;">-</td><td style="text-align: center;">-</td></tr></tbody></table>
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Total the XPĥ VAL of each captive that was judged during the trial at Witch Hill <i>(including any Heretics or Witches who were destroyed attempting to stop the trial)</i>. You get the corresponding reward from the list below & all those preceding it.</p>
+            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 750px"><thead><tr></tr><tr><th style="text-align: center; width: auto; background-color: #000; color: #e0a235;">TOTAL VAL</th><th style="text-align: left; width: auto; background-color: #000; color: #e0a235;">REWARD</th></tr></thead><tbody><tr style="background-color: #e2d3b9;"><td style="text-align: center;">1</td><td style="text-align: left;">Each adventurer gains 1 Luck Ğ</td></tr><tr style="background-color: #F0E9DC;"><td style="text-align: center;">2</td><td style="text-align: left;">Increase the Town Level at the Holy Order</td></tr><tr style="background-color: #e2d3b9;"><td style="text-align: center;">3</td><td style="text-align: left;">Reduce the Bounty Level</td></tr><tr style="background-color: #F0E9DC;"><td style="text-align: center;">4</td><td style="text-align: left;">Reduce the Danger Level at the Catacombs & Fields</td></tr><tr style="background-color: #e2d3b9;"><td style="text-align: center;">5</td><td style="text-align: left;">Reduce the Danger Level at the Fishmonger Camp & Witchwood</td></tr><tr style="background-color: #F0E9DC;"><td style="text-align: center;">6</td><td style="text-align: left;">If there is at least one Hunter, Militant or Puritan in the party, the one with the highest MRL may take the <b>Sanctioned Witchsmeller</b> Triumph card</td></tr><tr style="background-color: #e2d3b9;"><td style="text-align: center;">7</td><td style="text-align: left;">Remove all blue Doom ğ counters from the Doom track</td></tr><tr style="background-color: #F0E9DC;"><td style="text-align: center;">8</td><td style="text-align: left;">Discard all persistent Doom cards from the Lowlands</td></tr><tr style="background-color: #e2d3b9;"><td style="text-align: center;">9</td><td style="text-align: left;">Increase the Town Level at Brüttelburg</td></tr><tr style="background-color: #F0E9DC;"><td style="text-align: center;">10+</td><td style="text-align: left;">Increase the Town Level at the Hunt Lodge</td></tr></tbody></table>
+            <p style=" margin-left: 0px; "><i><center>For example, if the party judged 2 Heretics with XP</i>ĥ<i> VAL 1, each adventurer gets 1 Luck </i>Ğ<i>, then increase the Town Level at the Holy Order.</center></i></p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; ">Now, at last, you must confront the hidden Hand guiding the wicked outs of the Würstreich from the shadows & drive its corruption from the land. You must act fast if you are to have any chance of victory <a href="./againstthehandofdoom.html">İAgainst the Hand of Doom</a>!</p>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

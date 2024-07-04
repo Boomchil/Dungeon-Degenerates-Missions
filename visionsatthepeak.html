@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VISIONS AT THE PEAK</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #9ed0ce;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #32ccc7;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>VISIONS AT THE PEAK</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>The mountains beckon!</i></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('fungal_parasite')) document.write(' The image of a resplendent gleaming palace-temple shrouded in colorful mist & hidden high in the mountains haunts your dreams as an unseen force whispers of the bounty this Echos beckons you Northward. As if guided by fate, you begin a dangerous pilgrimage to this wondrous dream-castle.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('head')) document.write('The soothsayer\'s raspy whisper entices you with tales of a mystical lost temple in the mountains & the \'wonders of the king\' within. With the soothsayer\'s guidance, perhaps you can reach this isolated temple-palace & plunder its magnificent treasures!');</script></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('If you are playing Visions on the Peak as a standalone mission, the Bounty Level is 2 & the party starts at Stone Circle.');</script></p>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('fungal_parasite', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>Got the Fungal Parasite Loot Card</h3>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse; width: 850px; margin-top: 20px;"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 25px; padding: 0px; width: 70%;">ĝ <b>Lord Scrott</b> <i>(Epic Monster)</i><br><br><i>The bird king waits in his throne room for devoted subjects bringing offerings from the world below in exchange for his gift of transformation!</i></td><td style="text-align: left;  line-height: 20px;;"><img style="max-width: 100px; border: 10px solid #000; border-radius: 50%; background-color: #000;" src="data/lordscrott.png"</img></td></tr></tbody></table>
+            <p style=" margin-left: 0px; ">If you have more than 16 Encounter cards for a Region (additional Encounters are available in booster packs), this can affect the difficulty of this mission. To prevent this, make sure to include the following cards in each encounter deck, then remove any excess cards until each deck has a total of 16 cards:</p>
+            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 650px"><thead><tr></tr><tr><th style="text-align: left; width: 30%; background-color: #000; color: #32ccc7;">Encounter deck</th><th style="text-align: left; width: auto; background-color: #000; color: #32ccc7;">Required cards</th></tr></thead><tbody><tr style="background-color: #9ed0ce;"><td style="text-align: left;">Badlands</td><td style="text-align: left;">Scrag Milker</td></tr><tr style="background-color: #CEE7E6;"><td style="text-align: left;">Highlands</td><td style="text-align: left;">Alchemist</td></tr><tr style="background-color: #9ed0ce;"><td style="text-align: left;">Lowlands</td><td style="text-align: left;">Truffle Hunter</td></tr><tr style="background-color: #CEE7E6;"><td style="text-align: left;">Wetlands</td><td style="text-align: left;">Scrog Spiker, Swamp Hag & Weed Wizard</td></tr></tbody></table>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">At least one adventurer must travel to the Temple of Madness & Rest there <i>(remember that you must have a status condition or Disease to enter a Metaphysical space)</i>. When you do, you must face Lord Scrott <i>(see Facing Lord Scrott, below)</i> & either pledge yourself to him or destroy him!</p>
+            <div id="fungal_parasite" class="hidden-text">
+            <p style=" margin-left: 0px; ">If an adventurer has the Fungal Parasite, the mission cannot be completed until that adventurer <i>(the fungal host)</i> Rests at the Temple of Madness. Lord Scrott will not appear until the fungal host is present. If the fungal host is cured <i>(if the Fungal Parasite has been discarded)</i> during the course of the mission, Lord Scrott becomes quite displeased & will not accept any offering!</p>
+            </div>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>SCORING DRUGS</center></h2>
+            <p style=" margin-left: 0px; "><i>It is said that only true sorcerers can travel to the Temple without the aid of certain mindbending substances & obscure rituals to alter the pilgrim's perception of reality. Many such substances are available for sale throughout the Borderlands to those who know where to look.</i></p>
+            <p style=" margin-left: 0px; ">When you find any of the Encounters on the list below & interact with them in the indicated manner, you may search the Loot deck & discards for the corresponding Item & you may purchase that Item for normal cost.</p>
+            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 650px"><thead><tr></tr><tr><th style="text-align: left; width: auto; background-color: #000; color: #32ccc7;">Encounter</th><th style="text-align: left; width: auto; background-color: #000; color: #32ccc7;">Item</th></tr></thead><tbody><tr style="background-color: #9ed0ce;"><td style="text-align: left;">Alchemist <i>(Approach)</i></td><td style="text-align: left;">Mystery Pills</td></tr><tr style="background-color: #CEE7E6;"><td style="text-align: left;">Scrag Milker <i>(Drink)</i></td><td style="text-align: left;">Scrag's Milk</td></tr><tr style="background-color: #9ed0ce;"><td style="text-align: left;">Scrog Spiker <i>(Approach)</i></td><td style="text-align: left;">Eye of Scrog</td></tr><tr style="background-color: #CEE7E6;"><td style="text-align: left;">Swamp Hag <i>(Approach & roll 5 or more)</i></td><td style="text-align: left;">Magic Mushroom</td></tr><tr style="background-color: #9ed0ce;"><td style="text-align: left;">Truffle Hunter <i>(Approach)</i></td><td style="text-align: left;">Scratch</td></tr><tr style="background-color: #CEE7E6;"><td style="text-align: left;">Weed Wizard <i>(Approach)</i></td><td style="text-align: left;">Marsh Moss</td></tr></tbody></table>
+            <p style=" margin-left: 0px; "><i><i><center>For example, if you find the Alchemist & Approach him, you may purchase Mystery Pills from him.</i></center></i></p>
+            <br><br><h2><center>FACING LORD SCROTT</center></h2>
+            <p style=" margin-left: 0px; "><i>As you explore the spiralling labyrinthine corridors of the Temple, the clinking footsteps of the bird-king's ceramic feet echo across the strangely glistening walls. The sweel scent of the wafting Nacht Mist envelops the chamber & Lord Scrott appears, towering above you & gibbering like a mad parrol or a living God!</i></p>
+            <div id="fungal_parasite" class="hidden-text">
+            <p style=" margin-left: 0px; "><i>If you have the Fungal Parasite, you hear Lord Scrott's glorious litany & it resonates with the voices in your mind. You know you stand now belore your true sovereien & that you must go forth & share his gifts with the world!</i></p>
+            </div>
+            <p style=" margin-left: 0px; ">When you Rest at the Temple of Madness, place the Lord Scrott counter there. At the start of the Encounter Phase, you may attempt to pay tribute to him by presenting a symbolic offering; the fungal host <i>(or any adventurer, if there is no fungal host)</i> must discard an <b>Ally</b> or <b>Food</b>, <b>Herb</b>, <b>Relic</b>, or <b>Alchemical</b> Item, then make a MAG Test. If you offered a <b>Relic</b>, you may roll 3 dice & use any 2. If you pass this Test, your offering is successful & your mission completed! If you fail, Lord Scrott rejects your pathetic tribute & you must fight & destroy him as your mind clears & you witness the true horror that surrounds you!</p>
+            <br><img src="data/separator.png" class="separator"><br></p>
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ & remove 2 yellow Doom ğ counters from the Doom track <i>(Doom cards remain in play)</i>.</p>
+            <p style=" margin-left: 0px; ">If you destroyed <b>Lord Scrott</b>, increase the Town Level at Pigskin Port & the Bandit Camp & you may take the <b>Psychic Warrior</b> Trait.</p>
+            <p style=" margin-left: 0px; ">If you made a <b>Successful Offering</b> <i>(by passing a MAG Test)</i>, you may take the <b>Servant of Lord Scrott</b> Triumph card.</p>
+            <p style=" margin-left: 0px; ">If you are packing up the game, make a note of any Status Conditions you have on your Adventurer Record Sheet. Begin the next Mission with these Status Conditions.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('destroyed_lord_scrott', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You destroyed Lord Scrott</h3>
+            <div id="destroyed_lord_scrott" class="hidden-text">
+            <p style="margin-left: 30px; "><i>As the bird king's body sinks to the quivering floor, his wounds form growing pools of stinking blight-mold. As these pools seep into the ground, new & bizarre forms rise & twist in the air before your eyes. You realize this place must somehow be the source of the terrible blight devastating the Highlands! Armed with this knowledge you resolve to do what you can to </i><a href="./cleansetheblight.html">İCleanse the Blight</a><i>.</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('success_offering', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You made a Succesful Offering</h3>
+            <div id="success_offering" class="hidden-text">
+            <p style="margin-left: 30px; "><i>You rejoice in Lord Scrott's favour & he bids you go forth to share his gifts throughout the Borderlands. You must visit the realms of mankind & do your part to </i><a href="./spreadtheblight.html">İSpread the Blight</a><i>.</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('failed_offering', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>Lord Scrott rejected your Offering</h3>
+            <div id="failed_offering" class="hidden-text">
+            <p style="margin-left: 30px; "><i>Having vanquished the avian horror, your thoughts begin to clear & you realize your mind has been clouded & confused by some unseen & omnipresent sentient force. Determined to prevent the Highlands from falling under its spell, you swear to </i><a href="./spreadtheblight.html">İCleanse the Blight</a><i> from the countryside once & for all!</i></p>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

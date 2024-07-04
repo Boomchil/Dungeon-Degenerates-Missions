@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRINGER OF DOOM</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #edcfcb;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #e0624d;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>BRINGER OF DOOM</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>Your hatred for the corrupt & tyrannical rule of the Würstreich has led you to this glorious moment of retribution! Soon you will clutch the Doombringer Horn in your trembling fist & sound the clarion call of joyous & resounding destruction!</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; ">If you are playing Bringer of Doom as a standalone mission, the Bounty Level is 3 & the party starts at <b>Witch Hill</b>.</p>
+            <p style=" margin-left: 0px; ">Place the <b>Hidden Halls</b> map overlay near the Bandit Camp. This represents a new Location that is adjacent to the Bandit Camp & shares its Danger Level. You can only move to the Hidden Halls if the Bandit Camp is Explored ġ.</p>
+            <p align="center"><img style="max-width: 100%;" src="data/bringerofdoom01.png" align="center"></p>
+            <p style=" margin-left: 0px; ">Place the <b>Flooded Caves</b> map overlay near the Sunken Village. This represents a new Location that is adjacent to the Sunken Village & shares its Danger Level. You can only move to the Flooded Caves if the Sunken Village is Explored ġ.</p>
+            <p align="center"><img style="max-width: 100%;" src="data/bringerofdoom02.png" align="center"></p>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse; width: 500px; margin-top: 20px;"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 25px; padding: 0px; width: 70%;">đ <b>High Inquisitor</b> at <b>the Holy Order</b></i></td><td style="text-align: left;  line-height: 20px;;"><img style="max-width: 100px; border: 10px solid #000; border-radius: 50%; background-color: #000; box-shadow: 4px 4px rgb(58, 58, 58);" src="data/highinquisitor.png"</img></td></tr></tbody></table>
+            <p style=" margin-left: 0px; ">Place Clues Ġ1 through 3 on the following Locations. These define the route of the High Inquisitor's patrol.</p>
+            <p style=" margin-left: 0px; ">Ġ1 <b>North Bridge</b></p>
+            <p style=" margin-left: 0px; ">Ġ2 <b>East Bridge</b></p>
+            <p style=" margin-left: 0px; ">Ġ3 <b>Fishmonger Camp</b></p>
+            <p style=" margin-left: 0px; ">Shuffle the remaining Clue Ġ counters together & place one facedown randomly on each of the following Locations. These indicate ancient ruins where the Doombringer Horn & its guardian may be found.</p>
+            <p style=" margin-left: 0px; ">Ġ <b>Flooded Cave</b></p>
+            <p style=" margin-left: 0px; ">Ġ <b>Hidden Halls</b></p>
+            <p style=" margin-left: 0px; ">Ġ <b>Tower Island</b></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Daemonic Voivod</b> <i>(Epic Monster)</i></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Doombringer Horn</b> <i>(Epic Loot)</i></p>
+            <p style=" margin-left: 0px; ">Create a separate Mission ĝ deck using the following Encounters. One of these will be drawn randomly when you Explore in the ruins listed above.</p>
+            <p style=" margin-left: 0px; ">ĝ Eerie <b>Silence/Death Pit</b> <i>(Lowlands Encounter)</i></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Hypnocrystals/Charnel House</b> <i>(Badlands Encounter)</i></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Lost in the Fog/Hideous Idol</b> <i>(Wetlands Encounter)</i></p>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">Advance the Doom track to 6 with the Hand of Doom at Brüttelburg while there are no Towns Ę in the Lowlands <i>(each Settlement </i>Ė<i> in the Lowlands must be a Danger Level)</i>.</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>THE HARBINGERS OF DOOM</center></h2>
+            <p style=" margin-left: 0px; "><i>Mighty champions of fanatical cults who worship the Hand of Doom known as the Harbingers hold secret knowledge about the legendary Doombringer Horn. Only if you best them in battle will they deem you worthy of its power!</i></p>
+            <p style=" margin-left: 0px; ">Before you acquire the Doombringer Horn, each time you destroy a Harbinger <i>(Death Knight, Knife Wraith, Murder Knight, or Pain Knight)</i> you may choose a facedown Clue Ġ counter on the board & look at its value.</p>
+            <br><br><h2><center>THE DOOMBRINGER HORN</center></h2>
+            <p style=" margin-left: 0px; "><i>An enchanted horn created by daemonic Morbad blacksmiths in the depths of the Chasm & bestowed upon the Necromancer's devoted servants as a means to summon the Hand of Doom in times of great need. If you can steal it from the clutches of the Necromancer's servants, you can use it to smash Brüttelburg into dust!</i></p>
+            <p style=" margin-left: 0px; ">When you pass an Explore ġ Test in a space with a facedown Clue Ġ counter <i>(Flooded Caves, Hidden Halls, or Tower Island)</i>, flip that counter.</p>
+            <p style=" margin-left: 0px; ">If you reveal Clue Ġ4 or 5, draw an Encounter from the Mission ĝ deck & resolve it <i>(the lower half)</i> during the Encounter Phase <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>. Then, remove the Clue Ġ counter.</p>
+            <p style=" margin-left: 0px; ">If you reveal Clue Ġ6, draw an Encounter from the Mission ĝ deck & resolve it <i>(the lower half)</i> during the Encounter Phase <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>. In addition, take the Daemonic Voivod counter & place it in your space.</p>
+            <p style=" margin-left: 0px; ">If you destroy the Daemonic Voivod, do not make a Loot roll; instead take the Doombringer Horn from the Mission ĝ deck.</p>
+            <p style=" margin-left: 0px; ">When you find the Doombringer Horn, remove Clue Ġ6 & all remaining facedown Clue Ġ counters from the board. Then, place these facedown on each Settlement Ė in the Lowlands <i>(Brüttelburg, the Holy Order & the Hunt Lodge)</i>. These serve as a reminder of which of the Settlements Ė must have a Danger Level at the end of the mission.</p>
+            <br><br><h2><center>THE HIGH INQUISITOR</center></h2>
+            <p style=" margin-left: 0px; ">Your infamous exploits have reached the ears of the High Inquisitor of the East, the top agent of the inquisition in the Borderlands. Your allies report that she patrols the Lowlands, rounding up subversives & outlaws to put to gruesome torture.</p>
+            <p style=" margin-left: 0px; ">The High Inquisitor will patrol the Lowlands until she becomes aware of the party & their devilish plans. While on patrol, the High Inquisitor will first move towards Clue Ġ1. Once she reaches Clue Ġ1, she will move to Clue Ġ2, then to Clue Ġ3. From Clue Ġ3 she will start the cycle again, moving back to Clue Ġ1 & continuing through the facedown counters in order.</p>
+            <p style=" margin-left: 0px; ">This patrol cycle will continue until an adventurer uses the Doombringer Horn for the first time, or when an adventurer moves into the High Inquisitor's space. If either of these happen, the High Inquisitor will move towards the adventurer with the Doombringer Horn <i>(although if there are any adventurers in her space, she will not move)</i>. At this point you may remove Clues Ġ1 through 3 from the board. Once the Doombringer Horn has been used, you can no longer Bribe or use Official Papers against the High Inquisitor.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; ">With the last note of the Doombringer Horn, the Hand of Doom materializes before you in a cloud of sulphurous smoke! Its fingers twist into unnatural shapes as it forms the esoteric Signs of Power in sequence, ripping the ground apart & shattering the walls of Brüttelburg. Civilians & soldiers run for their lives as their fortress-city crumbles around them. Fanatical killers of the Necro Coven dance in the streets, slaughtering the panic-stricken city guard amidst the chaos.</p>
+            <p style=" margin-left: 0px; ">A chasm tears through the ground, breaking the city in half & spilling forth endless squirming legions of the Vermin Queen. These devouring swarms sweep over the city like a living wave of stinking flesh & gnashing teeth.</p>
+            <p style=" margin-left: 0px; ">In the aftermath, the smoking ruin of Brüttelburg is evacuated as refugees flee West to the heart of the Empire, preyed upon by cultists & bandits along their journey. The Würstreich's border has been shattered & their stranglehold over the Lowlands utterly destroyed. You are victorious!</p>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

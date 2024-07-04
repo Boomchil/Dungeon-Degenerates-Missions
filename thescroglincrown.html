@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE SCROGLIN CROWN</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #e2d3b9;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #e0a235;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>THE SCROGLIN CROWN</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>A malevolent fishoid sorcerer has found the legendary Crown of Cruelty & established itself as King of the Deep. You must kill it & take the crown!</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('If you are playing this mission as a standalone game, the Bounty Level is 2 & the party starts at <b>Stone Circle</b>.');</script></p>
+            <p style=" margin-left: 0px; ">Ġ1 <b>The Catacombs</b> <i>(the king's escape route if he senses a threat)</i></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Megaverm</b> <i>(Epic Monster)</i></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Crown of Cruelty</b> <i>(Epic Loot)</i></p>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse; width: 450px; margin-top: 20px;"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 25px; padding: 0px; width: 70%;">đ <b>Scroglin King</b> at <b>Tower Island</b></i></td><td style="text-align: left;  line-height: 20px;;"><img style="max-width: 100px; border: 10px solid #000; border-radius: 50%; background-color: #000;" src="data/scroglinking.png"</img></td></tr></tbody></table>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">Sell the <b>Crown of Cruelty</b> to the Circle of Warlocks while <b>Trading</b> at Stone Circle. Alternately, you may keep it for yourself by Resting at any Town Ę <i>(other than Stone Circle)</i> while you have the <b>Crown of Cruelty</b>.</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>THE FISH-WITCH OF TOWER ISLAND</center></h2>
+            <p style=" margin-left: 0px; ">The Scroglin King will remain at Tower Island until alerted to danger. When you move into or Rest at a Lake Port Đ space, you must roll for <b>Stealth</b>; each adventurer must make a PER Test & if you are in Bold č stance you automatically fail. If any adventurer fails, the Scroglin King moves towards Clue Ġ1 starting that turn <i>(unless an adventurer is in its space)</i>.</p>
+            <p style=" margin-left: 0px; ">While the Scroglin King is at Clue Ġ1 <i>(the Catacombs)</i>, it gains Regenerate 2 due to powerful spells inscribed within the walls of its secret lair.</p>
+            <p style=" margin-left: 0px; ">When you destroy the Scroglin King, take the <b>Crown of Cruelty</b> from the Mission ĝ deck, but do not draw a random Epic Loot card. Then, remove Clue Ġ1 & remove any Perilous Ē counters that were placed on the King.</p>
+            <br><br><h2><center>SUMMONING OF THE VERM</center></h2>
+            <p style=" margin-left: 0px; ">When the first party draws a Danger card with value 6 <i>(if the card has multiple values, look at the highest value shown)</i>, place a Perilous Ē counter on top of the Scroglin King's counter <i>(unless there are already 2 Perilous Ē counters there)</i>. If the Scroglin King moves, these counters move with it & its space is considered Perilous Ē.</p>
+            <p style=" margin-left: 0px; ">When a second Perilous Ē counter is placed on the Scroglin King, place the Megaverm counter at a random Location <i>(roll D6. 1-2: Ghostgate, 3-4: Fishmonger Camp, 5-6: Dusk Falls)</i>, even if it was previously destroyed.</p>
+            <p style=" margin-left: 0px; ">The Megaverm will follow the closest party <i>(starting on the turn after it was placed on the board)</i>. If it is destroyed, remove any Perilous Ē counters from the Scroglin King's counter but do not claim any Epic Loot from the Megaverm.</p>
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ. If you sold the Crown of Cruelty to the Circle of Warlocks remove 2 green Doom ğ counters from the track, then search the Danger deck & discard pile for the <b>Stone Circle</b> card & return it to the game box. If you did not deliver the Crown of Cruelty to the Warlocks, remove your Base Ī counter from Stone Circle.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>If you kept the crown for yourself, you are no longer welcome at Stone Circle & you must find a new place to </i><a href="./establishabase.html">İEstablish a Base</a><i>.</i></p>
+            <p style=" margin-left: 0px; "><i>If you brought the Crown of Cruelty to the Circle of Warlocks, they use its power to ward the Stone Circle from harm, but to protect all of the Borderlands, you must strike out </i><a href="./againstthehandofdoom.html">İAgainst the Hand of Doom</a><i>!</i></p>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

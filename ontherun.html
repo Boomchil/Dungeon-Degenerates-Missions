@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ON THE RUN</title>
+   <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #b3d09e;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #82e837;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>ON THE RUN</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>As you rot in your filthy prison cell beneath the fortress city of Brüttelburg, a shady jailor comes to you smelling of cheap gin & rancid oil offering an illicit deal. He has found something valuable that he needs to keep hidden from his cruel & fanatical commander, the High Magistrate. Unable to leave his post, the jailor offers you your freedom if you will retrieve & deliver a package to his crooked cousin in Pigskin Port. Will you accept this generous offer or refuse him & plot an escape on your own terms?</i></p>
+            <p style=" margin-left: 0px; ">You may choose to refuse the jailor's offer. If you do, skip this mission & continue on to <a href="./lootandpillage.html?jailor">İLoot & Pillage</a>.</p>
+            <p style=" margin-left: 0px; ">If you accept the offer, the jailor springs you out of the undercity dungeon & sends you on your way with perhaps enough gear to survive the journey <i>(your starting Items & GP</i>Ď<i>)</i>.</p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; ">Set the Bounty Level at 3 & place the party at <b>Brüttelburg</b>.</p>
+            <p style=" margin-left: 0px; ">ĝ <b>Soothsayer's Head</b> <i>(Loot): This head of a mummified mystic is the jailor's prized object, which you must deliver to Pigskin Port if you wish to honor your part of the deal. Imbued with some trace of his magic beyond death, the soothsayer's cold lips whisper sage warnings mixed with utter nonsense in ancient languages.</i></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Fungal Parasite</b> <i>(Loot): The dangers of handling a moldy old severed head...</i></p>
+            <p style=" margin-left: 0px; ">Ġ6 <b>Crossroads</b>: <i>where the jailor buried the Soothsayer's Head to hide it from the witch smellers of the Inquisition.</i></p>
+            <p style=" margin-left: 0px; ">Ġ1 <b>Pigskin Port</b>: <i>If you can bring the Soothsayer's Head to the jailor's cousin, you might get a reward. Then again, it could be a trap. In any case, Pigskin Port is a good place to look for work.</i></p>
+            <p style=" margin-left: 0px; ">Ġ2 <b>Gutfish Ford</b>: <i>You could leave the Soothsayer's Head in the ground & get as far away from Brüttelburg as possible, outside the reach of Imperial law. This rundown backwater stilt-village could be the perfect place to hide out & perhaps the Soothsayer's Head will be of some use to the village elders there.</i></p>
+            <p style=" margin-left: 0px; ">Ġ3 <b>Stone Circle</b>: <i>Surely the warlocks of the Circle would offer a decent price for the Soothsayer's Head? If not, at least you'll be safe from the law out there in the middle of the swamp.</i></p>
+            <p style=" margin-left: 0px; ">Ĝ <b>North Bridge</b>: <i>Before long the High Magistrate learns of your escape & sends riders to lock down North Bridge. You have no chance of getting through here without being re-captured!</i></p>
+            <p style=" margin-left: 0px; ">ĩ Each Path & Road adjacent to <b>Witch Hill</b>: <i>Imperial huntsman & agents of the Inquisition patrol the Witchwood for escaped convicts fleeing to the East.</i></p>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">You may complete this mission when all adventurers Rest together as a party at Clue Ġ 1, 2, or 3 <i>(Pigskin Port, Gutfish Ford, or Stone Circle)</i>, with or without the Soothsayer's Head.</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><img src="data/separator.png" class="separator"><br></p>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('explored_crossroads', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You successfully Explored ġ the Crossroads at Clue Ġ 6</h3>
+            <div id="explored_crossroads" class="hidden-text">
+            <p style="margin-left: 30px; ">Remove Clue Ġ6 & draw a random card from the Mission ĝ deck. If you draw the Soothsayer's Head, you may discard the remaining card in the Mission ĝ deck <i>(the Fungal Parasite)</i> to the Loot discard pile. If you draw the Fungal Parasite first, you must take that card <i>(you become sick from handling the mummified head)</i> & draw again <i>(taking the Soothsayer's Head)</i>.</p>
+            <p style="margin-left: 30px; "><i>When you dig up the Soothsayer's Head, its haunting raspy voice whispers to you in an ancient tongue...</i></p>
+            <h3 style="cursor: pointer; margin-left: 30px;" onclick="toggleSection('understood_head', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>An adventurer in the party meets the requirements of the Soothsayer's Head card <i>(MAG 7+ or Puritan)</i></h3>
+            <div id="understood_head" class="hidden-text">
+            <p style="margin-left: 60px; "><i>You're able to make sense of his desperate pleas to be returned to his home at Stone Circle.</i></p>
+            </div>
+            <p style="margin-left: 30px; ">If you lose the Soothsayer's Head, place it in the Loot discard pile <i>(do not place it back into the Mission </i>ĝ<i> deck)</i>.</p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('fungal_parasite', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You got the Fungal Parasite Loot Card</h3>
+            <div id="fungal_parasite" class="hidden-text">
+            <p style="margin-left: 30px; ">If you contracted the Fungal Parasite & are still its host at the end of the mission, you become strangely compelled to travel the Highland paths & climb the highest summit of the Mountains of the Mouth to the North. You can't be sure where this notion comes from, but it soon grows into an obsession that torments your mind ceaselessly! The party may choose to listen to your insane ramblings & continue on to <a href="./visionsatthepeak.html?fungal_parasite">İVisions at the Peak</a>. Otherwise, the adventurer with the Fungal Parasite becomes Demoralized & Suppressed at the start of the next mission <i>(determined below)</i>.</p>
+            </div>
+            <br><b><br>YOUR REWARD AND MISSION PATH ARE BASED ON WHAT YOU DID:<br></b>
+            <div id="explored_crossroads" class="hidden-text">
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('deliver_pigskin', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You Rested at Pigskin Port (Clue Ġ 1) to deliver the Soothsayer's Head to the jailor's cousin</h3>
+            <div id="deliver_pigskin" class="hidden-text">
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ. Remove all counters that were placed during setup & reduce the Bounty Level.</p>
+            <p style=" margin-left: 0px; ">Discard the Soothsayer's Head & distribute 2D6 GPĎ as evenly as possible amongst the party as payment.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>The jailor's cousin is appeciative enough to set you up with a job working for the River Rats gang.</i></p>
+            <p style=" margin-left: 0px; "><i>Accept the jailor's cousin offer to work for the River Rats gang, and continue on to </i><a href="./deathforhire.html?river_rats">İDeath for Hire</a><i>, or refuse this work & attempt to </i><a href="./establishabase.html">İEstablish a Base</a><i>.</i></p>
+            <p style=" margin-left: 0px; "><i>[PORK #24] You can't remember the last time you had a meal, so it might be a good idea to start looking for food before tackling more serious tasks. Time to start a </i><a href="./questforsausage.html">İQuest for Sausage</a><i>!</i></p>
+            <p style=" margin-left: 0px; "><i>[Badlands & Beyond] As you navigate the unfamiliar streets of Pigskin Port, an old man catches your eye, staring at you with a peculiar intensity. Will you talk to him and venture </i><a href="./intotheunknown.html">İInto the Unknown</a><i>?</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('deliver_gutfish', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You Rested at Gutfish Ford (Clue Ġ 2) to show the Soothsayer's Head to the village elders</h3>
+            <div id="deliver_gutfish" class="hidden-text">
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ. Remove all counters that were placed during setup & reduce the Bounty Level.</p>
+            <p style=" margin-left: 0px; ">Keep the Soothsayer's Head.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>The Village Elders beg you to destroy the hideous cursed head! If you have any hope of being welcome in town, you have to get rid of it.</i></p>
+            <p style=" margin-left: 0px; "><i>Follow the Village Elders advice to take the head and </i><a href="./throwitinthepit.html">İThrow it in the Pit</a><i>.</i></p>
+            <p style=" margin-left: 0px; "><i>[Missions II] You have escaped the fortress into imprisonment, but word reaches you about an old cellmate of yours who also roams free after selling you out. Time to catch </i><a href="./justanotherrat.html">İJust Another Rat</a><i>!</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('deliver_stone', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You Rested at Stone Circle (Clue Ġ 3) to deliver the Soothsayer's Head to the warlocks of the Circle</h3>
+            <div id="deliver_stone" class="hidden-text">
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ. Remove all counters that were placed during setup & reduce the Bounty Level.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>The soothsayer thanks you for your efforts & whispers secrets about a wondrous palace-temple hidden deep in the Mountains of the Mouth.</i></p>
+            <p style=" margin-left: 0px; "><i>Follow the dubious directions of this delirious dead man and continue on to </i><a href="./visionsatthepeak.html?head">İVisions at the Peak</a><i>, or choose to ignore the rotting fool & </i><a href="./establishabase.html">İEstablish a Base</a><i> here in the swamp.</i></p>
+            <p style=" margin-left: 0px; "><i>[Missions III] The Glitter Elders need outsiders to undertake a secret assignment for them, rumour has it that it is something to do with a </i><a href="./thewickerman.html">İWicker Man</a><i>...</i></p>
+            </div>
+            <div id="understood_head" class="hidden-text">
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('bring_head', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You Rested at Stone Circle (Clue Ġ 3) to bring the Soothsayer's Head to his home town</h3>
+            <div id="bring_head" class="hidden-text">
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ. Remove all counters that were placed during setup & reduce the Bounty Level.</p>
+            <p style=" margin-left: 0px; ">Discard the Soothsayers Head & each adventurer in the party gains D3 XPĥ as the Soothsayer blesses you with knowledge in thanks for your good deed.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>The soothsayer thanks you for your efforts & whispers secrets about a wondrous palace-temple hidden deep in the Mountains of the Mouth.</i></p>
+            <p style=" margin-left: 0px; "><i>Follow the dubious directions of this delirious dead man and continue on to </i><a href="./visionsatthepeak.html?head">İVisions at the Peak</a><i>, or choose to ignore the rotting fool & </i><a href="./establishabase.html">İEstablish a Base</a><i> here in the swamp.</i></p>
+            <p style=" margin-left: 0px; "><i>[Missions III] The Glitter Elders need outsiders to undertake a secret assignment for them, rumour has it that it is something to do with a </i><a href="./thewickerman.html">İWicker Man</a><i>...</i></p>
+            </div>
+            </div>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('rested_pigskin_no_delivery', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You Rested at Pigskin Port (Clue Ġ 1) without the Soothsayer's Head, or keeping it for yourself</h3>
+            <div id="rested_pigskin_no_delivery" class="hidden-text">
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ. Remove all counters that were placed during setup & reduce the Bounty Level.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>You find yourself in a new town with no contacts to speak of... you must </i><a href="./establishabase.html">İEstablish a Base</a><i>!</i></p>
+            <p style=" margin-left: 0px; "><i>[PORK #24] You can't remember the last time you had a meal, so it might be a good idea to start looking for food before tackling more serious tasks. Time to start a </i><a href="./questforsausage.html">İQuest for Sausage</a><i>!</i></p>
+            <p style=" margin-left: 0px; "><i>[Badlands & Beyond] As you navigate the unfamiliar streets of Pigskin Port, an old man catches your eye, staring at you with a peculiar intensity. Will you talk to him and venture </i><a href="./intotheunknown.html">İInto the Unknown</a><i>?</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('rested_gutfish_no_delivery', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You Rested at Gutfish Ford (Clue Ġ 2) without the Soothsayer's Head, or keeping it for yourself</h3>
+            <div id="rested_gutfish_no_delivery" class="hidden-text">
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ. Remove all counters that were placed during setup & reduce the Bounty Level.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>You find yourself in a new town with no contacts to speak of... you must </i><a href="./establishabase.html">İEstablish a Base</a><i>!</i></p>
+            <p style=" margin-left: 0px; "><i>[Missions II] You have escaped the fortress into imprisonment, but word reaches you about an old cellmate of yours who also roams free after selling you out. Time to catch </i><a href="./justanotherrat.html">İJust Another Rat</a><i>!</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('rested_stone_no_delivery', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You Rested at Stone Circle (Clue Ġ 3) without the Soothsayer's Head, or keeping it for yourself</h3>
+            <div id="rested_stone_no_delivery" class="hidden-text">
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ. Remove all counters that were placed during setup & reduce the Bounty Level.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>You find yourself in a new town with no contacts to speak of... you must </i><a href="./establishabase.html">İEstablish a Base</a><i>!</i></p>
+            <p style=" margin-left: 0px; "><i>[Missions III] The Glitter Elders need outsiders to undertake a secret assignment for them, rumour has it that it is something to do with a </i><a href="./thewickerman.html">İWicker Man</a><i>...</i></p>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

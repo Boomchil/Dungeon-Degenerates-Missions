@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPREAD THE BLIGHT</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #e2d3b9;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #e0a235;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>SPREAD THE BLIGHT</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>Bearing Lord Scrott's blessing, you must descend from the mountains & bring his guts to the lands of men. Soon their rotting Empire will crumble & a new world will spring forth from the ruins. All will be one & the subjects of the lord weird bird king will rejoice under shifting irridescent skies!</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('If you are playing Spread the Blight as a standalone mission, the Bounty Level is 2 & the party starts at the<b> Temple of Madness</b>.');</script></p>
+            <p style=" margin-left: 0px; ">The adventurer with the lowest CON must take the <b>Fungal Parasite</b> card; that adventurer becomes the <i>'fungal host'</i>. If an adventurer already has the Fungal Parasite, they are the fungal host & may take the <b>Blightspreader</b> Triumph.</p>
+            <p style=" margin-left: 0px; "><i>The following spaces are population centers that the fungal host must visit to share their 'gift'.</i></p>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse;  width: 450px"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ Bandit Camp</td><td style="text-align: left; line-height: 20px;">Ġ Brüttelburg</td></tr><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ The Holy Order</td><td style="text-align: left; line-height: 20px;">Ġ Pigskin Port</td></tr></tbody></table>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse;  width: 750px"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ The Windmill <i>(if there are 2 or more adventurers)</i></td></tr><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ Fishmonger Camp <i>(if there are 3 or more adventurers)</i></td></tr></tbody></table>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse; width: 850px; margin-top: 20px;"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 25px; padding: 0px; width: 70%;">ĝ <b>Plaguefinder General</b> <i>(Epic Monster)</i><br><br><i>When word of the spreading blight reaches the ears of the inquisition, they send their finest plaguefinders to hunt down & exterminate the carrier of this insidious epidemic.</i></td><td style="text-align: left;  line-height: 20px;;"><img style="max-width: 100px; border: 10px solid #000; border-radius: 50%; background-color: #000;" src="data/plaguefinder.png"</img></td></tr></tbody></table>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">You complete this mission when there is a Fungus ī counter in each space with a Clue Ġ counter.</p>
+            <p style=" margin-left: 0px; ">As a Rest Action, the fungal host can place a Fungus ī counter in their space. When the fungal host places a Fungus ī counter, if the <b>Plaguefinder General</b> is not already on the board, you must roll D6 & subtract 2 from your roll if you are in Bold č stance. If your roll is equal to or less than the total number of Fungus ī counters on the board, you must place the <b>Plaguefinder General</b> counter at the <b>Holy Order</b> <i>(even if he was previously destroyed during this mission, as plaguefinders are promoted to fill the vacant post)</i>, then increase the Bounty Level.</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>THE PLAGUEFINDER GENERAL</center></h2>
+            <p style=" margin-left: 0px; ">The Plaguefinder General will follow the fungal host. When the Plaguefinder General moves into a Fungus ī space, remove the Fungus ī counter from that space. If the Plaguefinder General is destroyed, increase the Bounty Level & if you pass your Loot roll, draw a card from the Loot deck instead of the Epic Loot deck.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>The doom of the Würstreich is assured! The West is drowned in an ocean of blight; corrupting the minds of the populace & plunging the Empire into violence, chaos & death. Hordes of weirds & mobs of civilians twisted into violent hallucinating lunatics swarm the streets of Brüttelburg, leaving it in ruins! The promised new world awaits as your body swells & erupts in a brilliant cascade of sporemist. As the years pass, great fungus pillars sprout from your rotting body... <b>you are victorious!?</b></i></p>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

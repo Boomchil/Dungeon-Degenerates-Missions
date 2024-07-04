@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>START A WAR</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #e2d3b9;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #e0a235;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        .dice-section button.dicegroup0:hover {
+            color:#EFD09A;
+
+        }
+        .dice-section button.active_dicegroup0,
+        .dice-section button.active_dicegroup0:hover {
+            color:#e0a235;
+        }
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>START A WAR</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>The time has come to put an end to the decrepit & dying Empire. You must become the catalyst to drive the disparate factions of the Borderlands to war!</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('If you are playing Start a War as a standalone mission, the Bounty Level is 3 & the party starts at <b>Witch Hill</b>.');</script></p>
+            <p style=" margin-left: 0px; "><i>The towns & settlements surrounding the Lowlands exist perpetually on the brink of war. All it will take is a simple injection of fear to incite the populace to take up arms against the Würstreich.</i></p>
+            <p style=" margin-left: 0px; ">Place each Clue Ġ counter facedown on the corresponding Location indicated in the table below & place each of the Encounters listed into the Mission ĝ deck <i>(these can be found in the corresponding Region's Encounter deck)</i>.</p>
+            <p style=" margin-left: 0px; "><i>For example, place Clue </i>Ġ<i>3 facedown at the East Bridge.</i></p>
+            <p style=" margin-left: 0px; ">A facedown Clue Ġ counter represents a target you must destroy while disguised in Imperial uniform. A faceup Clue Ġ counter represents a confirmed alliance.</p>
+            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 700px"><thead><tr></tr><tr><th style="text-align: left; width: auto; background-color: #000; color: #e0a235;"> </th><th style="text-align: left; width: auto; background-color: #000; color: #e0a235;">LOCATION</th><th style="text-align: left; width: auto; background-color: #000; color: #e0a235;">ENCOUNTER</th><th style="text-align: left; width: auto; background-color: #000; color: #e0a235;">SETTLEMENT</th></tr></thead><tbody><tr style="background-color: #e2d3b9;"><td style="text-align: left;">Ġ1</td><td style="text-align: left;">Bandit Camp</td><td style="text-align: left;">ĝ Game of Cards</td><td style="text-align: left;">Bandit Camp</td></tr><tr style="background-color: #F0E9DC;"><td style="text-align: left;">Ġ2</td><td style="text-align: left;">Dusk Falls</td><td style="text-align: left;">ĝ Albino Scrog</td><td style="text-align: left;">Fishmonger Camp</td></tr><tr style="background-color: #e2d3b9;"><td style="text-align: left;">Ġ3</td><td style="text-align: left;">East Bridge</td><td style="text-align: left;">ĝ Imperial Checkpoint</td><td style="text-align: left;">Hunt Lodge</td></tr><tr style="background-color: #F0E9DC;"><td style="text-align: left;">Ġ4</td><td style="text-align: left;">The Graveyard</td><td style="text-align: left;">ĝ Goblin Emissary</td><td style="text-align: left;">Goblin Fortress</td></tr><tr style="background-color: #e2d3b9;"><td style="text-align: left;">Ġ5</td><td style="text-align: left;">Watchtower</td><td style="text-align: left;">ĝ Shady Dealings</td><td style="text-align: left;">Watchtower</td></tr><tr style="background-color: #F0E9DC;"><td style="text-align: left;">Ġ6</td><td style="text-align: left;">Windmill</td><td style="text-align: left;">ĝ Caravan</td><td style="text-align: left;">Pigskin Port</td></tr></tbody></table>
+            <p style=" margin-left: 0px; ">ĝ <b>Clever Disguise</b> <i>(loot)</i></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('imperial_conspirators')) document.write('Remove Clue Ġ3 from East Bridge & place it faceup on the Hunt Lodge. The adventurer with the highest MRL may take the <b>Agent of the Secret Brotherhood</b> Triumph card.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('river_rats')) document.write('Flip Clue Ġ1 faceup at the Bandit Camp.');</script></p>
+            <p style=" margin-left: 0px; ">If any of the spaces indicated in the <i>'Settlement'</i> column of the table above has a Base Ī counter, place the corresponding Clue Ġ counter faceup on that Settlement Ė.</p>
+            <p style=" margin-left: 0px; "><i>For example, if there is a Base </i>Ī<i> counter on Pigskin Port, remove Clue </i>Ġ<i>6 from the Windmill & place it face up on Pigskin Port.</i></p>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">When you Rest in Bold č stance at Witch Hill, you may light the signal fires to begin the uprising. At the end of the Encounter Phase, the war begins & you must determine its outcome; see <i>'The Uprising'</i>. Each Settlement Ė you've allied with strengthens your chances of victory!</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>THE FALSE FLAG</center></h2>
+            <p style=" margin-left: 0px; "><i>The plan is simple; you must disguise yourself as an agent of the Würstreich & assassinate key targets to provoke open aggression against the Empire. Your first task is to acquire a convincing disguise.</i></p>
+            <p style=" margin-left: 0px; ">The party leader may take the <b>Clever Disguise</b> card from the Mission ĝ deck while Looting after the party destroyed at least one Law monsterr <i>(you do not have to pass your Loot roll)</i>.</p>
+            <p style=" margin-left: 0px; ">If you have the <b>Clever Disguise</b> when you move into a space with a facedown Clue Ġ counter, take the corresponding Encounter card from the Mission ĝ deck as indicated in the table above. Resolve that Encounter during the Encounter phase, regardless of your Danger card <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>. If you destroy that Encounter, flip the Clue Ġ counter faceup & place it on the corresponding Settlement Ė indicated in the table above. This indicates that the populace is outraged & prepared to join the war effort!</p>
+            <p style=" margin-left: 0px; "><i>For example, if you move into Last Chance while you have the Clever Disguise, you will encounter the Goblin Emissary. If you destroy it, take Clue </i>Ġ<i>4 & place it faceup on the Goblin Fortress to represent the goblins pledging their swords to war on the Wu¨streich.</i></p>
+            <br><br><h2><center>THE UPRISING</center></h2>
+            <p style=" margin-left: 0px; "><i>Outraged by brazen attacks against them, the people of the Borderlands stand ready to take up arms. When you give the signal, the warleaders of the allied settlements call their troops to battle & march on Brüttelburg. Seizing the opportunity to raid the Lowlands, fishoids swarm from the banks of Tomb Lake, while the Necro Coven works in the shadows to sabotage the military efforts of the Holy Order.</i></p>
+            <ul><li  style="padding-top: 10px;">When the uprising begins, first total the Town Level & Danger Level of each allied Settlement <i>(each </i>Ė<i> with a faceup Clue </i>Ġ<i> counter)</i>. This number is the combined strength of the forces assaulting Brüttelburg.</li><li  style="padding-top: 10px;">Roll D6. If your roll is equal to or less than the Danger Level of the Graveyard, add your roll to your grand total - this represents the efforts of the Necro Coven to destablize the Empire.</li><li  style="padding-top: 10px;">Roll D6. If you roll is equal to or less than the Danger Level at Tomb Lake, add your roll to your grand total - this represents fishoid raids against the South of the Empire.</li><li  style="padding-top: 10px;">Next, determine the strength of the opposing Imperial forces by adding together the Town Level of Brüttelburg, The Holy Order & the Hunt Lodge <i>(do not include the Hunt Lodge if it has a faceup Clue </i>Ġ<i> counter on it)</i>.</li><li  style="padding-top: 10px;">Add 2D6+6 to the Empire's total representing Imperial military support from the West.</li><li  style="padding-top: 10px;">Subtract the Imperial force strength from the combined strength of the allied forces & see below to determine the outcome.</li></ul>
+            <div class="dice-section">
+                <h2>Total result:</h2>
+                <button class="dicegroup0" onclick="showText_dicegroup0(0)">0 or less</button>
+                <button class="dicegroup0" onclick="showText_dicegroup0(1)">1-3</button>
+                <button class="dicegroup0" onclick="showText_dicegroup0(2)">4-6</button>
+                <button class="dicegroup0" onclick="showText_dicegroup0(3)">7+</button>
+            </div>
+            <div class="result-section_dicegroup0">
+                <div id="0-result" class="hidden-text"></div>
+            </div>
+            <div id="result-0-0" class="hidden-text">
+            <p style=" margin-left: 0px; "><i>The uprising is a disaster!</i> Increase the Bounty Level to 5 & place a Law ĩ counter on each space with a faceup Clue Ġ counter. Replace the Danger Level or Town Level in each of these spaces with Town Level 1.</p>            </div>
+            <div id="result-0-1" class="hidden-text">
+            <p style=" margin-left: 0px; "><i>The uprising fails, but Brüttelburg lays half in ruins.</i> Reduce the Town Level in each Town Ę with a faceup Clue Ġ counter & at Brüttelburg, then increase the Bounty Level.</p>            </div>
+            <div id="result-0-2" class="hidden-text">
+            <p style=" margin-left: 0px; "><i>A victory, but the dead are piled high.</i> Reduce the Town Level at each Town Ę with a faceup Clue Ġ counter & at Brüttelburg, then reduce the Bounty Level to 1. Each adventurer gains 1 Luck Ğ.</p>            </div>
+            <div id="result-0-3" class="hidden-text">
+            <p style=" margin-left: 0px; "><i>A decisive victory! The armies of the Würstreich have been smashed & scattered to the winds.</i> Increase the Town Level in each Town Ę with a faceup Clue Ġ counter, then reduce the Bounty Level to 1. Each adventurer gains 1 Luck Ğ</p>            </div>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; ">Whether or not the uprising was victorious, an even greater threat yet remains; the monstrous machinations of the horrific Hand of Doom threaten the war-torn Borderlands! Now you must fight back <a href="./againstthehandofdoom.html">İAgainst the Hand of Doom</a>!</p>
+        </div>
+    </div>
+    <script>
+
+      function showText_dicegroup0(dice) {
+        var buttons = document.querySelectorAll('.dice-section .dicegroup0');
+        var isActive = buttons[dice].classList.contains('active_dicegroup0');
+        buttons.forEach(function(button) {
+          button.classList.remove('active_dicegroup0');
+        });
+        var resultElement = document.getElementById('0-result');
+        if (!isActive) {
+          buttons[dice].classList.add('active_dicegroup0');
+          var resultId = 'result-0-' + dice;
+          resultElement.innerHTML = document.getElementById(resultId).innerHTML;
+          resultElement.classList.add('show');
+        } else {
+          resultElement.innerHTML = '';
+          resultElement.classList.remove('show');
+        }
+      }
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESCAPE FROM BRÜTTELBURG</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #dfbed3;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #c63992;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        .dice-section button.dicegroup4:hover {
+            color:#E29CC8;
+
+        }
+        .dice-section button.active_dicegroup4,
+        .dice-section button.active_dicegroup4:hover {
+            color:#c63992;
+        }
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>ESCAPE FROM BRÜTTELBURG</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>You spit in the faces of the Imperial Conspirators holding you prisoner & wait for the right opportunity to make your escape!</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('If you are playing this mission as a standalone game, the Bounty Level is 3.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('Each Defeated adventurer <i>(that was captured by the Law)</i> may immediately recover Wounds Č equal to their MRL.');</script></p>
+            <p style=" margin-left: 0px; ">To determine how your captors decide to dispose of you, roll D6, then add 1 for each <b>Lycanthrope</b>, <b>Warlock</b>, or <b>Wizard</b> in the party. Such heretics are fixed in irons marked with holy sigils that prevent them from using their witchcraft to escape en route. If your MAG is 8 or more, you become Suppressed by the warding sigils placed on you.</p>
+            <div class="dice-section">
+                <h2>Total result:</h2>
+                <button class="dicegroup4" onclick="showText_dicegroup4(0)">1-3</button>
+                <button class="dicegroup4" onclick="showText_dicegroup4(1)">4-5</button>
+                <button class="dicegroup4" onclick="showText_dicegroup4(2)">6-7</button>
+                <button class="dicegroup4" onclick="showText_dicegroup4(3)">8+</button>
+            </div>
+            <div class="result-section_dicegroup4">
+                <div id="4-result" class="hidden-text"></div>
+            </div>
+            <div id="result-4-0" class="hidden-text">
+            <p style=" margin-left: 0px; ">Your captors throw you in a locked carriage & take you Eastward towards the dark & foreboding Witchwood, where heretics are burned atop the hill.</p>            <p style=" margin-left: 0px; "><b>If the Danger Level in the Witchwood is 5 or more</b>, the carriage is attacked at East Bridge! A mob of frenzied scratchers tears your captors limb from limb as you slip your bonds & sneak off into the Witchwood. Discard all of your Items, lose your GPĎ, take D6-1 Piercing Damage & place your standee on the Path between East Bridge & Witch Hill. Adventurers who were not captured join you there <i>(with their Items & GP</i>Ď<i>)</i>.</p>            <p style=" margin-left: 0px; "><b>Otherwise</b>, your captors bring you to the Hunt Lodge & set you loose into the Witchwood to hunt you down like a wild beast! Discard your Items, lose your GPĎ & place your standee at the Hunt Lodge. Then, increase the Bounty Level & place a Law ĩ counter on the following: <i>Witch Hill, each path in the Witchwood & the path between the Hunt Lodge & the Black Tree</i>. Adventurers who were not captured are set up at East Bridge <i>(with their Items & GP</i>Ď<i>)</i>.</p>            </div>
+            <div id="result-4-1" class="hidden-text">
+            <p style=" margin-left: 0px; ">Your captors take you to the Fishmonger Camp, secretly & under the cover of darkness.</p>            <p style=" margin-left: 0px; ">Place adventurers who were not captured at the Crossroads <i>(these adventurers do not lose their Items or GP</i>Ď<i>)</i>.</p>            <p style=" margin-left: 0px; "><b>If the Danger Level at the Fishmonger Camp is 3 or more</b>, your captors are set upon by rebels at the camp - place your standee at the Fishmonger Camp. You may slip away unharmed during the attack, but if you do you must discard your Items & lose your GPĎ. If you stay behind to scrounge your equipment from your captors' carriage, you may keep your Items & recover D6 GPĎ each, but you must take the <b>Fishoid Thug</b> & <b>Fishmonger</b> from the Wetlands monster deck or discard pile & fight them at the start of the mission.</p>            <p style=" margin-left: 0px; "><b>If there are one or more Performers in the party</b>, you overhear your captors discussing the price you will fetch when they sell you to the fishoids for entertainment in their grotesque breeding harems in the swamps. They take you to a hidden spot on the lake for the exchange, but as the buyers approach you make a break for it! Place your standee at Dusk Falls, discard your Items & lose your GPĎ. Then, take the <b>Scroglin Sentry</b> from the Wetlands monster deck & the Jailor from the Law deck & fight them at the start of the mission.</p>            <p style=" margin-left: 0px; "><b>Otherwise</b>, your captors bring you on a boat to Tower Island where they throw you in a moldy dungeon beneath the ancient ruined tower to rot! Place your standee at Tower Island, then discard your Items, lose all of your GPĎ & place a Law ĩ counter at the Fishmonger Camp.</p>            </div>
+            <div id="result-4-2" class="hidden-text">
+            <p style=" margin-left: 0px; ">You are taken to Witch Hill to be burned as a heretic!</p>            <p style=" margin-left: 0px; ">Place your standee at Witch Hill, discard your Items & lose your GPĎ. As the inquisitors read a list of your crimes, you realize you must fight your way out or be burned alive! Draw 1 Law card per captured adventurer & you must fight them at the start of the mission. Adventurers who were not captured arrive at Witch Hill <i>(with all their Items & GP</i>Ď<i>)</i> in the nick of time & may join the fight.</p>            </div>
+            <div id="result-4-3" class="hidden-text">
+            <p style=" margin-left: 0px; ">[Missions III] You are sent to the Holy Order to collect for a <a href="./deathchurch.html">İDeath Church</a>.</p>            </div>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">Rest at any Town Ę outside of the Lowlands.</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ, then remove any Law ĩ counters placed during setup & reduce the Bounty Level as the conspirators give up their search.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>Now you must </i><a href="./establishabase.html?escapedbruttelburg">İEstablish a Base</a><i> well away from the clutches of the law!</i></p>
+        </div>
+    </div>
+    <script>
+
+      function showText_dicegroup4(dice) {
+        var buttons = document.querySelectorAll('.dice-section .dicegroup4');
+        var isActive = buttons[dice].classList.contains('active_dicegroup4');
+        buttons.forEach(function(button) {
+          button.classList.remove('active_dicegroup4');
+        });
+        var resultElement = document.getElementById('4-result');
+        if (!isActive) {
+          buttons[dice].classList.add('active_dicegroup4');
+          var resultId = 'result-4-' + dice;
+          resultElement.innerHTML = document.getElementById(resultId).innerHTML;
+          resultElement.classList.add('show');
+        } else {
+          resultElement.innerHTML = '';
+          resultElement.classList.remove('show');
+        }
+      }
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

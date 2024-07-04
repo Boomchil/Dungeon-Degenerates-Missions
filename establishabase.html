@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESTABLISH A BASE</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #f7f3d0;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #fae019;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>ESTABLISH A BASE</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>Finding safety & a home to live in free from persecution is no easy task here on the Borderlands. You must find a Town outside the reach of the law & either ingratiate yourself with the locals or bully them into submission.</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('If you are playing Establish a Base as a standalone mission, the Bounty Level is 2 & the party starts at <b>Pigskin Port</b>, <b>Gutfish Ford</b>, or <b>Stone Circle</b>.');</script></p>
+            <p style=" margin-left: 0px; ">First, choose a Region outside of the Lowlands where you will establish your Base Ī. Set up counters based on your chosen Region, as indicated in the table below <i>(for example, if you choose the Badlands, you will place a Clue Ġ at Crystal Crater, Last Chance & Skull Bridge).</i></p>
+            <p style=" margin-left: 0px; ">During this mission, when a space with a Clue Ġ counter is reduced to Danger Level 2 or less, remove that Clue Ġ counter & increase the Town Level at the corresponding Settlement Ė indicated in the table below.</p>
+            <p style=" margin-left: 0px; "><i><i>For example, if you choose the Badlands, you can increase the Town Level at the Goblin Fortress by reducing the Danger Level to 2 or less at Crystal Crater, Last Chance, or Skull Bridge.</i></i></p>
+            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 650px"><thead><tr></tr><tr><th style="text-align: left; width: 35%; background-color: #000; color: #f23838;">BADLANDS CLUES</th><th style="text-align: left; width: auto; background-color: #000; color: #f23838;">SETTLEMENT</th></tr></thead><tbody><tr style="background-color: #f0b6b6;"><td style="text-align: left;">Ġ Crystal Crater</td><td style="text-align: left;">Goblin Fortress</td></tr><tr style="background-color: #F7DADA;"><td style="text-align: left;">Ġ Last Chance</td><td style="text-align: left;">Goblin Fortress</td></tr><tr style="background-color: #f0b6b6;"><td style="text-align: left;">Ġ Skull Bridge</td><td style="text-align: left;">Goblin Fortress</td></tr></tbody></table>
+            <p style=" margin-left: 0px; "></p>
+            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 650px"><thead><tr></tr><tr><th style="text-align: left; width: 35%; background-color: #000; color: #fae019;">HIGHLANDS CLUES</th><th style="text-align: left; width: auto; background-color: #000; color: #fae019;">SETTLEMENT</th></tr></thead><tbody><tr style="background-color: #f7f3d0;"><td style="text-align: left;">Ġ Slaver's Pass</td><td style="text-align: left;">Bandit Camp</td></tr><tr style="background-color: #FBF9E7;"><td style="text-align: left;">Ġ Last Chance</td><td style="text-align: left;">Bandit Camp & The Watchtower</td></tr><tr style="background-color: #f7f3d0;"><td style="text-align: left;">Ġ Witch Hill</td><td style="text-align: left;">The Watchtower</td></tr></tbody></table>
+            <p style=" margin-left: 0px; "></p>
+            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 650px"><thead><tr></tr><tr><th style="text-align: left; width: 35%; background-color: #000; color: #89ed5c;">WETLANDS CLUES</th><th style="text-align: left; width: auto; background-color: #000; color: #89ed5c;">SETTLEMENT</th></tr></thead><tbody><tr style="background-color: #c8f0b6;"><td style="text-align: left;">Ġ Crystal Crater</td><td style="text-align: left;">Gutfish Ford</td></tr><tr style="background-color: #E3F7DA;"><td style="text-align: left;">Ġ Goblin Fortress</td><td style="text-align: left;">Gutfish Ford</td></tr><tr style="background-color: #c8f0b6;"><td style="text-align: left;">Ġ Sunken Village</td><td style="text-align: left;">Stone Circle</td></tr><tr style="background-color: #E3F7DA;"><td style="text-align: left;">Ġ The Black Tree</td><td style="text-align: left;">Stone Circle</td></tr><tr style="background-color: #c8f0b6;"><td style="text-align: left;">Ġ Ghostgate</td><td style="text-align: left;">Fishmonger Camp</td></tr><tr style="background-color: #E3F7DA;"><td style="text-align: left;">Ġ Tower Island</td><td style="text-align: left;">Fishmonger Camp</td></tr></tbody></table>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">Rest in any Settlement Ė with Town Level 4 or more outside the Lowlands. If you are in Pigskin Port, the Town Level there must be at least 5.</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><img src="data/separator.png" class="separator"><br></p>
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ. Then, place a Base Ī counter in your space & remove 1 Doom ğ counter from the Doom track corresponding to your Region's color <i>(for example, if you complete this mission at Gutfish Ford, remove a green Doom </i>ğ<i> counter).</i></p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('escapedbruttelburg')) document.write('<i>After your </i><b>Escape from Brüttelburg</b><i>, you may pursue righteous retribution on your captors - out for blood & </i><a href="./screamingforvengeance.html">İScreaming for Vengeance</a><i>!</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('escapedbruttelburg')) document.write('Otherwise, your mission path is determined by the Location of your Base Ī:');</script></p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('escapedbruttelburg')) document.write('Your mission path is determined by the Location of your Base Ī:');</script></p>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('banditcamp', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>Bandit Camp</h3>
+            <div id="banditcamp" class="hidden-text">
+            <p style="margin-left: 30px; "><i>The prospect of war between the Highland guilds & the Würstreich grows to an inevitability. Will you aid the </i><b>River Rats</b><i> gang's attempt to strengthen the North by establishing a </i><a href="./caravanthroughthebadlands.html">İCaravan Through the Badlands</a><i> or find other ways to </i><a href="./unifythehighlands.html">İUnify the Highlands</a><i>?</i></p>
+            <p style="margin-left: 30px; "><i>Also, as newcomers to the Highlands, a once in a lifetime opportunity presents itself... you may </i><a href="./takeapowder.html">İTake a powder</a><i>.</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('fishmongercamp', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>Fishmonger Camp</h3>
+            <div id="fishmongercamp" class="hidden-text">
+            <p style="margin-left: 30px; "><i>This damp lakeside shanty town is infested with cultists working dark deeds in secret. These are only agents of a larger organization with tendrils gripping every corner of the South. The few uncorrupted locals remaining here beg you to take up the crusade against these lurking loonies & </i><a href="./huntthewitchcult.html">İHunt the Witch Cult</a><i> !</i></p>
+            <p style="margin-left: 30px; "><i>[Missions III] You may also choose to side with the cultists and collect for a </i><a href="./deathchurch.html?establishabase">İDeath Church</a><i>.</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('goblinfortress', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>Goblin Fortress</h3>
+            <div id="goblinfortress" class="hidden-text">
+            <p style="margin-left: 30px; "><i>As the weak-willed goblins fall under your influence, will you make use of their military might & hatch a plot to </i><a href="./startawar.html">İStart a War</a><i> on the Würstreich, or will you bring prosperity to the North by forging a </i><a href="./caravanthroughthebadlands.html">İCaravan Through the Badlands</a><i>?</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('gutfishford', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>Gutfish Ford</h3>
+            <div id="gutfishford" class="hidden-text">
+            <p style="margin-left: 30px; "><i>The people of the Ford live under constant threat of danger from the goblins of the wastes. The Elders, being evenly split between warmongers & peacemakers, cannot reach a decision & so you must decide how to deal with this menace. Will you lead a </i><a href="./caravanthroughthebadlands.html">İCaravan Through the Badlands</a><i> to build alliances, wage </i><a href="./warongoblins.html">İWar on Goblins</a><i> ?</i></p>
+            <p style="margin-left: 30px; "><i>[Missions III] You can also ignore their problems and try to make money by figuring out some </i><a href="./crystallogic.html?establishabase">İCrystal Logic</a><i>.</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('pigskinport', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>Pigskin Port</h3>
+            <div id="pigskinport" class="hidden-text">
+            <p style="margin-left: 30px; "><i>The guildsmen of Pigskin Port face economic collapse as the blight ravages their livestock & grain while a war with the Würstreich seems inevitable. Will you help the </i><b>Guildsmen</b><i> consolidate forces & </i><a href="./unifythehighlands.html">İUnify the Highlands</a><i>, or will you move quickly to rally allies & </i><a href="./startawar.html">İStart a War</a><i>?</i></p>
+            <p style="margin-left: 30px; "><i>[Missions II] You can also choose to ignore them and try to help a noble family which had their </i><a href="./citybabyattackedbyrats.html?establishabase">İCity Baby Attacked by Rats</a><i>.</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('stonecircle', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>Stone Circle</h3>
+            <div id="stonecircle" class="hidden-text">
+            <p style="margin-left: 30px; "><i>The Crown of Cruelty is an artifact of terrifying power. Once buried & thought lost forever, it has now found its way into the hands of an insidious scroglin witch-sorcerer. Crowning itself King of the Deep, it means to call forth a great leviathan from the depths of Tomb Lake to rid the Wetlands of its human enemies! The </i><b>Warlocks of the Circle</b><i> call upon you to kill the King & steal </i><a href="./thescroglincrown.html">İThe Scroglin Crown</a><i>!</i></p>
+            <p style="margin-left: 30px; "><i>[Missions II] You can also choose to take care of a less threatening but more direct menace : the </i><a href="./plagueofscrogs.html?establishabase">İPlague of Scrogs</a><i>.</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('thewatchtower', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>The Watchtower</h3>
+            <div id="thewatchtower" class="hidden-text">
+            <p style="margin-left: 30px; "><i>Standing at the center of the Borderlands, many enemies & opportunities surround your chosen home. Looking to the East, you could establish a </i><a href="./caravanthroughthebadlands.html">İCaravan Through the Badlands</a><i>, or make </i><a href="./warongoblins.html">İWar on Goblins</a><i>. To the North, you can form allegiances in an attempt to </i><a href="./unifythehighlands.html">İUnify the Highlands</a><i>. To the South, the Würstreich is a persistent threat. Do you have enough allies to </i><a href="./startawar.html">İStart a War</a><i>?</i></p>
+            <p style="margin-left: 30px; "><i>[Missions III] The Watchtower itself isn't free of torments, as a </i><a href="./phantomlord.html">İPhantom Lord</a><i> seems to be the source of a crisis.</i></p>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

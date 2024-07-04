@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CURSE OF THE DREAD SAINT</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #cea5ad;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #d13d59;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>CURSE OF THE DREAD SAINT</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>The Dread Saint Pastete - a legendary inquisitor of the Holy Order who once drove the heretical pumpkin-cults from the Lowlands in a bloody religious war that raged for a decade. One of the most revered heroes of the Würstreich, his body has been preserved & entombed in the Necropolis by the necromantic enchantments of the grave monks of the Holy Order. His sacred anointed corpse lay undisturbed for nearly a century, until you disrupted the magical protective sigils that enshrined this cruel & undying being!</i></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('necro_coven')) document.write('<i>You have been sent to conduct an elaborate ritual that will bind the Dread Saint\'s ghost & force it to obey the will of the seven secret sorcerers of the Necro Coven.</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('inquisition')) document.write('<i>You mustappease the undying ghost of the Dread Saint by reuniting him with his missing finger, stolen by grave robbers long ago & sold along with the Eye of Dread; a valuable enchanted ring once used by the Dread Saint to \'see through the lies of the heretic\'.</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('Choose whether you are working for the <a href="./curseofthedreadsaint.html?inquisition">İInquisition</a> or the <a href="./curseofthedreadsaint.html?necro_coven">İNecro Coven</a>. If you choose the Necro Coven, the adventurer with the highest MAG may take the <b>Killer for the Necro Coven</b> Triumph card.');</script></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('The Bounty Level is 2 & the party starts at the <b>Holy Order</b>.');</script></p>
+            <p style=" margin-left: 0px; ">The locations with Clue Ġ counters in this mission represent places where various useful ritual components can be found. Remove Clue Ġ 1 from the set, then shuffle the rest together & place one randomly on each of the Locations indicated below :</p>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse;  width: 400px"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ <b>The Catacombs</b></td><td style="text-align: left; line-height: 20px;">Ġ <b>The Crossroads</b></td></tr><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ <b>Dusk Falls</b></td><td style="text-align: left; line-height: 20px;">Ġ <b>Last Chance</b></td></tr><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ <b>Witch Hill</b></td><td style="text-align: left; line-height: 20px;"></td></tr></tbody></table>
+            <p style=" margin-left: 0px;  line-height: 35px;">ĝ <b>The Dread Saint</b> <i>(Epic Monster)</i><br>ĝ <b>The Eye of Dread</b> <i>(Epic Loot)</i><br>ĝ <b>The Ghost Flute</b> <i>(Epic Loot)</i><br>ĝ <b>The Morbadicon</b> <i>(Epic Loot)</i><br>ĝ <b>Saint's Finger</b> <i>(Loot)</i><br>ĝ <b>Festival of Kürbisnacht</b> <i>(Lowlands Encounter)</i><br>ĝ <b>Witch Lights/Desecrated Shrine</b> <i>(Lowlands Encounter)</i><br>ĝ <b>Travelling Carnival/Unspoiled Tomb</b> <i>(Lowlands Encounter)</i></p>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('inquisition')) document.write('If you are in the Dread Saint\'s space at the start of the Encounter Phase, you may attempt to appease it by discarding the <b>Saint\'s Finger</b>. One adventurer must make a MRL Test. If you pass, you have completed your mission! If you fail, you have offended the spirit & you must fight & destroy the Dread Saint to complete your mission!');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('necro_coven')) document.write('If you are in the Dread Saint\'s space at the start of the Encounter Phase, you may attempt to bind it if you have the necessary components. An adventurer with the <b>Morbadicon</b> (who meets its Requirements) must discard the <b>Saint\'s Finger</b> & make a MAG Test to complete the binding ritual. If you pass, the spell is successful & you have enslaved this powerful spirit to the Necro Coven\'s control. If you fail, you must fight & destroy the infuriated Dread Saint to complete your mission.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>RITUAL COMPONENTS</center></h2>
+            <p style=" margin-left: 0px; ">If you successfully Explore ġ in a space with a Clue Ġ counter, you may flip that counter to reveal its value, then remove the counter & consult the table below to determine what you have found. If an Encounter is indicated, take that Encounter from the Mission ĝ deck & resolve it this turn <i>(do not draw a random Encounter </i>Ĥ<i>).</i></p>
+            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: auto"><thead><tr></tr><tr><th style="text-align: left; width: 5%; background-color: #000; color: #d13d59;">CLUE</th><th style="text-align: left; width: 35%; background-color: #000; color: #d13d59;">ENCOUNTER</th><th style="text-align: left; width: 60%; background-color: #000; color: #d13d59;">SPECIAL INSTRUCTIONS</th></tr></thead><tbody><tr style="background-color: #cea5ad;"><td style="text-align: left;">Ġ2</td><td style="text-align: left;">You've followed false rumors & you find nothing of any use</td><td style="text-align: left;"></td></tr><tr style="background-color: #E6D2D6;"><td style="text-align: left;">Ġ3</td><td style="text-align: left;"><b>Witch Lights</b></td><td style="text-align: left;">If you <b>Follow</b> the Witch Lights & roll 3 or more, the adventurer in the party with highest MAG may take the <b>Eye of Dread</b> from the Mission ĝ deck.</td></tr><tr style="background-color: #cea5ad;"><td style="text-align: left;">Ġ4</td><td style="text-align: left;"><b>Festival of Kürbisnacht</b></td><td style="text-align: left;">The adventurer with the highest MAG of those able to successfully <b>Join</b> the festival may take the <b>Ghost Flute</b> from the Mission ĝ deck.</td></tr><tr style="background-color: #E6D2D6;"><td style="text-align: left;">Ġ5</td><td style="text-align: left;"><b>Travelling Carnival</b></td><td style="text-align: left;">If you <b>Consult</b> the soothsayer & have the <b>Killer for the Necro Cove</b>n Triumph card, you may take the <b>Morbadicon</b> from the Mission ĝ deck.</td></tr><tr style="background-color: #cea5ad;"><td style="text-align: left;">Ġ6</td><td style="text-align: left;"><b>Desecrated Shrine</b></td><td style="text-align: left;">If you defeat the monsters here, or if there are none, the adventurer in the party with highest PER may take the <b>Saint's Finger</b> from the Mission ĝ deck.</td></tr></tbody></table>
+            <br><br><h2><center>THE SAINT'S GHOST</center></h2>
+            <p style=" margin-left: 0px; "><i>The ghost of the Dread Saint stirs in its tomb, freed by the folly of mere brigand scum! It projects its cruel will into ectoplasmic form, then steadily & relentlessly hunts for the fools who have disrupted its eternal vigil over the necropolis!</i></p>
+            <p style=" margin-left: 0px; ">At the end of the first Danger Phase, place the <b>Dread Saint</b> counter at the Catacombs. It will follow the nearest party.</p>
+            <p style=" margin-left: 0px; ">Until either the appeasement or binding ritual is attempted, the Dread Saint cannot truly be destroyed. If the Dread Saint is destroyed <i>(or trapped in the Puzzle Prison, etc.)</i>, return it to the Mission ĝ deck & place the Dread Saint counter back at the Catacombs at the end of the next Danger Phase, as the ghost creates a new ectoplasmic form & continues its hunt.</p>
+            <p style=" margin-left: 0px; ">The party gains no reward for destroying these ectoplasmic projections - no GPĎ, XP ĥ, or Epic Loot can be earned from the Dread Saint until you conduct a ritual.</p>
+            <p style=" margin-left: 0px; ">Reuniting the Dread Saint with its finger & thus completing its form gives you a great chance to destroy it utterly if your ritual was otherwise unsuccessful.</p>
+            <p style=" margin-left: 0px; ">If the Dread Saint is destroyed after you give it the Saint's Finger, remove both the Dread Saint & the Saint's Finger from the game <i>(return these cards to the game box)</i>. Having vanquished the Dread Saint forever, you may claim the normal rewards (GPĎ, XP ĥ & Epic Loot). If you pass your Loot roll, you may take the Eye of Dread if it was offered to the Dread Saint during the ritual.</p>
+            <br><br><h2><center>THE EYE OF DREAD</center></h2>
+            <p style=" margin-left: 0px; ">If you have the Eye of Dread, you may offer it to the Dread Saint along with the Saint's Finger when you conduct your ritual. If you do, place the Eye of Dread next to the Dread Saint's card. You may then roll 3 dice for your MAG or MRL Test & use any 2 <i>(see Objective)</i>.</p>
+            <p style=" margin-left: 0px; ">If you fail your Test & must fight the Dread Saint after having given it the Eye of Dread, it can wield the ring's awesome might against you & it gains Petrify <i>(arrival ability)</i>.</p>
+            <br><br><h2><center>THE GHOST FLUTE</center></h2>
+            <p style=" margin-left: 0px; ">If you have the Ghost Flute & meet its Requirements <i>(MAG 7 or MRL 8)</i>, you may attempt to control the Dread Saint's movements. When the Dread Saint would move <i>(at the start of the Danger Phase; see Moving Epic Monster Counters in the Rules, p.23)</i>, if you are in Bold č stance anywhere in the Borderlands <i>(any space except the Maze)</i>, you may attempt a MAG Test to lure the Dread Saint. If you pass, you may decide where the Dread Saint moves this turn <i>(or you may choose to have it remain in place)</i>. If you fail with doubles <i>(by rolling </i>ŀŀ<i>, for example)</i>, increase the Danger Level in your space.</p>
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; "></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('inquisition')) document.write('Each adventurer gains 1 Luck Ğ. Remove each blue Doom ğ counter from the Doom track. If you successfully appeased the Dread Saint by passing your MRL Test, increase the Town Level at the Holy Order & reduce the Bounty Level. If an adventurer returned the Eye of Dread to the Dread Saint, that adventurer may take the <b>Blessing of the Dread Saint</b> Triumph card.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('necro_coven')) document.write('Each adventurer gains 1 Luck Ğ. Increase the Danger Level at the <b>Holy Order</b> & in your current space. If you conducted the ritual & passed your MAG Test, take the <b>Necromantic Acolyte</b> Triumph card.');</script></p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('inquisition')) document.write('<i>Agents of the inquisition are impressed by your deeds. They offer you an opportunity to prove yourself to the Order & clear your name if you will </i><a href="./huntthewitchcult.html">İHunt the Witch Cult</a><i>.</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('inquisition')) document.write('<i>[Missions III] They are also searching for volunteers to experiment with their new travel methodology: the </i><a href="cosmichearse.html">İCosmic Hearse</a><i>.</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('necro_coven')) document.write('<i>Thanks to you, the Necro Coven has enslaved the spirit of one of the Holy Order\'s legendary heroes. Panic ignites through the ranks of the inquisition & the Coven prepares for war! Step forward & become their champion - the </i><a href="./bringerofdoom.html">İBringer of Doom</a><i>!</i>');</script></p>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

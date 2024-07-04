@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUEST FOR SAUSAGE</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #ffc15e;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #ffd642;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>QUEST FOR SAUSAGE</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>Pigskin Port. Once a busy hub for the livestock trade of Brüttelberg's foothills, now sunken into decay. The filthy streets are crowded with refugees, vagrants & stench. The countryside surrounding the rivers has grown perilous as murderous & obscene hallucinations stalk the hills by night. The bandit gangs have a strong presence in Pigskin Port, & those lucky enough to escape the Donjons of Brüttelberg often find work of a less than legitimate nature here.</i></p>
+            <p style=" margin-left: 0px; "><i>Having recently escaped yourselves, you hope to find a way to make some quick funds. You step into a local tavern to find a meal & perhaps even a job, but to your dismay you soon find that the tavern is out of food! It seems there's a shortage throughout the region - herds & crops blighted by witches, caravans raided, the bandits driving up the cost of trade... the townsfolk blame all these things & more.</i></p>
+            <p style=" margin-left: 0px; "><i>Wally Whisker the tavern keeper will pay anyone who can find & bring back a cache of provisions, but some of the shadier elements in town have come up with an alternate plan to feed the starving locals...</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('Place all adventurers at Pigskin Port');</script></p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('<i>No specific setup needed when playing this mission as part of a campaign.</i>');</script></p>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">Complete the objectives listed for one of your three contacts, then return to Pigskin Port & Rest to complete the mission.</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('<br>');</script></p>
+            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffb53d66;"><td style="text-align: left; line-height: 20px;"><i><b>Wally Whisker</b>, owner of the tavern, will gladly pay for a cache of provisions...</i><br><br><b>Trade</b> with a <b>Caravan</b> or <b>Goblin Merchant</b> & spend 12 GPĎ amongst the party to purchase supplies.<br><br><center><b>OR</b></center><br><b>Search</b> a <b>Slaughtered Caravan</b> or <b>Store Room</b> & at least one adventurer must pass the required PER Test.</td><td style="text-align: left; line-height: 20px;"><img style="max-width: 170px; border: 5px solid #ffde66;" src="data/wally.jpg"</img></td></tr></tbody></table>
+            <p style=" margin-left: 0px; "></p>
+            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffb53d66;"><td style="text-align: left; line-height: 20px;"><i><b>Lemmy Slick</b> from the River Rat Gang has a plan to make sausages from the corpses of monsters...</i><br><br>As a party, destroy 5 total monsters consisting of any combination of the following monster types:<br><br><b>Brute</b>, <b>Fishoid</b>, <b>Goblin</b>, <b>Orc</b>, or <b>Reptilian</b>.</td><td style="text-align: left; line-height: 20px;"><img style="max-width: 170px; border: 5px solid #ffde66;" src="data/lemmy.jpg"</img></td></tr></tbody></table>
+            <p style=" margin-left: 0px; "></p>
+            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffb53d66;"><td style="text-align: left; line-height: 20px;"><i><b>Lazar the necromancer's assistant</b> will make sausages out of anything!</i><br><br>As a party, destroy 5 total monsters consisting of any combination of the following monster types: <b>Brute</b>, <b>Fishoid</b>, <b>Goblin</b>, <b>Orc</b>, or <b>Reptilian</b><br><br><center><b>OR</b></center><br>Encounter a <b>Death Pit</b>, <b>Feeding Pit</b>, <b>River of Gore</b>, or <b>Slaughtered Caravan</b>.</td><td style="text-align: left; line-height: 20px;"><img style="max-width: 170px; border: 5px solid #ffde66;" src="data/lazar.jpg"</img></td></tr></tbody></table>
+            <br><br><h2><center>REWARD</center></h2>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('wally', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You worked for Wally Whisker</h3>
+            <div id="wally" class="hidden-text">
+            <p style="margin-left: 30px; ">Each adventurer gains 8 GPĎ. Increase the Town Level at Pigskin Port.</p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('lemmy', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You worked for Lemmy Slick</h3>
+            <div id="lemmy" class="hidden-text">
+            <p style="margin-left: 30px; ">Each adventurer gains 4 GPĎ. Increase the Town Level at the Bandit Camp & Pigskin Port.</p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('lazar', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You worked for Lazar the Necromancer's assistant</h3>
+            <div id="lazar" class="hidden-text">
+            <p style="margin-left: 30px; ">The adventurer(s) with the lowest MRL may (each) draw an Epic Loot card & other adventurers may each draw a Loot card. Increase the Danger Level at Pigskin Port.</p>
+            </div>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>It's time for you to </i><a href="./establishabase.html">İEstablish a Base</a><i>, but you've also heard than a noble family had their </i><a href="./citybabyattackedbyrats.html?establishabase">İCity Baby Attacked by Rats</a><i> and may need your help.</i></p>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

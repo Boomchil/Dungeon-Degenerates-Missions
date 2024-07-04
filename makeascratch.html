@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAKE A SCRATCH</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #cadfd8;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #c6ba39;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>MAKE A SCRATCH</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>The twitchy, gaunt man in a dark & heavily stained overcoat dabs his forehead with a handkerchief as he nervously asks you to undertake a dangerous mission on his behalf. He needs some brave souls to gather together rare ingredients required to finish a formula he is working on. The concoction requires the dried remains of a horrifying Skinwalker & a small amount of a fine crystalline powder found only where the threshold between worlds is thinnest.</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('If you are playing Make a Scratch as a standalone mission, the Bounty Level is 3 & the party starts at the <b>Hunt Lodge</b>.');</script></p>
+            <p style=" margin-left: 0px; ">Place the <b>Crystal Chamber</b> map overlay as shown below. This represents an additional Location in the Burning Lakes. The Crystal Chamber is adjacent to Crystal Crater & shares the Danger Level of the Burning Lakes. You can only move to the Crystal Chamber if the Crystal Crater is Explored ġ.</p>
+            <p align="center"><img style="max-width: 100%;" src="data/makeascratch01.png" align="center"></p>
+            <p style=" margin-left: 0px; ">Ġ5 <b>Crystal Chamber</b> <i>(</i><b>Void Powder</b> <i>can be found here)</i></p>
+            <p style=" margin-left: 0px; ">Ġ6 <b>The Maze</b> <i>(</i><b>Void Powder</b> <i>can be found here)</i></p>
+            <p style=" margin-left: 0px; "><i>Further Clue Ġ counters are placed facedown to represent accursed sites where the grotesque Skinwalkers congregate.</i></p>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse;  width: 400px"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ The Black Tree</td><td style="text-align: left; line-height: 20px;">Ġ The Blasted Heath</td></tr><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ The Graveyard</td><td style="text-align: left; line-height: 20px;">Ġ Last Chance</td></tr></tbody></table>
+            <p style=" margin-left: 0px; ">ĝ Skinwalker<i> (Lowlands Monster)</i></p>
+            <p style=" margin-left: 0px; ">ĝ Void Powder <i>(Epic Loot)</i></p>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">When you destroy a <b>Skinwalker</b>, keep its card as an Item to represent its disgusting remains carried in a sack. If you bring this along with <b>Void Powder</b> to the <b>Crossroads</b> & Rest there, you may meet the apothecary & give him the ingredients to complete your mission by discarding the <b>Skinwalker</b> & <b>Void Powder</b>.</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>COLLECTING INGREDIENTS</center></h2>
+            <p style=" margin-left: 0px; "><i>It is theorized by wizards & scholars that Skinwalkers congregate around enchanted & haunted places. These blood-drinking husks drift across barren landscapes guided by the imperceptible flow of void energies coursing between ancient ruined & mystical sites scattered across the Borderlands.</i></p>
+            <p style=" margin-left: 0px; "><i>Some say the Skinwalkers are the shed skin of a 'scratcher' - a user in the later stages of addiction, returned with a will of its own to prey on human blood. Most consider this to be merely an old wives' tale invented to scare the children of the Würstreich away from 'scratch' - an inexpensive & highly addictive stimulant sold on the streets & down the back alleys of Brüttelburg.</i></p>
+            <p style=" margin-left: 0px; "><i>Void Powder is altogether more rare - an otherwordly substance sought after by all manner of wizards, alchemists, mystics & merchants. Your mysterious employer suggests it is a residue that can be collected from certain crystal formations that grow in caverns below the toxic bubbling Burning Lakes.</i></p>
+            <p style=" margin-left: 0px; ">When you successfully Explore ġ in a space with a facedown Clue Ġ counter, flip that counter & compare its value to your highest single die. If your highest die is equal to or greater than the counter's value, remove that counter & take the <b>Skinwalker</b> from the Mission ĝ deck & you must fight it this turn in addition to monsters indicated by your Danger card <i>(if any)</i>.</p>
+            <p style=" margin-left: 0px; ">If your highest die is lower than the counter's value, remove that Clue Ġ counter from the board, but you do not find a Skinwalker.</p>
+            <p style=" margin-left: 0px; ">If you successfully Explore ġ in a space with a faceup Clue Ġ counter <i>(Crystal Chamber or the Maze)</i>, you may take Void Powder from the Mission ĝ deck.</p>
+            <br><img src="data/separator.png" class="separator"><br></p>
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ & the apothecary pays the party 2D6+4 GPĎ. If there are any Merchants in the party, the Merchant with the lowest MRL may take the <b>Scratch Dealer</b> Triumph card.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>The sweaty apothecary flashes a sinister smile & rewards you by revealing his true agenda. You've been an unwitting pawn in a plot to destabilize the Würstreich from within. Having collected enough Void Powder to create a massive supply of Scratch, the drug will soon flood Brüttelburg & drown it in an unstoppable scratcher epidemic!</i></p>
+            <p style=" margin-left: 0px; "><i>You've made it clear you're willing to get your hands dirty & risk your neck for coin, but will you join the ranks of the infamous Necro Coven & become a sworn enemy of the rotten Empire? If you accept the challenge of initiation, you must bring </i><a href="./deathforhire.html?necro_coven">İDeath for Hire</a><i>. If you refuse, the apothecary warns you that the Necro Coven will surely come for your head. Your only hope is to round them up & burn them on Witch Hill before they have you killed! You have no choice but to </i><a href="./huntthewitchcult.html">İHunt the Witch Cult</a><i>.</i></p>
+            <p style=" margin-left: 0px; "><i>[Missions III] If you want to take a step further into the Alchemy game, you can test your hand out as a </i><a href="./crystallogic.html">İCrystal Logic</a><i>.</i></p>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

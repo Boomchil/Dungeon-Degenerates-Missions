@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEATH FOR HIRE</title>
+   <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #a5b3ce;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #3672e1;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        .dice-section button.dicegroup0:hover {
+            color:#9AB8F0;
+
+        }
+        .dice-section button.active_dicegroup0,
+        .dice-section button.active_dicegroup0:hover {
+            color:#3672e1;
+        }.dice-section button.dicegroup1:hover {
+            color:#9AB8F0;
+
+        }
+        .dice-section button.active_dicegroup1,
+        .dice-section button.active_dicegroup1:hover {
+            color:#3672e1;
+        }.dice-section button.dicegroup2:hover {
+            color:#9AB8F0;
+
+        }
+        .dice-section button.active_dicegroup2,
+        .dice-section button.active_dicegroup2:hover {
+            color:#3672e1;
+        }.dice-section button.dicegroup3:hover {
+            color:#9AB8F0;
+
+        }
+        .dice-section button.active_dicegroup3,
+        .dice-section button.active_dicegroup3:hover {
+            color:#3672e1;
+        }
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>DEATH FOR HIRE</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>Contract killings are a common way of doing business here in the Borderlands. Your mission is simple - track down your target & murder them dead!</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('If you are playing Death for Hire as a standalone mission, the Bounty Level is 3 & the party starts at <b>Pigskin Port</b>.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('imperial_conspirators')) document.write('Since you are working for the <b>Imperial Conspirators</b>, reduce the Bounty Level & the adventurer with the highest MRL may take <b>Official Papers</b> from the Loot deck or discards. Set up all adventurers <i>(including those that were not captured)</i> at Brüttelburg.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('necro_coven')) document.write('<i>No specific setup needed when working for the Necro Coven.</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('river_rats')) document.write('<i>No specific setup needed when working for the River Rats.</i>');</script></p>
+            <p style=" margin-left: 0px; ">If you have more than 16 Encounter cards for a Region (additional Encounters are available in booster packs), this can affect the difficulty of this mission. To prevent this, make sure to include the following cards in each encounter deck, then remove any excess cards until each deck has a total of 16 cards:</p>
+            <script>if(new URLSearchParams(window.location.search).has('imperial_conspirators')) document.write('<table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">Encounter deck</th><th style="text-align: left; width: auto; background-color: #000; color: #3672e1;">Required cards</th></tr></thead><tbody><tr style="background-color: #a5b3ce;"><td style="text-align: left;">Highlands</td><td style="text-align: left;">Caravan, Burning Carriage, Game of Cards and Organ Grinder</td></tr><tr style="background-color: #D2D9E6;"><td style="text-align: left;">Lowlands</td><td style="text-align: left;">Würstreich Aristocrat, Lone Pilgrim, Suspicious Local & Travelling Carnival</td></tr></tbody></table>');</script>
+            <script>if(new URLSearchParams(window.location.search).has('necro_coven')) document.write('<table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">Encounter deck</th><th style="text-align: left; width: auto; background-color: #000; color: #3672e1;">Required cards</th></tr></thead><tbody><tr style="background-color: #a5b3ce;"><td style="text-align: left;">Highlands</td><td style="text-align: left;">Organ Grinder, Alchemist, Hungry Pillar, Inhuman Voices, Burning Carriage, Caravan & Shady Dealings</td></tr><tr style="background-color: #D2D9E6;"><td style="text-align: left;">Lowlands</td><td style="text-align: left;">Lone Pilgrim, Festival of Kürbisnacht, Truffle Hunter, Wailing Ghost Child, Würstreich Aristocrat, Travelling Carnival, Suspicious Local & Trapped Stage Coach</td></tr><tr style="background-color: #a5b3ce;"><td style="text-align: left;">Wetlands</td><td style="text-align: left;">Albino Scrog, Curse Eater, Scrog Spiker & Swamp Hag</td></tr></tbody></table>');</script>
+            <script>if(new URLSearchParams(window.location.search).has('river_rats')) document.write('<table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">Encounter deck</th><th style="text-align: left; width: auto; background-color: #000; color: #3672e1;">Required cards</th></tr></thead><tbody><tr style="background-color: #a5b3ce;"><td style="text-align: left;">Badlands</td><td style="text-align: left;">Captive, Goblin Emissary, Madman, Scrag Milker, Goblin Cockfight, Goblin Merchant & Dice Goblin</td></tr><tr style="background-color: #D2D9E6;"><td style="text-align: left;">Highlands</td><td style="text-align: left;">Prisoner, Burning Carriage, Fugitive & Game of Cards</td></tr><tr style="background-color: #a5b3ce;"><td style="text-align: left;">Lowlands</td><td style="text-align: left;">Würstreich Aristocrat, Lone Pilgrim, Suspicious Local & Travelling Carnival</td></tr><tr style="background-color: #D2D9E6;"><td style="text-align: left;">Wetlands</td><td style="text-align: left;">Weed Wizard, Bog Walker, Swamp Hag & Talking Bird</td></tr></tbody></table>');</script>
+            <script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('<table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">Encounter deck</th><th style="text-align: left; width: auto; background-color: #000; color: #3672e1;">Required cards</th></tr></thead><tbody><tr style="background-color: #a5b3ce;"><td style="text-align: left;">Badlands</td><td style="text-align: left;">Madman, Geomancer, Human Sacrifice, Dark Wanderer, Dice Goblin, Goblin Cockfight & Goblin Merchant</td></tr><tr style="background-color: #D2D9E6;"><td style="text-align: left;">Highlands</td><td style="text-align: left;">Organ Grinder, Caravan, Game of Cards, Prisoner, Inhuman Voices, Hungry Pillar & Shady Dealings</td></tr><tr style="background-color: #a5b3ce;"><td style="text-align: left;">Lowlands</td><td style="text-align: left;">Truffle Hunter, Suspicious Local, Trapped Stage Coach & Travelling Carnival</td></tr><tr style="background-color: #D2D9E6;"><td style="text-align: left;">Wetlands</td><td style="text-align: left;">Curse Eater, Albino Scrog, Bog Walker & Talking Bird</td></tr></tbody></table>');</script>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('imperial_conspirators')) document.write('Destroy your target, then Rest at the Hunt Lodge.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('necro_coven')) document.write('Destroy your target, then Rest at the Graveyard.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('river_rats')) document.write('Destroy your target, then Rest at the Bandit Camp or Pigskin Port.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('Destroy your target, then Rest at Pigskin Port.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>DETERMINING YOUR TARGET</center></h2>
+            <p style=" margin-left: 0px; ">Roll a die to determine your target, then locate that card in the indicated Encounter deck & set it aside to create the mission ĝ 'deck' <i>(although in this case it is only one card).</i></p>
+            <p style=" margin-left: 0px; ">To find your target, you must destroy or interact with one of the indicated <i>'Informants'</i>. When you do, place a random Clue Ġ counter face down on each space indicated in the <i>'Clues'</i> column.</p>
+            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Organ Grinder</b><br><i>(Highlands)</i></td><td style="text-align: left;">Caravan <i>(Trade)</i><br>Game of Cards <i>(Gamble)</i><br>Prisoner <i>(Free)</i></td><td style="text-align: left;">Ġ Bandit Camp<br>Ġ The Watchtower</td></tr></tbody></table>
+            <p style=" margin-left: 0px; "><i><center>In this example, your target is the Organ Grinder. You must Trade with/destroy a Caravan, Gamble in a Game of Cards, or Free/destroy a Prisoner to learn where he can be found. Once you accomplish this, you can place Clue </i>Ġ<i> counters at the Bandit Camp & the Watchtower.</center></i></p>
+            <br><br><h2><center>TRACKING THE TARGET</center></h2>
+            <p style=" margin-left: 0px; ">When you successfully Explore ġ in a space with a Clue Ġ counter, flip that counter & compare your highest single die to the value on the counter. If your highest die is equal to or greater than the counter's value, you have tracked down your target! Remove the counter, take your target's card from the Mission ĝ deck & fight it during the Encounter Phase <i>(do not draw a random encounter this turn).</i></p>
+            <p style=" margin-left: 0px; ">If your highest die is less than the counter's value, simply remove the counter. When you have removed the last Clue Ġ counter from the board, shuffle your target into its deck if you haven't yet been able to destroy it, or give up & Rest at your objective space to roll up a new target <i>(you may then shuffle any discarded Informants for your new target back into their decks)</i></p>
+            <script>if(new URLSearchParams(window.location.search).has('imperial_conspirators')) document.write('    <div class="dice-section">                <h2>Roll a die to determine your target for the Imperial Conspirators:</h2>                <button class="dicegroup0" onclick="showText_dicegroup0(0)">Ļ|ļ|Ľ</button>                <button class="dicegroup0" onclick="showText_dicegroup0(1)">ľ|Ŀ|ŀ</button>            </div>            <div class="result-section_dicegroup0">                <div id="0-result" class="hidden-text"></div>            </div>            <div id="result-0-0" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Würstreich Aristocrat</b><br><i>(Lowlands)</i></td><td style="text-align: left;">Lone Pilgrim <i>(Approach)</i><br>Suspicious Local <i>(Approach)</i><br>Travelling Carnival <i>(Trade)</i></td><td style="text-align: left;">Ġ Crossroads<br>Ġ Witch Hill</td></tr></tbody></table>            </div>            <div id="result-0-1" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Caravan</b><br><i>(Highlands)</i></td><td style="text-align: left;">Burning Carriage <i>(Defend)</i><br>Game of Cards <i>(Gamble)</i><br>Organ Grinder <i>(Approach)</i></td><td style="text-align: left;">Ġ The Windmill<br>Ġ Slaver\'s Pass</td></tr></tbody></table>            </div>');</script>
+            <script>if(new URLSearchParams(window.location.search).has('necro_coven')) document.write('    <div class="dice-section">                <h2>Roll a die to determine your target for the Necro Coven:</h2>                <button class="dicegroup1" onclick="showText_dicegroup1(0)">Ļ</button>                <button class="dicegroup1" onclick="showText_dicegroup1(1)">ļ</button>                <button class="dicegroup1" onclick="showText_dicegroup1(2)">Ľ</button>                <button class="dicegroup1" onclick="showText_dicegroup1(3)">ľ</button>                <button class="dicegroup1" onclick="showText_dicegroup1(4)">Ŀ</button>                <button class="dicegroup1" onclick="showText_dicegroup1(5)">ŀ</button>            </div>            <div class="result-section_dicegroup1">                <div id="1-result" class="hidden-text"></div>            </div>            <div id="result-1-0" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Lone Pilgrim</b><br><i>(Lowlands)</i></td><td style="text-align: left;">Festival of Kürbisnacht <i>(Join)</i><br>Truffle Hunter <i>(Approach)</i><br>Wailing Ghost Child</td><td style="text-align: left;">Ġ The Holy Order<br>Ġ Witch Hill</td></tr></tbody></table>            </div>            <div id="result-1-1" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Würstreich Aristocrat</b><br><i>(Lowlands)</i></td><td style="text-align: left;">Festival of Kürbisnacht <i>(Join)</i><br>Travelling Carnival <i>(Consult)</i><br>Truffle Hunter <i>(Approach)</i></td><td style="text-align: left;">Ġ East Bridge<br>Ġ North Bridge</td></tr></tbody></table>            </div>            <div id="result-1-2" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Suspicious Local</b><br><i>(Lowlands)</i></td><td style="text-align: left;">Travelling Carnival <i>(Consult)</i><br>Trapped Stage Coach <i>(Plunder)</i><br>Truffle Hunter <i>(Approach)</i></td><td style="text-align: left;">Ġ Crossroads<br>Ġ Fishmonger Camp</td></tr></tbody></table>            </div>            <div id="result-1-3" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Organ Grinder</b><br><i>(Highlands)</i></td><td style="text-align: left;">Alchemist <i>(Approach)</i><br>Hungry Pillar <i>(Blood/Food)</i><br>Inhuman Voices <i>(pass PER Test)</i></td><td style="text-align: left;">Ġ Bandit Camp<br>Ġ The Windmill</td></tr></tbody></table>            </div>            <div id="result-1-4" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Alchemist</b><br><i>(Highlands)</i></td><td style="text-align: left;">Burning Carriage <i>(Defend)</i><br>Caravan <i>(Trade)</i><br>Shady Dealings <i>(Bribe)</i></td><td style="text-align: left;">Ġ Tunnel of Terror<br>Ġ The Watchtower</td></tr></tbody></table>            </div>            <div id="result-1-5" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Albino Scrog</b><br><i>(Wetlands)</i></td><td style="text-align: left;">Curse Eater <i>(Approach)</i><br>Scrog Spiker <i>(Approach)</i><br>Swamp Hag <i>(Approach & roll 5+)</i></td><td style="text-align: left;">Ġ Ghostgate<br>Ġ Sunken Village</td></tr></tbody></table>            </div>');</script>
+            <script>if(new URLSearchParams(window.location.search).has('river_rats')) document.write('    <div class="dice-section">                <h2>Roll a die to determine your target for the River Rats gang:</h2>                <button class="dicegroup2" onclick="showText_dicegroup2(0)">Ļ</button>                <button class="dicegroup2" onclick="showText_dicegroup2(1)">ļ</button>                <button class="dicegroup2" onclick="showText_dicegroup2(2)">Ľ</button>                <button class="dicegroup2" onclick="showText_dicegroup2(3)">ľ</button>                <button class="dicegroup2" onclick="showText_dicegroup2(4)">Ŀ</button>                <button class="dicegroup2" onclick="showText_dicegroup2(5)">ŀ</button>            </div>            <div class="result-section_dicegroup2">                <div id="2-result" class="hidden-text"></div>            </div>            <div id="result-2-0" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Würstreich Aristocrat</b><br><i>(Lowlands)</i></td><td style="text-align: left;">Lone Pilgrim <i>(Approach)</i><br>Suspicious Local <i>(Approach)</i><br>Travelling Carnival <i>(Gamble/Trade)</i></td><td style="text-align: left;">Ġ Crossroads<br>Ġ Hunt Lodge</td></tr></tbody></table>            </div>            <div id="result-2-1" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Prisoner</b><br><i>(Highlands)</i></td><td style="text-align: left;">Burning Carriage <i>(Defend)</i><br>Fugitive <i>(Hide)</i><br>Game of Cards <i>(Gamble)</i></td><td style="text-align: left;">Ġ Bandit Camp<br>Ġ The Watchtower</td></tr></tbody></table>            </div>            <div id="result-2-2" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Captive</b><br><i>(Badlands)</i></td><td style="text-align: left;">Goblin Emissary <i>(Approach & pass Test)</i><br>Madman <i>(Hire)</i><br>Scrag Milker <i>(Drink)</i></td><td style="text-align: left;">Ġ Crystal Crater<br>Ġ Skull Bridge</td></tr></tbody></table>            </div>            <div id="result-2-3" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Goblin Emissary</b><br><i>(Badlands)</i></td><td style="text-align: left;">Captive <i>(Free)</i><br>Goblin Cockfight <i>(Gamble)</i><br>Goblin Merchant <i>(Trade)</i></td><td style="text-align: left;">Ġ Bandit Camp<br>Ġ The Watchtower</td></tr></tbody></table>            </div>            <div id="result-2-4" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Goblin Merchant</b><br><i>(Badlands)</i></td><td style="text-align: left;">Dice Goblin <i>(Gamble)</i><br>Goblin Cockfight <i>(Gamble)</i><br>Scrag Milker <i>(Drink)</i></td><td style="text-align: left;">Ġ Bandit Camp<br>Ġ  Goblin Fortress<br>Ġ Gutfish Ford</td></tr></tbody></table>            </div>            <div id="result-2-5" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Weed Wizard</b><br><i>(Wetlands)</i></td><td style="text-align: left;">Bog Walker <i>(Approach/Trade)</i><br>Swamp Hag <i>(Approach & roll 5+)</i><br>Talking Bird <i>(Approach & pass Test)</i></td><td style="text-align: left;">Ġ Dusk Falls<br>Ġ Fishmonger Camp<br>Ġ Stone Circle</td></tr></tbody></table>            </div>');</script>
+            <script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('<br><b>UNDERWORLD CONTRACT (Standalone Game)</b>');</script>
+            <script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('    <div class="dice-section">                <h2>Roll a die to determine your target :</h2>                <button class="dicegroup3" onclick="showText_dicegroup3(0)">Ļ</button>                <button class="dicegroup3" onclick="showText_dicegroup3(1)">ļ</button>                <button class="dicegroup3" onclick="showText_dicegroup3(2)">Ľ</button>                <button class="dicegroup3" onclick="showText_dicegroup3(3)">ľ</button>                <button class="dicegroup3" onclick="showText_dicegroup3(4)">Ŀ</button>                <button class="dicegroup3" onclick="showText_dicegroup3(5)">ŀ</button>            </div>            <div class="result-section_dicegroup3">                <div id="3-result" class="hidden-text"></div>            </div>            <div id="result-3-0" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Organ Grinder</b><br><i>(Highlands)</i></td><td style="text-align: left;">Caravan <i>(Trade)</i><br>Game of Cards <i>(Gamble)</i><br>Prisoner <i>(Free)</i></td><td style="text-align: left;">Ġ Bandit Camp<br>Ġ The Watchtower</td></tr></tbody></table>            </div>            <div id="result-3-1" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Truffle Hunter</b><br><i>(Lowlands)</i></td><td style="text-align: left;">Suspicious Local <i>(Approach)</i><br>Trapped Stage Coach <i>(Help/Plunder)</i><br>Travelling Carnival <i>(Gamble/Trade)</i></td><td style="text-align: left;">Ġ The Graveyard<br>Ġ East Bridge</td></tr></tbody></table>            </div>            <div id="result-3-2" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Madman</b><br><i>(Badlands)</i></td><td style="text-align: left;">Geomancer <i>(Approach)</i><br>Human Sacrifice <i>(victim must survive)</i><br>Dark Wanderer <i>(Approach)</i></td><td style="text-align: left;">Ġ The Hell Pit<br>Ġ The Maze<br>Ġ Temple of Madness</td></tr></tbody></table>            </div>            <div id="result-3-3" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Curse Eater</b><br><i>(Wetlands)</i></td><td style="text-align: left;">Albino Scrog <i>(Approach & give Food)</i><br>Bog Walker <i>(Approach/Trade)</i><br>Talking Bird <i>(Approach & pass Test)</i></td><td style="text-align: left;">Ġ Dusk Falls<br>Ġ Hag\'s Fork</td></tr></tbody></table>            </div>            <div id="result-3-4" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Scrag Milker</b><br><i>(Badlands)</i></td><td style="text-align: left;">Dice Goblin <i>(Gamble)</i><br>Goblin Cockfight <i>(Gamble)</i><br>Goblin Merchant <i>(Trade)</i></td><td style="text-align: left;">Ġ Last Chance<br>Ġ Gutfish Ford</td></tr></tbody></table>            </div>            <div id="result-3-5" class="hidden-text">            <table border="0" style="border: 3px solid black; border-collapse:collapse; margin: 0 auto; width: 850px"><thead><tr></tr><tr><th style="text-align: center; width: 25%; background-color: #000; color: #3672e1;">TARGET</th><th style="text-align: left; width: 45%; background-color: #000; color: #3672e1;">INFORMANTS</th><th style="text-align: left; width: 30%; background-color: #000; color: #3672e1;">CLUES</th></tr></thead><tbody><tr style="background-color: #D2D9E6;"><td style="text-align: center;">ĝ <b>Hypnotist</b><br><i>(Highlands)</i></td><td style="text-align: left;">Inhuman Voices <i>(pass PER Test)</i><br>Hungry Pillar <i>(Blood/Food)</i><br>Shady Dealings <i>(Bribe)</i></td><td style="text-align: left;">Ġ Temple of Madness<br>Ġ The Watchtower</td></tr></tbody></table>            </div>');</script>
+            <br><img src="data/separator.png" class="separator"><br></p>
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('imperial_conspirators')) document.write('Each adventurer gains 1 Luck Ğ. The conspirators pay D8+1 GPĎ to each adventurer in the party. Reduce the Bounty Level & increase the Town Level at the Hunt Lodge.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('necro_coven')) document.write('Each adventurer gains 1 Luck Ğ. Remove 1 blue Doom ğ counter from the Doom track. If you destroyed the target, take the <b>Killer for the Necro Coven</b> Triumph card.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('river_rats')) document.write('Each adventurer gains 1 Luck Ğ. The gang pays 2D6+2 GPĎ distributed amongst the party. Increase the Town Level at the Bandit Camp. The adventurer who destroyed the target may take the <b>Gang Member</b> Triumph card.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('Each adventurer gains 1 Luck Ğ. The contract pays 2D6+6 GPĎ distributed amongst the party.');</script></p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <script>if(new URLSearchParams(window.location.search).has('river_rats')) document.write('<h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection(\'pigskinport\', this.querySelector(\'.toggle-icon\'))"><span class="toggle-icon">Ĳ</span>Did you rest at Pigskin Port?</h3>');</script>
+            <script>if(new URLSearchParams(window.location.search).has('river_rats')) document.write('<div id="pigskinport" class="hidden-text">');</script>
+            <p style="margin-left: 30px; "><script>if(new URLSearchParams(window.location.search).has('river_rats')) document.write('<i>[Badlands & Beyond] As you navigate the unfamiliar streets of Pigskin Port, an old man catches your eye, staring at you with a peculiar intensity. Will you talk to him and venture </i><a href="./intotheunknown.html">İInto the Unknown</a><i>?</i>');</script></p>
+            <script>if(new URLSearchParams(window.location.search).has('river_rats')) document.write('</div>');</script>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('<i>[Badlands & Beyond] As you navigate the unfamiliar streets of Pigskin Port, an old man catches your eye, staring at you with a peculiar intensity. Will you talk to him and venture </i><a href="./intotheunknown.html">İInto the Unknown</a><i>?</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('imperial_conspirators')) document.write('<i>Your masters in the secret Brotherhood have further use for you: now you must disguise yourself as an Imperial agent in order to </i><a href="./startawar.html?imperial_conspirators">İStart a War</a><i> through trickery. Sow fear amongst the villages of the Borderlands & drive them to take arms against the Empire!</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('imperial_conspirators')) document.write('<i>[Missions II] Alternatively, they want you to go and meet the Meister Zähesfleisch which has some </i><a href="./dirtydeeds.html">İDirty Deeds</a><i> to do in order to destabilise the Wetlands.</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('necro_coven')) document.write('<i>With the fresh blood of your victim on your hands, you are marked with the secret sign of the Necro Coven & initiated into their ranks. The seven secret sorcerers of the Coven have a special task for their newest recruit: make a mockery of the Holy Order, break the </i><a href="./curseofthedreadsaint.html?necro_coven">İCurse of the Dread Saint</a><i> & bind the Saint\'s ghost with ancient necromantic rites described in the wicked & accursed tome known as the Morbadicon!</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('necro_coven')) document.write('<i>[Missions III] They also have another mission for you to complete : travel to Hag\'s Fork in order to commence </i><a href="./thehellpitwosagasser.html">İThe Hell Pit wos a Gasser</a><i>...</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('river_rats')) document.write('<i>Now that you\'re a full-fledged member of the River Rats gang, there\'s plenty of work to be done. Will you secure alliances in the North to </i><a href="./unifythehighlands.html">İUnify the Highland</a><i> in preparation for conflict with the Empire, or head East to help with the </i><a href="./warongoblins.html">İWar on Goblins</a><i>? Perhaps instead you are ready to sneak into the Würstreich under disguise & </i><a href="./startawar.html?river_rats">İStart a War</a><i> to break its control over the Lowlands.</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('river_rats')) document.write('<i>[Missions III] You could also help them unblock a situation which makes it difficult to </i><a href="./takeapowder.html">İTake a Powder</a><i>...</i>');</script></p>
+        </div>
+    </div>
+    <script>
+
+      function showText_dicegroup0(dice) {
+        var buttons = document.querySelectorAll('.dice-section .dicegroup0');
+        var isActive = buttons[dice].classList.contains('active_dicegroup0');
+        buttons.forEach(function(button) {
+          button.classList.remove('active_dicegroup0');
+        });
+        var resultElement = document.getElementById('0-result');
+        if (!isActive) {
+          buttons[dice].classList.add('active_dicegroup0');
+          var resultId = 'result-0-' + dice;
+          resultElement.innerHTML = document.getElementById(resultId).innerHTML;
+          resultElement.classList.add('show');
+        } else {
+          resultElement.innerHTML = '';
+          resultElement.classList.remove('show');
+        }
+      }
+      function showText_dicegroup1(dice) {
+        var buttons = document.querySelectorAll('.dice-section .dicegroup1');
+        var isActive = buttons[dice].classList.contains('active_dicegroup1');
+        buttons.forEach(function(button) {
+          button.classList.remove('active_dicegroup1');
+        });
+        var resultElement = document.getElementById('1-result');
+        if (!isActive) {
+          buttons[dice].classList.add('active_dicegroup1');
+          var resultId = 'result-1-' + dice;
+          resultElement.innerHTML = document.getElementById(resultId).innerHTML;
+          resultElement.classList.add('show');
+        } else {
+          resultElement.innerHTML = '';
+          resultElement.classList.remove('show');
+        }
+      }
+      function showText_dicegroup2(dice) {
+        var buttons = document.querySelectorAll('.dice-section .dicegroup2');
+        var isActive = buttons[dice].classList.contains('active_dicegroup2');
+        buttons.forEach(function(button) {
+          button.classList.remove('active_dicegroup2');
+        });
+        var resultElement = document.getElementById('2-result');
+        if (!isActive) {
+          buttons[dice].classList.add('active_dicegroup2');
+          var resultId = 'result-2-' + dice;
+          resultElement.innerHTML = document.getElementById(resultId).innerHTML;
+          resultElement.classList.add('show');
+        } else {
+          resultElement.innerHTML = '';
+          resultElement.classList.remove('show');
+        }
+      }
+      function showText_dicegroup3(dice) {
+        var buttons = document.querySelectorAll('.dice-section .dicegroup3');
+        var isActive = buttons[dice].classList.contains('active_dicegroup3');
+        buttons.forEach(function(button) {
+          button.classList.remove('active_dicegroup3');
+        });
+        var resultElement = document.getElementById('3-result');
+        if (!isActive) {
+          buttons[dice].classList.add('active_dicegroup3');
+          var resultId = 'result-3-' + dice;
+          resultElement.innerHTML = document.getElementById(resultId).innerHTML;
+          resultElement.classList.add('show');
+        } else {
+          resultElement.innerHTML = '';
+          resultElement.classList.remove('show');
+        }
+      }
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

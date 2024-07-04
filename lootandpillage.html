@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOOT & PILLAGE</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #d0c49e;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #e8ac37;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>LOOT & PILLAGE</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('jailor')) document.write('<i>You\'ve refused your jailor\'s deal & soon enough he finds his opportunity to make an attempt on your life. Taking advantage of the diversion created by a fight in your cell block, the jailor comes to silence you so you\'ll never share his secrets!</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('plaguefinder')) document.write('<i>You\'ve refused the Plaguefinder\'s offer & soon enough he finds his opportunity to make an attempt on your life.</i>');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('jailor')) document.write('You must fight the jailor before you begin your mission. Take the <b>Jailor</b> card from the Law deck & the party must fight him <i>without any of their starting Items</i>.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('plaguefinder')) document.write('You must fight the Plaguefinder before you begin your mission. Take the <b>Plague Conscript</b> card from the Law deck & the party must fight him <i>without any of their starting Items</i>.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('jailor')) document.write('If you destroy or escape the Jailor, you can flee the dungeon as more fighting breaks out around you & your fellow prisoners turn on their captors. During the chaos you may claim your starting Items, but your GPĎ is lost.');</script></p>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('plaguefinder')) document.write('If you destroy or escape the Plaguefinder, you can flee the dungeon as more fighting breaks out around you & your fellow prisoners turn on their captors. During the chaos you may claim your starting Items, but your GPĎ is lost.');</script></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; ">Place the <b>Undercity Dungeon</b> overlay on the board connected to Brüttelburg. This represents an additional location in the Lowlands. The Undercity Dungeon is adjacent to Brüttelburg.</p>
+            <p align="center"><img style="max-width: 100%;" src="data/lootandpillage01.png" align="center"></p>
+            <p style=" margin-left: 0px; ">Set the Bounty Level at 2 & place the party in the Undercity Dungeon.</p>
+            <p style=" margin-left: 0px; "><i>Set the Bounty Level at 2 & place the party in the Undercity Dungeon. Fresh out of the dungeon without two coins to rub together, you know you'll need to come up with some funds as soon as possible. Luckily you have two leads on potential fortunes ripe for the taking. A new cellmate recently boasted to you about a treasure he stole & sold to the River Rats gang, now housed at the old Watchtower & barely guarded... unless it's already been shifted to the Bandit Camp.</i></p>
+            <p style=" margin-left: 0px; "><i>You've also heard rumors of the tomb of the Dread Saint Pastete - where tributes are left by pilgrims from across the Würstreich - unprotected wealth just waiting to be taken! Unfortunately, some of the rumors disagree on specifics: you've heard that the tomb is beneath the ruin at Tower Island; once part of the necropolis during the Dread Saint's time - or perhaps his body has been moved to the Catacombs.</i></p>
+            <p style=" margin-left: 0px; ">Ġ <b>Bandit Camp</b></p>
+            <p style=" margin-left: 0px; ">Ġ <b>The Catacombs</b></p>
+            <p style=" margin-left: 0px; ">Ġ <b>Tower Island</b></p>
+            <p style=" margin-left: 0px; ">Ġ <b>The Watchtower</b></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Howling Winds/Treasure Trove</b> <i>(Highlands Encounter)</i></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Travelling Carnival/Unspoiled Tomb</b> <i>(Lowlands Encounter)</i></p>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">At least one adventurer must complete any one of the following, then Rest at any Town Ę.</p>
+            <ul><li  style="padding-top: 10px;">Destroy a <b>Caravan</b> in the Highlands.</li><li  style="padding-top: 10px;">Plunder a <b>Treasure Trove</b> in the Highlands.</li><li  style="padding-top: 10px;">Plunder the <b>Unspoiled Tomb</b> in the Lowlands or Wetlands.</li></ul>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>THE MANHUNT</center></h2>
+            <p style=" margin-left: 0px; "><i>The authorities send troops to patrol the streets of Brüttelburg & the towns of the Lowlands in search of escaped convicts.</i></p>
+            <p style=" margin-left: 0px; ">At the start of each Danger Phase, increase the Bounty Level if any adventurer Rested in Bold č stance at a Town Ę in the Lowlands during that turn.</p>
+            <p style=" margin-left: 0px; ">If the Bounty Level is increased to 3 or more, place a Law ĩ counter on the Fishmonger Camp & on North Bridge.</p>
+            <br><br><h2><center>RUMORED RICHES</center></h2>
+            <p style=" margin-left: 0px; ">If you successfully Explore ġ a space with a Clue Ġ counter, you may flip that counter & compare the highest single die result of your Explore Test to the Clue's Ġ value.</p>
+            <p style=" margin-left: 0px; ">If your highest die is equal to or greater than the counter's value, you may take a specific card from the Mission ĝ deck based on your location & resolve it during the Encounter phase <i>(do not resolve a random Encounter </i>Ĥ<i> this turn</i>). Then, remove the clue Ġ counter from your space & place the Encounter in its discard pile.</p>
+            <p style=" margin-left: 0px; ">Ġ <b>Bandit Camp</b>: resolve ĝ <b>Treasure Trove</b></p>
+            <p style=" margin-left: 0px; ">Ġ <b>The Watchtower</b>: resolve ĝ <b>Treasure Trove</b></p>
+            <p style=" margin-left: 0px; ">Ġ <b>The Catacombs</b>: resolve ĝ <b>Unspoiled Tomb</b></p>
+            <p style=" margin-left: 0px; ">Ġ <b>Tower Island</b>: resolve ĝ <b>Unspoiled Tomb</b></p>
+            <br><img src="data/separator.png" class="separator"><br></p>
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ & remove any Law ĩ counters that were placed due to <i>'the manhunt'</i>. If ou destroyed a <b>Caravan</b>, increase the Danger Level in the Foothills & at Pigskin Port.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; ">Your mission path is based on which objective you completed:</p>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('caravan_treasure', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You destroyed a <b>Caravan</b> or plundered a <b>Treasure Trove</b></h3>
+            <div id="caravan_treasure" class="hidden-text">
+            <p style="margin-left: 30px; "><i>Thanks to you, commerce has been destablized in the region & the Merchant Guilds are eager to hire new mercenaries brave enough to travel far into the Wasteland to establish trade with the Goblins & the people of Gutfish Ford.</i></p>
+            <p style="margin-left: 30px; "><i>What will you do ?</i></p>
+            <h3 style="cursor: pointer; margin-left: 30px;" onclick="toggleSection('work_merchants', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>Enlist with the <b>Guildsmen</b></h3>
+            <div id="work_merchants" class="hidden-text">
+            <p style="margin-left: 60px; ">The <b>Guildsmen</b> hire you as a guard or scout for their <a href="./caravanthroughthebadlands.html">İCaravan Through the Badlands</a>.</p>
+            </div>
+            <h3 style="cursor: pointer; margin-left: 30px;" onclick="toggleSection('decline_merchants', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>Decline the guild's offer</h3>
+            <div id="decline_merchants" class="hidden-text">
+            <p style="margin-left: 60px; "><i>You begin looking for work on the seedy side of town. Local bandit gangs have taken note of your exploits & they send goons carrying an ultimatum; work for them or get out of town!</i></p>
+            <p style="margin-left: 60px; ">If you take work from the <b>River Rats</b>, it's time to try your hand at <a href="./deathforhire.html">İDeath For Hire</a>. If you refuse to work for the gang, increase the Danger Level at the Bandit Camp.</p>
+            </div>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('unspoiled', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You plundered the <b>Unspoiled Tomb</b></h3>
+            <div id="unspoiled" class="hidden-text">
+            <h3 style="cursor: pointer; margin-left: 30px;" onclick="toggleSection('Puritans', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>There are one on more <b>Puritans</b> in the party</h3>
+            <div id="Puritans" class="hidden-text">
+            <p style="margin-left: 60px; "><i>Too late you realize your disastrous mistake! You've defiled the resting place of the Dread Saint Pastete & disturbed sacred remains of occult importance to the </i><b>Inquisition</b><i>. You must rush to undo the damage you've caused & break the </i><a href="./curseofthedreadsaint.html?inquisition">İCurse of the Dread Saint</a><i>!</i></p>
+            <p style="margin-left: 60px; ">You may choose to ignore the curse of Saint Pastete. In that case, increase the Danger Level at the Catacombs & Tomb Lake, then read the following :</p>
+            <p style="margin-left: 60px; "><i>Your heist earns you a reputation in the local underworld & soon enough you're approached by a thin, jumpy apothecary who hopes to find some rare ingredients for his work... Will you collect the components he needs to </i><a href="./makeascratch.html">İMake a Scratch</a><i>?</i></p>
+            </div>
+            <h3 style="cursor: pointer; margin-left: 30px;" onclick="toggleSection('NoPuritans', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>There are no <b>Puritans</b> in the party</h3>
+            <div id="NoPuritans" class="hidden-text">
+            <p style="margin-left: 60px; ">Increase the Danger Level at the Catacombs & Tomb Lake.</p>
+            <p style="margin-left: 60px; "><i>Your heist earns you a reputation in the local underworld & soon enough you're approached by a thin, jumpy apothecary who hopes to find some rare ingredients for his work... Will you collect the components he needs to </i><a href="./makeascratch.html">İMake a Scratch</a><i>?</i></p>
+            </div>
+            </div>
+            <p style=" margin-left: 0px; ">Alternatively, there may be some possibilities for you depending on your location:</p>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('badlands', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You are in the Badlands</h3>
+            <div id="badlands" class="hidden-text">
+            <p style="margin-left: 30px; "><i>[Missions II] Rather than set up in a Settlement, having your hide out at the remote Last Chance will make tracking you down that much harder & starting a criminal career that much easier... But first you'll have to deal with </i><a href="./theblackbats.html">İThe Black Bats</a><i>.</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('highlands', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You are in the Highlands</h3>
+            <div id="highlands" class="hidden-text">
+            <p style="margin-left: 30px; "><i>[Missions III] As newcomers to the Highlands, a once in a lifetime opportunity presents itself... Will you </i><a href="./takeapowder.html">İTake a powder</a><i>?</i></p>
+            </div>
+            <h3 style="cursor: pointer;  margin-left: 0px;" onclick="toggleSection('lowlands', this.querySelector('.toggle-icon'))"><span class="toggle-icon">Ĳ</span>You are in the Lowlands</h3>
+            <div id="lowlands" class="hidden-text">
+            <p style="margin-left: 30px; "><i>You are approached by a shady looking individual who says that if you travel to a certain Location in Brüttelburg, your violent tendencies can be put to a higher purpose...</i></p>
+            <p style="margin-left: 30px; ">[Missions II] Travel to <b>Brüttelburg</b> to start your career as a <a href="./bomber.html">İBomber</a>.</p>
+            </div>
+            <p style=" margin-left: 0px; ">If you wish, you may ignore these opportunities & instead attempt to <a href="./establishabase.html">İEstablish a Base</a> somewhere beyond the Lowlands.</p>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

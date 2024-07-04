@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGAINST THE HAND OF DOOM</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #edcfcb;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #FF370F;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>AGAINST THE HAND OF DOOM</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>The malevolent sorcerous power of the Hand of Doom threatens to render all your accomplishments obsolete! Against an entity of such terrifying power your only chance is to trap it forever in the Puzzle Prison; a gateway to some unknown netherworld beyond the Void that exists impossibly within a small puzzle box of intricate & ancient design.</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('If you are playing Against the Hand of Doom as a standalone mission, the Bounty Level is 2 & the party starts at <b>Brüttelburg</b>.');</script></p>
+            <p style=" margin-left: 0px; ">The Mission ĝ deck is made up of four powerful artifacts that will aid you against the Hand & the Necromancer's warlords.</p>
+            <p style=" margin-left: 0px; ">ĝ <b>Doombringer Horn</b> <i>(Epic Loot)</i></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Mirror Shield</b> <i>(Epic Loot)</i></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Puzzle Prison</b> <i>(Epic Loot)</i></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Void Powder</b> <i>(Epic Loot)</i></p>
+            <p style=" margin-left: 0px; ">These four fearsome entities serve the Necromancer as warlords & one of them carries the Puzzle Prison.</p>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse; width: 450px; margin-top: 20px;"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 25px; padding: 0px; width: 70%;">đ <b>Brute Lord</b> at <b>the Hell Pit</b></i></td><td style="text-align: left;  line-height: 20px;;"><img style="max-width: 100px; border: 10px solid #000; border-radius: 50%; background-color: #000; box-shadow: 4px 4px rgb(58, 58, 58);" src="data/brutelord.png"</img></td></tr></tbody></table>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse; width: 450px; margin-top: 20px;"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 25px; padding: 0px; width: 70%;">đ <b>Serpent Lord</b> at <b>the Maze</b></i></td><td style="text-align: left;  line-height: 20px;;"><img style="max-width: 100px; border: 10px solid #000; border-radius: 50%; background-color: #000; box-shadow: 4px 4px rgb(58, 58, 58);" src="data/serpentlord.png"</img></td></tr></tbody></table>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse; width: 450px; margin-top: 20px;"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 25px; padding: 0px; width: 70%;">đ <b>Slime Lord</b> at <b>Crystal Crater</b></i></td><td style="text-align: left;  line-height: 20px;;"><img style="max-width: 100px; border: 10px solid #000; border-radius: 50%; background-color: #000; box-shadow: 4px 4px rgb(58, 58, 58);" src="data/slimelord.png"</img></td></tr></tbody></table>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse; width: 450px; margin-top: 20px;"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 25px; padding: 0px; width: 70%;">đ <b>Vampyr Lord</b> at <b>the Catacombs</b></i></td><td style="text-align: left;  line-height: 20px;;"><img style="max-width: 100px; border: 10px solid #000; border-radius: 50%; background-color: #000; box-shadow: 4px 4px rgb(58, 58, 58);" src="data/vampyrlord.png"</img></td></tr></tbody></table>
+            <p style=" margin-left: 0px; ">Place a random Epic Loot card from the Mission ĝ deck facedown under each Epic Monster card.</p>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">If you Dispel the Hand of Doom while you have the Puzzle Prison, you may trap it inside the Puzzle Prison, achieving victory against the Hand of Doom!</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>WARLORDS OF THE NECROMANCER</center></h2>
+            <p style=" margin-left: 0px; "><i>To claim the Puzzle Prison, you must find & destroy the warlord who guards it. Each deadly warlord commands a legion of the Necromancer's devoted followers.</i></p>
+            <p style=" margin-left: 0px; ">When you destroy one of the four Epic Monsters listed in <i>Setup</i>, do not make a Loot roll - instead, take the Epic Loot card from beneath that Epic Monster's card.</p>
+            <p style=" margin-left: 0px; ">When you destroy the <b>Serpent Lord</b>, also place a Voidgate at the Hell Pit, unless there is already a Voidgate in that space or there are already 2 Voidgates in the Badlands.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; "><i>As the intricate twisting pieces of the Puzzle Prison turn & bend, so does the fabric of space & time. The Hand of Doom vanishes, trapped within the infinite reflections of the mirrored surface of the puzzle. At last, you have rid the Borderlands of the Hand's evil presence! You bask in glory as the Necromancer plots revenge. You are victorious, for now...</i></p>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

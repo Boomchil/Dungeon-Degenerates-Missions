@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELCOME TO THE WÜRSTREICH</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #f8ecc1;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #f8f81c;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 40px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            font-size: 35px;
+            color: #000000;
+            line-height: 45px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>WELCOME TO THE WÜRSTREICH</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+          <center>
+            <br><br><h2>START A CAMPAIGN<br><br></h2>
+            <br><br><h2>Hand of Doom<br><br></h2>
+            <a href="./ontherun.html">İON THE RUN</a><br>
+            <br><br><h2>Badlands & Beyond<br><br></h2>
+            <a href="./daggerandsword.html">İDAGGER & SWORD</a><br>
+            <br><br><h2>Tomb Lake & the Wetlands<br><br></h2>
+            <a href="./servethescroglinking.html">İSERVE THE SCROGLIN KING</a><br>
+            <br><br><h2>Mean Streets<br><br></h2>
+            <a href="./thedeadlysmellofdisease.html">İTHE DEADLY SMELL OF DISEASE</a><br>
+
+
+            <br><img src="data/separator.png" class="separator"><br></p>
+            <br><br><h2>PLAY A STANDALONE MISSION<br><br></h2>
+            <br><br><h2>Hand of Doom<br><br></h2>
+            <a href="./ontherun.html?standalone">İON THE RUN</a><br>
+            <a href="./lootandpillage.html?standalone">İLOOT & PILLAGE</a><br>
+            <a href="./visionsatthepeak.html?standalone">İVISIONS AT THE PEAK</a><br>
+            <a href="./establishabase.html?standalone">İESTABLISH A BASE</a><br>
+            <a href="./deathforhire.html?standalone">İDEATH FOR HIRE</a><br>
+            <a href="./curseofthedreadsaint.html?standalone">İCURSE OF THE DREAD SAINT</a><br>
+            <a href="./escapefrombruttelburg.html?standalone">İESCAPE FROM BRÜTTELBURG</a><br>
+            <a href="./caravanthroughthebadlands.html?standalone">İCARAVAN THROUGH THE BADLANDS</a><br>
+            <a href="./screamingforvengeance.html?standalone">İSCREAMING FOR VENGEANCE</a><br>
+            <a href="./throwitinthepit.html?standalone">İTHROW IT IN THE PIT</a><br>
+            <a href="./makeascratch.html?standalone">İMAKE A SCRATCH</a><br>
+            <a href="./cleansetheblight.html?standalone">İCLEANSE THE BLIGHT</a><br>
+            <a href="./startawar.html?standalone">İSTART A WAR</a><br>
+            <a href="./warongoblins.html?standalone">İWAR ON GOBLINS</a><br>
+            <a href="./unifythehighlands.html?standalone">İUNIFY THE HIGHLANDS</a><br>
+            <a href="./huntthewitchcult.html?standalone">İHUNT THE WITCH CULT</a><br>
+            <a href="./spreadtheblight.html?standalone">İSPREAD THE BLIGHT</a><br>
+            <a href="./thescroglincrown.html?standalone">İTHE SCROGLIN CROWN</a><br>
+            <a href="./againstthehandofdoom.html?standalone">İAGAINST THE HAND OF DOOM</a><br>
+            <a href="./bringerofdoom.html?standalone">İBRINGER OF DOOM</a><br>
+            <br><br><h2>Pork #24<br><br></h2>
+            <a href="./questforsausage.html?standalone">İQUEST FOR SAUSAGE</a><br>
+            <br><br><h2>Badlands & Beyond<br><br></h2>
+            <a href="./daggerandsword.html?standalone">İDAGGER & SWORD</a><br>
+            <a href="./tearopenthegates.html?standalone">İTEAR OPEN THE GATES</a><br>
+            <a href="./beatthembloody.html?standalone">İBEAT THEM BLOODY</a><br>
+            <a href="./intotheunknown.html?standalone">İINTO THE UNKNOWN</a><br>
+            <br><br><h2>Tomb Lake & the Wetlands<br><br></h2>
+            <a href="./servethescroglinking.html?standalone">İSERVE THE SCROGLIN KING</a><br>
+            <a href="./blowthemtobits.html?standalone">İBLOW THEM TO BITS</a><br>
+            <a href="./agiftforthequeen.html?standalone">İA GIFT FOR THE QUEEN</a><br>
+            <a href="./riseofthemegaverm.html?standalone">İRISE OF THE MEGAVERM</a><br>
+            <br><br><h2>Mean Streets<br><br></h2>
+            <a href="./thedeadlysmellofdisease.html?standalone">İTHE DEADLY SMELL OF DISEASE</a><br>
+            <a href="./theriveroffilth.html?standalone">İTHE RIVER OF FILTH</a><br>
+            <br><br><h2>Missions II<br><br></h2>
+            <a href="./bomber.html?standalone">İBOMBER</a><br>
+            <a href="./justanotherrat.html?standalone">İJUST ANOTHER RAT</a><br>
+            <a href="./stabthejudge.html?standalone">İSTAB THE JUDGE</a><br>
+            <a href="./citybabyattackedbyrats.html?standalone">İCITY BABY ATTACKED BY RATS</a><br>
+            <a href="./theblackbats.html?standalone">İTHE BLACK BATS</a><br>
+            <a href="./anotherperfectday.html?standalone">İANOTHER PERFECT DAY</a><br>
+            <a href="./plagueofscrogs.html?standalone">İPLAGUE OF SCROGS</a><br>
+            <a href="./holidaysinthesun.html?standalone">İHOLIDAYS IN THE SUN</a><br>
+            <a href="./givemefire.html?standalone">İGIVE ME FIRE</a><br>
+            <a href="./dirtydeeds.html?standalone">İDIRTY DEEDS</a><br>
+            <a href="./badbrains.html?standalone">İBAD BRAINS!</a>
+            <a href="./thefreakscomeoutatnight.html?standalone">İTHE FREAKS COME OUT AT NIGHT</a><br>
+            <a href="./alightintheblack.html?standalone">İA LIGHT IN THE BLACK</a><br>
+            <br><br><h2>Missions III<br><br></h2>
+            <a href="./thewickerman.html?standalone">İTHE WICKER MAN</a><br>
+            <a href="./takeapowder.html?standalone">İTAKE A POWDER</a><br>
+            <a href="./crystallogic.html?standalone">İCRYSTAL LOGIC</a><br>
+            <a href="./armylife.html?standalone">İARMY LIFE</a><br>
+            <a href="./phantomlord.html?standalone">İPHANTOM LORD</a><br>
+            <a href="./deathchurch.html?standalone">İDEATH CHURCH</a><br>
+            <a href="./cosmichearse.html?standalone">İCOSMIC HEARSE</a><br>
+            <a href="./revelation.html?standalone">İREVELATION</a><br>
+            <a href="./isntitnice.html?standalone">İISN'T IT NICE?</a><br>
+            <a href="./shakeit.html?standalone">İSHAKE IT</a><br>
+            <a href="./thehellpitwosagasser.html?standalone">İTHE HELL PIT WOS A GASSER</a><br>
+            <a href="./imamess.html?standalone">İI'M A MESS</a><br>
+            <a href="./iwantcandy.html?standalone">İI WANT CANDY</a><br>
+            </center>
+</body>
+</html>

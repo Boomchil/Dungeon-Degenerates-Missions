@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAR ON GOBLINS</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #e2d3b9;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #e0a235;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>WAR ON GOBLINS</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>The goblins of the Wasteland are a constant danger to the struggling survivors living on the outskirts of the Würstreich. The people of Gutfish Ford & the outlaws scattered throughout the Eastern Foothills live under constant threat of goblin raids, vandalism & thievery. The goblins are far too numerous to challenge in open warfare & so you must infiltrate their lands to sow chaos & confusion in their ranks to stem the relentless tides of goblin aggression.</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('If you are playing War on Goblins as a standalone mission, the Bounty Level is 2 & the party starts at <b>Pigskin Port</b>.');</script></p>
+            <p style=" margin-left: 0px; ">Place Clue Ġ counters 1 & 2 faceup at Gutfish Ford & The Watchtower. These represent Settlements Ė that you can Invest in to help the war effort.</p>
+            <p style=" margin-left: 0px; ">Ġ1 <b>Gutfish Ford</b></p>
+            <p style=" margin-left: 0px; ">Ġ2 <b>The Watchtower</b></p>
+            <p style=" margin-left: 0px; ">Place facedown Clue Ġ counters on the following Locations. These represent potential targets for sabotage.</p>
+            <p style=" margin-left: 0px; ">Ġ <b>Goblin Fortress</b></p>
+            <p style=" margin-left: 0px; ">Ġ <b>Last Chance</b></p>
+            <p style=" margin-left: 0px; ">Ġ <b>Skull Bridge</b></p>
+            <p style=" margin-left: 0px; ">The following Items can be used to sabotage goblin targets.</p>
+            <p style=" margin-left: 0px; ">ĝ <b>Blasting Charge</b> <i>(Loot)</i></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Daemon's Blood</b> <i>(Loot)</i></p>
+            <p style=" margin-left: 0px; ">ĝ <b>Vial of Poison</b> <i>(Loot)</i></p>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">Rest in any Town Ę while the Goblin Fortress has a Town Level of 1 or more to complete this mission.</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>TOTAL WAR</center></h2>
+            <p style=" margin-left: 0px; ">During this mission, it costs 30 GPĎ to <b>Invest</b> at the Goblin Fortress.</p>
+            <p style=" margin-left: 0px; ">When you Trade at any Town Ę or with a Highlands Encounter, or when you <b>Approach</b> the Alchemist <i>(Highlands Encounter)</i> you may purchase any of the Items from the Mission ĝ deck.</p>
+            <br><br><h2><center>BEHIND ENEMY LINES</center></h2>
+            <p style=" margin-left: 0px; "><i>With poison, sabotage & trickery, you can gradually bring the goblin war machine to a grinding halt.</i></p>
+            <p style=" margin-left: 0px; ">During this mission, there are various ways you can reduce the Danger Level at the Goblin Fortress, as described below.</p>
+            <br><b>Poison the Well</b>
+            <p style=" margin-left: 0px; ">When you Rest at Last Chance or the Goblin Fortress while the Goblin Fortress has a Danger Level, you may discard a <b>Vial of Poison</b> to reduce the Danger Level at the Goblin Fortress.</p>
+            <br><b>Blow the Bridge</b>
+            <p style=" margin-left: 0px; ">When you Rest in Bold č stance at Skull Bridge, if you have Decay Mastery or Shockwave Mastery, you may attempt to use your magic to damage the bridge as a Rest Action. Place {MAG Test} Wound Č counters on Skull Bridge. If you fail, you become Fatigued & Weakened.</p>
+            <p style=" margin-left: 0px; ">When you Rest in Bold č stance at Skull Bridge, if you have Daemon's Blood, you may discard it to place D3-1 Wound Č counters on Skull Bridge.</p>
+            <p style=" margin-left: 0px; ">If there are 6 or more Wounds Č on Skull Bridge, remove them & place a Destroyed Ĝ counter there.</p>
+            <p style=" margin-left: 0px; ">If Skull Bridge is Destroyed Ĝ while the Goblin Fortress has a Danger Level, reduce the Danger Level at the Goblin Fortress.</p>
+            <br><b>Contaminate Provisions</b>
+            <p style=" margin-left: 0px; ">When you <b>Trade</b> with the <b>Goblin Merchant</b>, or <b>Drink</b> with the <b>Scrag Milker</b>, you may slip contaminated provisions in with their goods. You may sell them any number of Food Items. When you do, you may reduce the Danger Level at the Goblin Fortress if you have a Disease or if you discard a <b>Vial of Poison</b>.</p>
+            <br><b>Reinforce the Border</b>
+            <p style=" margin-left: 0px; ">When you <b>Invest</b> at Gutfish Ford or the Watchtower while there is a faceup Clue Ġ counter in your space, you may reduce the Danger Level at the Goblin Fortress, then remove that Clue Ġ counter.</p>
+            <p style=" margin-left: 0px; ">Once both Clue Ġ 1 & 2 have been removed from the board, the Fighter, Hunter, or Militant in the party with the highest MRL may take the <b>Warleader</b> Triumph card.</p>
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ. Then, remove 2 red Doom ğ counters from the Doom Track. Increase the Town Level at Gutfish Ford & Pigskin Port & if the Goblin Blitzkreig <i>(Doom card)</i> is in play, discard it.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; ">You have smashed the goblins' military might in the Badlands & established yourself as a war hero to the people of the North. With newfound hope for prosperity, they beg you to turn your attention to the greater threat menacing the Borderlands. Will you stand in their defense & do battle <a href="./againstthehandofdoom.html">İAgainst the Hand of Doom</a> before its woeful plans come to fruition & the people of the Borderlands are drowned in a tidal wave of blood & chaos? There's nowhere left to run & hide - now you must become a true hero of the people or die along with them!</p>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

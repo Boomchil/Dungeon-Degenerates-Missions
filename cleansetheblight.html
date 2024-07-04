@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLEANSE THE BLIGHT</title>
+    <style>
+
+        @font-face {
+            font-family: "Dungeon Degenerates";
+            src: url("data/dd.otf") format("opentype");
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            font-family: "Dungeon Degenerates", sans-serif;
+            color: #000000;
+            text-align: justify;
+            font-size: 21px;
+        }
+
+        .border-top,
+        .border-bottom {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 30px; /* Hauteur de l'image */
+            background-repeat: repeat-x;
+            background-size: contain;
+        }
+
+        .border-top {
+            top: 0;
+            background-image: url('data/border_top.png');
+        }
+
+        .border-bottom {
+            bottom: 0;
+            background-image: url('data/border_bottom.png');
+        }
+
+        .border-left,
+        .border-right {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px; /* Largeur de l'image */
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        .border-left {
+            left: 0;
+            background-image: url('data/border_left.png');
+        }
+
+        .border-right {
+            right: 0;
+            background-image: url('data/border_right.png');
+        }
+
+        .content {
+            padding: 4% 6%;
+            box-sizing: border-box;
+            position: relative;
+            background-color: #e2d3b9;
+            background-image: url('data/background.png');
+            background-size: repeat;
+            overflow: hidden;
+            border: 2px solid #000;
+            line-height: 26px;
+        }
+
+        .title-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title-container h1 {
+            font-size: 40px;
+            text-transform: uppercase;
+            margin: 0;
+            padding: 35px 15px 30px 15px;
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            color: #e0a235;
+        }
+
+        .title-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+            background-image: url('data/title_background.png');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            z-index: 0;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h3 {
+            font-size: 22px;
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
+
+        .separator {
+            display: block;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        b {
+            text-shadow: 0.01em 0 0;
+        }
+
+        a {
+            text-shadow:
+              2px 2px 2px #eee,
+              -2px 2px 2px #eee,
+              -2px -2px 2px #eee,
+              2px -2px 2px #eee;
+            text-decoration: none; /* Supprimer le soulignement */
+            color: #000000;
+        }
+
+        ul {
+            list-style-position: outside;
+            padding-left: 15px;
+            margin-left: 0;
+        }
+
+        li {
+            margin-left: 0; /* Ajuste cette valeur pour aligner avec le texte principal */
+        }
+
+        table {
+            border-collapse: collapse;
+            border: 3px solid black;
+        }
+
+        th {
+            padding: 8px;
+            padding-left: 14px;
+            padding-top: 11px;
+            text-align: center;
+            font-weight: lighter;
+        }
+
+        td {
+            padding: 8px;
+            padding-left: 14px;
+            text-align: left;
+            padding-top: 10px;
+            line-height: 30px;
+        }
+
+        .hidden-text {
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.8s ease-out, opacity 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .hidden-text.show {
+            max-height: 800px;
+            opacity: 1;
+        }
+
+        .dice-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dice-section button {
+            background-color: transparent; /* No background initially */
+            border: 2px solid transparent; /* Transparent border */
+            color: black; /* Text color */
+            padding: 10px;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: "Dungeon Degenerates", sans-serif;
+        }
+
+        
+
+        .toggle-icon {
+            cursor: pointer;
+            font-size: 18px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title-container">
+            <h1>CLEANSE THE BLIGHT</h1>
+        </div>
+        <div class="border-top"></div>
+        <div class="border-left"></div>
+        <div class="border-right"></div>
+        <div class="border-bottom"></div>
+        <div id="dynamic-content">
+            <p style=" margin-left: 0px; "><i>Certain that the blight is spreading from its epicenter in the Mountains of the Mouth, you take a sample of the overgrown fungus-forms coating the interior of the Temple of Madness & growing rapidly out of Lord Scrott's blood before you set out to find someone capable enough to analyze it & confirm your suspicions.</i></p>
+            <br><br><h2><center>SETUP</center></h2>
+            <p style=" margin-left: 0px; "><script>if(new URLSearchParams(window.location.search).has('standalone')) document.write('If you are playing Cleanse the Blight as a standalone mission, the Bounty Level is 2 & the party starts at the <b>Temple of Madness</b>.');</script></p>
+            <p style=" margin-left: 0px; "><i>Place Clue Ġ counters on the following Locations to represent areas that have been touched by the blight, its corruption already spreading unseen through the air, water & grain.</i></p>
+            <table border="0" style="border: 0px solid black; border-collapse:collapse;  width: 400px"><thead><tr></tr><tr></tr></thead><tbody><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ Brüttelburg</td><td style="text-align: left; line-height: 20px;">Ġ Pigskin Port</td></tr><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ Crossroads</td><td style="text-align: left; line-height: 20px;">Ġ The Watchtower</td></tr><tr style="background-color: #ffffff00;"><td style="text-align: left; line-height: 20px;">Ġ East Bridge</td><td style="text-align: left; line-height: 20px;">Ġ The Windmill</td></tr></tbody></table>
+            <p style=" margin-left: 0px; "><i>You'll need to locate a scholar of considerable talent if you hope to find a solution to this growing threat.</i></p>
+            <p style=" margin-left: 0px; ">ĝ Alchemist <i>(Highlands Encounter)</i></p>
+            <p style=" margin-left: 0px; ">ĝ Blasting Charge <i>(Loot)</i></p>
+            <p style=" margin-left: 0px; ">ĝ Mold Melter <i>(Loot)</i></p>
+            <p style=" margin-left: 0px; ">ī The Tunnel of Terror</p>
+            <p style=" margin-left: 0px; ">ī The Temple of Madness</p>
+            <br><br><h2><center>OBJECTIVE</center></h2>
+            <p style=" margin-left: 0px; ">Your mission is complete when you have removed all Fungus ī counters from the Highlands & Lowlands & the Tunnel of Terror is Destroyed Ĝ.</p>
+            <p style=" margin-left: 0px; "><script>if(!new URLSearchParams(window.location.search).has('standalone')) document.write('If at any point during this mission you surrender to the <b>Law</b> ĩ or get defeated, your campaign may <a href="./defeated.html">İnot be over yet</a>.');</script></p>
+            <br><br><h2><center>THE ALCHEMIST'S SOLUTION</center></h2>
+            <p style=" margin-left: 0px; "><i>When you deliver the sample, the alchemist examines it & eagerly begins to conduct a series of tests. After a nervous wait in town, you're summoned back to his laboratory where he reveals his findings. He has created a solution that will burn away the blight - a highly concentrated serum powerful enough to destroy half a mile of corruption with but a single drop!</i></p>
+            <p style=" margin-left: 0px; ">If you Rest in Bold č stance at Brüttelburg, you may take the <b>Alchemist</b> from the mission ĝ deck & resolve that card <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>.</p>
+            <p style=" margin-left: 0px; ">If you <b>Approach</b> the <b>Alchemist</b>, he can analyze the sample & manufacture a large quantity of a powerfully corrosive liquid that will dissolve the blight & eradicate its presence from the water supply. He will also provide enough explosives to seal off the entrance of the Tunnel of Terror. You may take the <b>Mold Melter</b> & <b>Blasting Charge</b> items from the Mission ĝ deck <i>(in addition to interacting with the Alchemist normally)</i>.</p>
+            <p style=" margin-left: 0px; ">If you buy the <b>Mold Melter</b>, each adventurer in the party becomes Detained, as it takes the alchemist some time to prepare the hissing & foul-smelling elixir. In this case, the <b>Mold Melter</b> card represents a large quantity & therefore you do not have to discard it when you use it during this mission.</p>
+            <p style=" margin-left: 0px; ">If you use the <b>Mold Melter</b> while Resting in an Explored ġ space with a Clue Ġ counter, you may remove the Clue Ġ counter from your space.</p>
+            <p style=" margin-left: 0px; ">If you use the <b>Blasting Charge</b> to destroy the <b>Tunnel of Terror</b>, remove the Fungus ī counter from that space & from the Temple of Madness & reduce the Danger Level in both of these spaces to 1.</p>
+            <br><br><h2><center>THE BLIGHT</center></h2>
+            <p style=" margin-left: 0px; ">During the Danger Phase, if the first party's Danger card corresponds to a space with a Clue Ġ counter <i>(including a ‘your current space' card if you are in a space with a Clue </i>Ġ<i>)</i>, follow these steps to resolve the various stages of contamination:</p>
+            <ul><li  style="padding-top: 10px;">Place a Fungus ī counter in the space indicated on the Danger card.</li><li  style="padding-top: 10px;">If there is already a Fungus ī counter there, place a Fungus ī counter on each Path & Road adjacent to that space.</li><li  style="padding-top: 10px;">If each adjacent Path & Road already has a Fungus ī counter, place a Perilous Ē counter in the indicated space.</li><li  style="padding-top: 10px;">If the indicated space already has a Perilous Ē counter, place a Metaphysical ě counter in that space <i>(note that this will prevent you from removing a Clue </i>Ġ<i> counter from this space, because a Metaphysical </i>ě<i> space cannot be Explored </i>ġ<i>)</i>.</li></ul>
+            <p style=" margin-left: 0px; "><i>For example, when you draw the Witchwood Danger card, place a Fungus </i>ī<i> counter at East Bridge. If you draw that card again, place a Fungus </i>ī<i> counter on the 3 Roads & the Path adjacent to East Bridge. If the card comes up a third time, place a Perilous </i>Ē<i> counter at East Bridge. The fourth time, place a Metaphysical </i>ě<i> counter.</i></p>
+            <br><img src="data/separator.png" class="separator"><br></p>
+            <br><br><h2><center>REWARD</center></h2>
+            <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ. Increase the Town Level at the Holy Order & discard persistent Doom cards with the Fungus ī icon from play. Then, remove each yellow Doom ğ counter from the Doom track.</p>
+            <p style=" margin-left: 0px; "><i>Having purged the blight from the North & destroyed the hell's mouth spewing its horror into the Foothills, you rejoice in your success. Meanwhile, the Alchemist's solution you added to the water supply has made its way downriver & mingles with the grave-slime of Tomb Lake, causing unforseen consequences.</i> Place a Perilous Ē counter at the <b>Fishmonger Camp</b> & <b>Ghostgate</b>.</p>
+            <p style=" margin-left: 0px; ">If there are any Scholars in the party, the Scholar with the highest MRL may take the <b>Veteran Plaguefinder</b> Triumph card.</p>
+            <br><br><h2><center>MISSION PATH</center></h2>
+            <p style=" margin-left: 0px; ">You've helped to free the Highlands from the creeping blight, but not from the ever-tightening grip of the Hand of Doom! Do you dare defend the Borderlands & strike back <a href="./againstthehandofdoom.html">İAgainst the Hand of Doom</a>?</p>
+            <p style=" margin-left: 0px; "><i>[Missions III] The Order are impressed with your zealousness & offer you more work to further the Puritan cause. Travel to Brüttelburg to take them up on the offer and try the </i><a href="cosmichearse.html">İCosmic Hearse</a><i>.</i></p>
+            <p style=" margin-left: 0px; "><i>[Missions II] You've saved the Highlands from disaster once, but there's always another one around the corner! Proceed to </i><a href="./givemefire.html">İGive me Fire</a><i> to investigate a heinous crime against the Highlands historical heritage.</i></p>
+        </div>
+    </div>
+    <script>
+
+        function toggleSection(sectionId, icon) {
+            const sections = document.querySelectorAll('#' + sectionId);
+            sections.forEach(section => {
+                if (section.classList.contains('show')) {
+                    section.classList.remove('show');
+                    icon.textContent = 'Ĳ';
+                } else {
+                    section.classList.add('show');
+                    icon.textContent = 'ĳ';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
