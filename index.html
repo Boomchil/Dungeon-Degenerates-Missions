@@ -6,19 +6,20 @@
     <title>WELCOME TO THE WÜRSTREICH</title>
     <style>
 
-        @font-face {
+
+@font-face {
             font-family: "Dungeon Degenerates";
             src: url("data/dd.otf") format("opentype");
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            font-family: "Dungeon Degenerates", sans-serif;
-            color: #000000;
-            text-align: justify;
-            font-size: 21px;
+          margin: 0;
+          padding: 0;
+          background-color: #000;
+          font-family: "Dungeon Degenerates", sans-serif;
+          color: #000000;
+          text-align: justify;
+          font-size: 3vh;
         }
 
         .border-top,
@@ -26,7 +27,7 @@
             position: absolute;
             left: 0;
             right: 0;
-            height: 30px; /* Hauteur de l'image */
+            height: 2vw; /* Hauteur de l'image */
             background-repeat: repeat-x;
             background-size: contain;
         }
@@ -46,7 +47,7 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 30px; /* Largeur de l'image */
+            width: 2vw; /* Largeur de l'image */
             background-repeat: repeat-y;
             background-size: contain;
         }
@@ -65,29 +66,29 @@
             padding: 4% 6%;
             box-sizing: border-box;
             position: relative;
-            background-color: #f8ecc1;
+            background-color: #b3d09e;
             background-image: url('data/background.png');
             background-size: repeat;
             overflow: hidden;
-            border: 2px solid #000;
-            line-height: 26px;
+            line-height: 4vh;
         }
 
         .title-container {
             position: relative;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 2vh;
         }
 
         .title-container h1 {
-            font-size: 40px;
+            font-size: 4vh;
             text-transform: uppercase;
+            line-height: 4.5vh;
             margin: 0;
-            padding: 35px 15px 30px 15px;
+            padding: 2vh 1vh 1.5vh 1vh;
             position: relative;
             z-index: 1;
             display: inline-block;
-            color: #f8f81c;
+            color: #82e837;
         }
 
         .title-container::before {
@@ -105,33 +106,36 @@
         }
 
         h2 {
-            font-size: 40px;
+            font-size: 4vh;
+            line-height: 4.8vh;
             margin: 0;
         }
 
         h3 {
-            font-size: 22px;
-            margin-top: 15px;
+            font-size: 2.5vh;
+            margin-top: 1.2vh;
             margin-bottom: 0px;
+            line-height: 3vh;
         }
-        b {
-            text-shadow: 0.01em 0 0;
-        }
+
         .separator {
             display: block;
             width: 100%;
-            margin: 10px auto;
+            margin: 1vh auto;
         }
+
+        b {
+          font-weight:bold;
+        }
+
         a {
             text-shadow:
-              2px 2px 2px #eee,
-              -2px 2px 2px #eee,
-              -2px -2px 2px #eee,
-              2px -2px 2px #eee;
+              0.2vh 0.2vh 0.2vh #fff,
+              -0.2vh 0.2vh 0.2vh #fff,
+              -0.2vh -0.2vh 0.2vh #fff,
+              0.2vh -0.2vh 0.2vh #fff;
             text-decoration: none; /* Supprimer le soulignement */
-            font-size: 35px;
             color: #000000;
-            line-height: 45px;
         }
 
     </style>
@@ -147,20 +151,24 @@
         <div class="border-bottom"></div>
         <div id="dynamic-content">
           <center>
-            <br><br><h2>START A CAMPAIGN<br><br></h2>
-            <br><br><h2>Hand of Doom<br><br></h2>
+            <br><h2>START A CAMPAIGN<br></h2>
+            <i><h3>Don't forget to remove the following cards from their respective decks :</i><br>
+            <b>Crown of Cruelty</b> <i>(Epic Loot)</i><br>
+            <b>Doombringer Horn</b> <i>(Epic Loot)</i><br>
+            <b>The Dread Saint</b> <i>(Epic Monster)</i><br></h3>
+            <br><h2>Hand of Doom<br></h2>
             <a href="./ontherun.html">İON THE RUN</a><br>
-            <br><br><h2>Badlands & Beyond<br><br></h2>
+            <br><h2>Badlands & Beyond<br></h2>
             <a href="./daggerandsword.html">İDAGGER & SWORD</a><br>
-            <br><br><h2>Tomb Lake & the Wetlands<br><br></h2>
+            <br><h2>Tomb Lake & the Wetlands<br></h2>
             <a href="./servethescroglinking.html">İSERVE THE SCROGLIN KING</a><br>
-            <br><br><h2>Mean Streets<br><br></h2>
+            <br><h2>Mean Streets<br></h2>
             <a href="./thedeadlysmellofdisease.html">İTHE DEADLY SMELL OF DISEASE</a><br>
 
 
             <br><img src="data/separator.png" class="separator"><br></p>
-            <br><br><h2>PLAY A STANDALONE MISSION<br><br></h2>
-            <br><br><h2>Hand of Doom<br><br></h2>
+            <br><h2>PLAY A STANDALONE MISSION<br></h2>
+            <br><h2>Hand of Doom<br></h2>
             <a href="./ontherun.html?standalone">İON THE RUN</a><br>
             <a href="./lootandpillage.html?standalone">İLOOT & PILLAGE</a><br>
             <a href="./visionsatthepeak.html?standalone">İVISIONS AT THE PEAK</a><br>
@@ -181,22 +189,22 @@
             <a href="./thescroglincrown.html?standalone">İTHE SCROGLIN CROWN</a><br>
             <a href="./againstthehandofdoom.html?standalone">İAGAINST THE HAND OF DOOM</a><br>
             <a href="./bringerofdoom.html?standalone">İBRINGER OF DOOM</a><br>
-            <br><br><h2>Pork #24<br><br></h2>
+            <br><h2>Pork #24<br></h2>
             <a href="./questforsausage.html?standalone">İQUEST FOR SAUSAGE</a><br>
-            <br><br><h2>Badlands & Beyond<br><br></h2>
+            <br><h2>Badlands & Beyond<br></h2>
             <a href="./daggerandsword.html?standalone">İDAGGER & SWORD</a><br>
             <a href="./tearopenthegates.html?standalone">İTEAR OPEN THE GATES</a><br>
             <a href="./beatthembloody.html?standalone">İBEAT THEM BLOODY</a><br>
             <a href="./intotheunknown.html?standalone">İINTO THE UNKNOWN</a><br>
-            <br><br><h2>Tomb Lake & the Wetlands<br><br></h2>
+            <br><h2>Tomb Lake & the Wetlands<br></h2>
             <a href="./servethescroglinking.html?standalone">İSERVE THE SCROGLIN KING</a><br>
             <a href="./blowthemtobits.html?standalone">İBLOW THEM TO BITS</a><br>
             <a href="./agiftforthequeen.html?standalone">İA GIFT FOR THE QUEEN</a><br>
             <a href="./riseofthemegaverm.html?standalone">İRISE OF THE MEGAVERM</a><br>
-            <br><br><h2>Mean Streets<br><br></h2>
+            <br><h2>Mean Streets<br></h2>
             <a href="./thedeadlysmellofdisease.html?standalone">İTHE DEADLY SMELL OF DISEASE</a><br>
             <a href="./theriveroffilth.html?standalone">İTHE RIVER OF FILTH</a><br>
-            <br><br><h2>Missions II<br><br></h2>
+            <br><h2>Missions II<br></h2>
             <a href="./bomber.html?standalone">İBOMBER</a><br>
             <a href="./justanotherrat.html?standalone">İJUST ANOTHER RAT</a><br>
             <a href="./stabthejudge.html?standalone">İSTAB THE JUDGE</a><br>
@@ -210,7 +218,7 @@
             <a href="./badbrains.html?standalone">İBAD BRAINS!</a>
             <a href="./thefreakscomeoutatnight.html?standalone">İTHE FREAKS COME OUT AT NIGHT</a><br>
             <a href="./alightintheblack.html?standalone">İA LIGHT IN THE BLACK</a><br>
-            <br><br><h2>Missions III<br><br></h2>
+            <br><h2>Missions III<br></h2>
             <a href="./thewickerman.html?standalone">İTHE WICKER MAN</a><br>
             <a href="./takeapowder.html?standalone">İTAKE A POWDER</a><br>
             <a href="./crystallogic.html?standalone">İCRYSTAL LOGIC</a><br>

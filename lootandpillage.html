@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOOT & PILLAGE</title>
-    <style>
+   <style>
 
         @font-face {
             font-family: "Dungeon Degenerates";
@@ -12,13 +12,13 @@
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            font-family: "Dungeon Degenerates", sans-serif;
-            color: #000000;
-            text-align: justify;
-            font-size: 21px;
+          margin: 0;
+          padding: 0;
+          background-color: #000;
+          font-family: "Dungeon Degenerates", sans-serif;
+          color: #000000;
+          text-align: justify;
+          font-size: 1.8vh;
         }
 
         .border-top,
@@ -26,7 +26,7 @@
             position: absolute;
             left: 0;
             right: 0;
-            height: 30px; /* Hauteur de l'image */
+            height: 2vw; /* Hauteur de l'image */
             background-repeat: repeat-x;
             background-size: contain;
         }
@@ -46,7 +46,7 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 30px; /* Largeur de l'image */
+            width: 2vw; /* Largeur de l'image */
             background-repeat: repeat-y;
             background-size: contain;
         }
@@ -69,21 +69,21 @@
             background-image: url('data/background.png');
             background-size: repeat;
             overflow: hidden;
-            border: 2px solid #000;
-            line-height: 26px;
+            line-height: 2vh;
         }
 
         .title-container {
             position: relative;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 2vh;
         }
 
         .title-container h1 {
-            font-size: 40px;
+            font-size: 4vh;
             text-transform: uppercase;
+            line-height: 4.5vh;
             margin: 0;
-            padding: 35px 15px 30px 15px;
+            padding: 2vh 1vh 1.5vh 1vh;
             position: relative;
             z-index: 1;
             display: inline-block;
@@ -105,39 +105,41 @@
         }
 
         h2 {
-            font-size: 30px;
+            font-size: 2.5vh;
+            line-height: 2.8vh;
             margin: 0;
         }
 
         h3 {
-            font-size: 22px;
-            margin-top: 15px;
+            font-size: 2.2vh;
+            margin-top: 1.2vh;
             margin-bottom: 0px;
+            line-height: 2.5vh;
         }
 
         .separator {
             display: block;
             width: 100%;
-            margin: 10px auto;
+            margin: 1vh auto;
         }
 
         b {
-            text-shadow: 0.01em 0 0;
+          font-weight:bold;
         }
 
         a {
             text-shadow:
-              2px 2px 2px #eee,
-              -2px 2px 2px #eee,
-              -2px -2px 2px #eee,
-              2px -2px 2px #eee;
+              0.2vh 0.2vh 0.2vh #fff,
+              -0.2vh 0.2vh 0.2vh #fff,
+              -0.2vh -0.2vh 0.2vh #fff,
+              0.2vh -0.2vh 0.2vh #fff;
             text-decoration: none; /* Supprimer le soulignement */
             color: #000000;
         }
 
         ul {
             list-style-position: outside;
-            padding-left: 15px;
+            padding-left: 1.3vh;
             margin-left: 0;
         }
 
@@ -147,23 +149,23 @@
 
         table {
             border-collapse: collapse;
-            border: 3px solid black;
+            border: 0.3vh solid black;
         }
 
         th {
-            padding: 8px;
-            padding-left: 14px;
-            padding-top: 11px;
+            padding: 0.5vh;
+            padding-left: 2vw;
+            padding-top: 1vh;
             text-align: center;
             font-weight: lighter;
         }
 
         td {
-            padding: 8px;
-            padding-left: 14px;
+            padding: 0.5vh;
+            padding-left: 2vw;
+            padding-top: 1vh;
             text-align: left;
-            padding-top: 10px;
-            line-height: 30px;
+            line-height: 2.5vh;
         }
 
         .hidden-text {
@@ -174,12 +176,12 @@
         }
 
         .hidden-text.show {
-            max-height: 800px;
+            max-height: 80vh;
             opacity: 1;
         }
 
         .dice-section {
-            margin-top: 30px;
+            margin-top: 3vh;
             text-align: center;
         }
 
@@ -187,18 +189,17 @@
             background-color: transparent; /* No background initially */
             border: 2px solid transparent; /* Transparent border */
             color: black; /* Text color */
-            padding: 10px;
-            font-size: 40px;
+            padding: 0.5vw;
+            font-size: 4vh;
             cursor: pointer;
             font-family: "Dungeon Degenerates", sans-serif;
         }
 
         
-
         .toggle-icon {
-            cursor: pointer;
-            font-size: 18px;
-            margin-right: 10px;
+          cursor: pointer;
+          font-size: 2vh;
+          margin-right: 1vw;
         }
     </style>
 </head>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UNIFY THE HIGHLANDS</title>
-    <style>
+   <style>
 
         @font-face {
             font-family: "Dungeon Degenerates";
@@ -12,13 +12,13 @@
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            font-family: "Dungeon Degenerates", sans-serif;
-            color: #000000;
-            text-align: justify;
-            font-size: 21px;
+          margin: 0;
+          padding: 0;
+          background-color: #000;
+          font-family: "Dungeon Degenerates", sans-serif;
+          color: #000000;
+          text-align: justify;
+          font-size: 1.8vh;
         }
 
         .border-top,
@@ -26,7 +26,7 @@
             position: absolute;
             left: 0;
             right: 0;
-            height: 30px; /* Hauteur de l'image */
+            height: 2vw; /* Hauteur de l'image */
             background-repeat: repeat-x;
             background-size: contain;
         }
@@ -46,7 +46,7 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            width: 30px; /* Largeur de l'image */
+            width: 2vw; /* Largeur de l'image */
             background-repeat: repeat-y;
             background-size: contain;
         }
@@ -69,21 +69,21 @@
             background-image: url('data/background.png');
             background-size: repeat;
             overflow: hidden;
-            border: 2px solid #000;
-            line-height: 26px;
+            line-height: 2vh;
         }
 
         .title-container {
             position: relative;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 2vh;
         }
 
         .title-container h1 {
-            font-size: 40px;
+            font-size: 4vh;
             text-transform: uppercase;
+            line-height: 4.5vh;
             margin: 0;
-            padding: 35px 15px 30px 15px;
+            padding: 2vh 1vh 1.5vh 1vh;
             position: relative;
             z-index: 1;
             display: inline-block;
@@ -105,39 +105,41 @@
         }
 
         h2 {
-            font-size: 30px;
+            font-size: 2.5vh;
+            line-height: 2.8vh;
             margin: 0;
         }
 
         h3 {
-            font-size: 22px;
-            margin-top: 15px;
+            font-size: 2.2vh;
+            margin-top: 1.2vh;
             margin-bottom: 0px;
+            line-height: 2.5vh;
         }
 
         .separator {
             display: block;
             width: 100%;
-            margin: 10px auto;
+            margin: 1vh auto;
         }
 
         b {
-            text-shadow: 0.01em 0 0;
+          font-weight:bold;
         }
 
         a {
             text-shadow:
-              2px 2px 2px #eee,
-              -2px 2px 2px #eee,
-              -2px -2px 2px #eee,
-              2px -2px 2px #eee;
+              0.2vh 0.2vh 0.2vh #fff,
+              -0.2vh 0.2vh 0.2vh #fff,
+              -0.2vh -0.2vh 0.2vh #fff,
+              0.2vh -0.2vh 0.2vh #fff;
             text-decoration: none; /* Supprimer le soulignement */
             color: #000000;
         }
 
         ul {
             list-style-position: outside;
-            padding-left: 15px;
+            padding-left: 1.3vh;
             margin-left: 0;
         }
 
@@ -147,23 +149,23 @@
 
         table {
             border-collapse: collapse;
-            border: 3px solid black;
+            border: 0.3vh solid black;
         }
 
         th {
-            padding: 8px;
-            padding-left: 14px;
-            padding-top: 11px;
+            padding: 0.5vh;
+            padding-left: 2vw;
+            padding-top: 1vh;
             text-align: center;
             font-weight: lighter;
         }
 
         td {
-            padding: 8px;
-            padding-left: 14px;
+            padding: 0.5vh;
+            padding-left: 2vw;
+            padding-top: 1vh;
             text-align: left;
-            padding-top: 10px;
-            line-height: 30px;
+            line-height: 2.5vh;
         }
 
         .hidden-text {
@@ -174,12 +176,12 @@
         }
 
         .hidden-text.show {
-            max-height: 800px;
+            max-height: 80vh;
             opacity: 1;
         }
 
         .dice-section {
-            margin-top: 30px;
+            margin-top: 3vh;
             text-align: center;
         }
 
@@ -187,46 +189,45 @@
             background-color: transparent; /* No background initially */
             border: 2px solid transparent; /* Transparent border */
             color: black; /* Text color */
-            padding: 10px;
-            font-size: 40px;
+            padding: 0.5vw;
+            font-size: 4vh;
             cursor: pointer;
             font-family: "Dungeon Degenerates", sans-serif;
         }
 
-        .dice-section button.dicegroup0:hover {
+        .dice-section button.dicegroup7:hover {
             color:#fcbd6a;
 
         }
-        .dice-section button.active_dicegroup0,
-        .dice-section button.active_dicegroup0:hover {
+        .dice-section button.active_dicegroup7,
+        .dice-section button.active_dicegroup7:hover {
             color:#ff9100;
         }
 
-        .result-section_dicegroup0 {
+        .result-section_dicegroup7 {
             background-color: #fcbd6a;
             padding-left: 20px;
             padding-right: 20px;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        }.dice-section button.dicegroup1:hover {
+        }.dice-section button.dicegroup8:hover {
             color:#d996ff;
 
         }
-        .dice-section button.active_dicegroup1,
-        .dice-section button.active_dicegroup1:hover {
+        .dice-section button.active_dicegroup8,
+        .dice-section button.active_dicegroup8:hover {
             color:#a107fa;
         }
 
-        .result-section_dicegroup1 {
+        .result-section_dicegroup8 {
             background-color: #d996ff;
             padding-left: 20px;
             padding-right: 20px;
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         }
-
         .toggle-icon {
-            cursor: pointer;
-            font-size: 18px;
-            margin-right: 10px;
+          cursor: pointer;
+          font-size: 2vh;
+          margin-right: 1vw;
         }
     </style>
 </head>
@@ -252,51 +253,51 @@
             <p style=" margin-left: 0px; ">Roll one orange die & one purple die to establish what jobs are available that may help you to reduce Danger Levels throughout the Highlands.</p>
             <div class="dice-section">
                 <h2>ORANGE DIE TABLE</h2>
-                <button class="dicegroup0" onclick="showText_dicegroup0(0)">Ļ</button>
-                <button class="dicegroup0" onclick="showText_dicegroup0(1)">ļ</button>
-                <button class="dicegroup0" onclick="showText_dicegroup0(2)">Ľ</button>
-                <button class="dicegroup0" onclick="showText_dicegroup0(3)">ľ</button>
-                <button class="dicegroup0" onclick="showText_dicegroup0(4)">Ŀ</button>
-                <button class="dicegroup0" onclick="showText_dicegroup0(5)">ŀ</button>
+                <button class="dicegroup7" onclick="showText_dicegroup7(0)">Ļ</button>
+                <button class="dicegroup7" onclick="showText_dicegroup7(1)">ļ</button>
+                <button class="dicegroup7" onclick="showText_dicegroup7(2)">Ľ</button>
+                <button class="dicegroup7" onclick="showText_dicegroup7(3)">ľ</button>
+                <button class="dicegroup7" onclick="showText_dicegroup7(4)">Ŀ</button>
+                <button class="dicegroup7" onclick="showText_dicegroup7(5)">ŀ</button>
             </div>
-            <div class="result-section_dicegroup0">
-                <div id="0-result" class="hidden-text"></div>
+            <div class="result-section_dicegroup7">
+                <div id="7-result" class="hidden-text"></div>
             </div>
-            <div id="result-0-0" class="hidden-text">
+            <div id="result-7-0" class="hidden-text">
             <p style=" margin-left: 0px; "><i>Within the nightmare labyrinth of twisting & shimmering passages at the heart of the Temple of Madness can be found a pool & within this pool, a gateway to worlds beyond your own. Local guildsmen beg you to find the dark pool & destroy it forever or seal it with magic if you can!</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Caravan/Endless Labyrinth</b> <i>(Highlands Encounter)</i></p>            <p style=" margin-left: 0px; ">Place clue Ġ1 at the Temple of Madness. If you move into that space, draw the <b>Endless Labyrinth</b> & resolve it during the Encounter Phase <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>.</p>            <p style=" margin-left: 0px; ">After resolving the Endless Labyrinth, remove clue Ġ1 & place a Voidgate in its place. You cannot attempt to Dispel this Voidgate while you are Detained. When you Dispel the Voidgate, increase the Town Level at the Bandit Camp & Pigskin Port.</p>            </div>
-            <div id="result-0-1" class="hidden-text">
+            <div id="result-7-1" class="hidden-text">
             <p style=" margin-left: 0px; "><i>The Vermin Queen's children infest the Highlands & feasting on tainted grain they become enraged & vicious. They gather in swarms & set upon remote hamlets in the night, devouring commoners & leaving only clean-picked bones behind.</i></p>            <p style=" margin-left: 0px; ">Place the Queen of the Rats counter at the Windmill & place Clues Ġ1 & 2 at the Bandit Camp & Pigskin Port.</p>            <p style=" margin-left: 0px; ">The Queen of the Rats will move towards the nearest Clue Ġ counter. When she moves into a space with a Clue Ġ counter, remove that counter.</p>            <p style=" margin-left: 0px; ">While the Queen of the Rats is in play, Vermin in the Highlands have Fury</p>            </div>
-            <div id="result-0-2" class="hidden-text">
+            <div id="result-7-2" class="hidden-text">
             <p style=" margin-left: 0px; "><i>Mountain Prospectors have found gnarled chutes jutting from the mountainside that disgorge a steady stream of slimy goo into the Stinkembuilt River. The guildsmen ask you to brave the twisting Tunnel of Terror & bring a flask of this strange goo to the Alchemist to can be tested to determine if it is a danger to the people of Pigskin Port.</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Alchemist</b> <i>(Highlands Encounter)</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Fugitive/Flood of Goo</b> <i>(Highlands Encounter)</i></p>            <p style=" margin-left: 0px; ">Place clue Ġ1 at the Tunnel of Terror & clue Ġ2 at the Watchtower. If you move into the Tunnel of Terror, take the <b>Flood of Goo</b> card from the Mission ĝ deck & resolve it during the Encounter Phase <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>. When you do, any adventurer may fill a flask of the goo for the Alchemist - keep the Flood of Goo card <i>(treat it as an Item)</i>.</p>            <p style=" margin-left: 0px; ">Having collected a flask of the mysterious goo, if you bring it to the Watchtower & Rest there, take the <b>Alchemist</b> from the Mission ĝ deck & resolve it during the Encounter Phase <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>. If you <b>Approach</b> the Alchemist, he will pay you 3D6 GPĎ <i>(split amongst the party)</i>, then remove Clues Ġ1 & 2 from the board & discard the Goo.</p>            </div>
-            <div id="result-0-3" class="hidden-text">
+            <div id="result-7-3" class="hidden-text">
             <p style=" margin-left: 0px; "><i>A group of brigands lurks around the Watchtower, harrassing travellers & raiding caravans. The guildsmen of Pigskin Port ask you to deal with them without resorting to bloodshed!</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Toll/Glowing Mist</b> <i>(Highlands Encounter)</i></p>            <p style=" margin-left: 0px; ">Place clue Ġ1 at the Watchtower. When you move to that space, take the <b>Toll</b> card from the Mission ĝ deck & resolve it during the Encounter Phase <i>(do not resolve a random Encounter </i>Ĥ<i> this turn)</i>. If you pay the Toll, reduce the Danger Level at the Watchtower, then remove clue Ġ1 from the board.</p>            </div>
-            <div id="result-0-4" class="hidden-text">
+            <div id="result-7-4" class="hidden-text">
             <p style=" margin-left: 0px; "><i>Uncontaminated provisions are a valuable commodity in the Borderlands & the Guildsmen are even paying good money for the foul mess that goblins call food.</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Caravan/Endless Labyrinth</b> <i>(Highlands Encounter)</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Chicken Feed</b>, ĝ <b>Grublin</b>, ĝ <b>Scrag's Milk</b> <i>(Loot)</i></p>            <p style=" margin-left: 0px; ">Place clue Ġ1 at Last Chance. If you Rest in Bold č stance there, take the <b>Caravan</b> from the Mission ĝ deck & resolve it during the Encounter Phase <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>.</p>            <p style=" margin-left: 0px; ">When you Trade with the Caravan, you may buy any Items from the Mission ĝ deck for 4 GPĎ each. When you do, place 3 Wound Č counters on each of these Items. When you use one of those Items, you may remove a Wound Č from that Item instead of discarding it.</p>            <p style=" margin-left: 0px; ">If you already have an Item from the Mission ĝ deck, you may pay the Caravan 4 GPĎ per Item to place up to 3 Wound Č counters on that Item card, but you cannot carry more than 3 Wound Č counters on an Item at a time.</p>            <p style=" margin-left: 0px; ">If you sell these Items in the Highlands, gain an additional 3 GPĎ for each Wound Č counter on the sold Item. Then, roll D6 & if you roll 1 or 2, remove clue Ġ1 from the board.</p>            </div>
-            <div id="result-0-5" class="hidden-text">
+            <div id="result-7-5" class="hidden-text">
             <p style=" margin-left: 0px; "><i>The guildsmen need a party of sellswords such as yourselves to pose as common brigands & smash the Imperial Checkpoint at North Bridge where the lowlanders are harrassing & extorting merchants.</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Imperial Checkpoint</b> <i>(Lowlands Encounter)</i></p>            <p style=" margin-left: 0px; ">Place clue Ġ1 at North Bridge. When you move into this space, take the <b>Imperial Checkpoint</b> from the Mission ĝ deck & resolve it during the Encounter Phase <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>. If you destroy the Imperial Checkpoint, remove Clue Ġ1 from the board, increase the Bounty Level & you may plunder the checkpoint's tax chest; the party may take 4D6 GPĎ to split amongst themselves.</p>            </div>
             <div class="dice-section">
                 <h2>PURPLE DIE TABLE</h2>
-                <button class="dicegroup1" onclick="showText_dicegroup1(0)">Ļ</button>
-                <button class="dicegroup1" onclick="showText_dicegroup1(1)">ļ</button>
-                <button class="dicegroup1" onclick="showText_dicegroup1(2)">Ľ</button>
-                <button class="dicegroup1" onclick="showText_dicegroup1(3)">ľ</button>
-                <button class="dicegroup1" onclick="showText_dicegroup1(4)">Ŀ</button>
-                <button class="dicegroup1" onclick="showText_dicegroup1(5)">ŀ</button>
+                <button class="dicegroup8" onclick="showText_dicegroup8(0)">Ļ</button>
+                <button class="dicegroup8" onclick="showText_dicegroup8(1)">ļ</button>
+                <button class="dicegroup8" onclick="showText_dicegroup8(2)">Ľ</button>
+                <button class="dicegroup8" onclick="showText_dicegroup8(3)">ľ</button>
+                <button class="dicegroup8" onclick="showText_dicegroup8(4)">Ŀ</button>
+                <button class="dicegroup8" onclick="showText_dicegroup8(5)">ŀ</button>
             </div>
-            <div class="result-section_dicegroup1">
-                <div id="1-result" class="hidden-text"></div>
+            <div class="result-section_dicegroup8">
+                <div id="8-result" class="hidden-text"></div>
             </div>
-            <div id="result-1-0" class="hidden-text">
+            <div id="result-8-0" class="hidden-text">
             <p style=" margin-left: 0px; "><i>Desperate for a respite from the constant conflict ravaging the Highlands, the bandit gangs ask you to bring a peace offering to the goblins in hopes of establishing a truce.</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Goblin Emissary</b> <i>(Badlands Encounter)</i></p>            <p style=" margin-left: 0px; ">Place Clue Ġ6 at the Goblin Fortress. If you move into that space, take the <b>Goblin Emissary</b> from the Mission ĝ deck & resolve it during the Encounter Phase <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>. If you <b>Approach</b> the Goblin Emissary & pass your Test, you may bribe him by giving him 12 GPĎ. You may bribe him for 6 GPĎ less if you give him a <b>Grublin</b> or <b>Scrag's Milk</b> <i>(if you give him both, pay nothing)</i>. When you bribe the Goblin Emissary, increase the Town Level at the Bandit Camp & Watchtower.</p>            </div>
-            <div id="result-1-1" class="hidden-text">
+            <div id="result-8-1" class="hidden-text">
             <p style=" margin-left: 0px; "><i>A cursed object known to bring disaster has been found amongst a caravan's wares. The gangs need a group of brave travellers to take this dangerous artifact far away from the Highlands & cast it into the wilderness, hopefully never to be seen again.</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Caravan/Endless Labyrinth</b> <i>(Highlands Encounter)</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Goblin Jar</b> <i>(Loot)</i></p>            <p style=" margin-left: 0px; ">Place Clue Ġ5 at North Bridge. If you Rest there, you may take the <b>Caravan</b> from the Mission ĝ deck & resolve it during the Encounter Phase <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>. If you <b>Trade</b> with the Caravan, you may take the <i>Goblin Jar</i> from the Mission ĝ deck <i>(at no cost)</i>, then remove Clue Ġ5 from the board.</p>            <p style=" margin-left: 0px; ">The first time you discard the Goblin Jar while you are in the Badlands or Wetlands, place Clue Ġ6 at the Bandit Camp. If you are not at <b>Skull Bridge</b> or the <b>Hell Pit</b> when you discard the jar, shuffle it in with the top 6 cards of the Loot deck. Kegardless, the next time you Rest at the Bandit Camp, increase the Town Level there & remove Clue Ġ 6.</p>            </div>
-            <div id="result-1-2" class="hidden-text">
+            <div id="result-8-2" class="hidden-text">
             <p style=" margin-left: 0px; "><i>The River Rats know a guy at the Fishmonger Camp who will stuff scrogling carcasses with scratch to smuggle back to the Highlands. If you can bring him the scroglings, there's money to be made as an importer.</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Scratch</b> <i>(Loot)</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Scrog Spiker</b> <i>(Wetlands Encounter)</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Scroglin Swarm</b> <i>(Wetlands Encounter)</i></p>            <p style=" margin-left: 0px; ">Ġ<b>4 Dusk Falls</b>, Ġ<b>5 Fishmonger Camp</b>, Ġ<b>6 Bandit Camp</b></p>            <p style=" margin-left: 0px; ">If you pass an Explore ġ Test at Clue Ġ4 <i>(Dusk Falls)</i>, take the <b>Scrogling Swarm</b> from the Mission ĝ deck & fight them in addition to any other monsters that appear this turn. If you destroy the Scrogling Swarm, you may keep its card to represent a sack of Scrogling corpses <i>(treat it as an Item)</i>.</p>            <p style=" margin-left: 0px; ">If you Rest at Clue Ġ5 (Fishmonger Camp) while you have the Scrogling corpses, take the <b>Scrog Spiker</b> from the Mission ĝ deck & resolve that card during the Encounter Phase <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>. If you Approach the Scrog Spiker, you may pay him 6 GPĎ to take Scratch from the Mission ĝ deck. When you do, place 3 Wound Č counters on the Scratch card. If you use the Scratch card, remove a Wound Č counter from it instead of discarding it.</p>            <p style=" margin-left: 0px; ">If you already have Scratch, you may pay the Scrog Spiker 6 GPĎ to place up to 3 Wound Č counters on the Scratch, but you cannot have more than 3 Wound Č counters on the card at a time.</p>            <p style=" margin-left: 0px; ">When you Rest at Clue Ġ6 <i>(Bandit Camp)</i>, you may sell the Scratch for 6 GPĎ per Wound Č counter on that card.</p>            <p style=" margin-left: 0px; ">If the Bounty Level is increased for any reason during this mission, remove Clues Ġ5 & 6 from the board.</p>            </div>
-            <div id="result-1-3" class="hidden-text">
+            <div id="result-8-3" class="hidden-text">
             <p style=" margin-left: 0px; "><i>A caravan has gone missing & the guildsmen fear the worst. Rather than write it off as a loss, they intend to send a party of expendable sellswords into the wastes to find it & recover the valuable relic it carried.</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Slaughtered Caravan</b> <i>(Badlands Encounter)</i></p>            <p style=" margin-left: 0px; ">ĝ <b>The Black Sword</b> <i>(Epic Loot) - if an adventurer already has the Black Sword, substitute the Moon Mask or Gloves of Metal</i>.</p>            <p style=" margin-left: 0px; ">ĝ <b>Daemonic Voivod</b> <i>(Epic Monster)</i></p>            <p style=" margin-left: 0px; ">Place Clue Ġ6 on the path between the Goblin Fortress & Gutfish Ford. If you pass an Explore ġ Test in that space, take the <b>Slaughtered Caravan</b> from the Mission ĝ deck & resolve it during the Encounter Phase <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>. If you Search the Slaughtered Caravan, the adventurer that passes their PER Test with the highest dice total may take the <b>Black Sword</b> from the Mission ĝ deck (in addition to the random Loot card).</p>            <p style=" margin-left: 0px; ">When an adventurer takes the Black Sword, move Clue Ġ6 to Pigskin Port, then place the <b>Daemonic Voivod</b> counter on Skull Bridge. The Daemonic Voivod will follow the adventurer with the Black Sword.</p>            <p style=" margin-left: 0px; ">If you discard the Black Sword <i>(if you throw it away, if you sell it, or if it is destroyed)</i>, place Clue Ġ5 in your space & the Daemonic Voivod will move to that space. Once there, it will vanish along with Clue Ġ5 on its next move.</p>            <p style=" margin-left: 0px; ">If you destroy the Daemonic Voivod during this mission, it does not provide an Epic Loot card <i>(you may still collect GP</i>Ď<i> & XP</i>ĥ<i>)</i>.</p>            <p style=" margin-left: 0px; ">When you Trade at Clue Ġ6 <i>(Pigskin Port)</i>, if you sell the Black Sword increase the Town Level at Pigskin Port & remove the Clue Ġ counter from your space.</p>            </div>
-            <div id="result-1-4" class="hidden-text">
+            <div id="result-8-4" class="hidden-text">
             <p style=" margin-left: 0px; "><i>An ancient mountain wizard at the Bandit Camp offers a handsome reward for the first one to bring him a bog whisp from Tomb Lake.</i></p>            <p style=" margin-left: 0px; ">ĝ <b>Bog Whisps/Breeding Pit</b> <i>(Wetlands Encounter)</i></p>            <p style=" margin-left: 0px; ">Shuffle Clues Ġ4-6 & place them facedown randomly at the Black Tree, Dusk Falls & Tower Island.</p>            <p style=" margin-left: 0px; ">If you successfully Explore ġ a space with a facedown Clue Ġ counter, flip that counter & compare it to your highest single die. If your highest die is equal to or greater than the Clue Ġ value, take <b>Bog Whisps</b> from the Mission ĝ deck & resolve it during the Encounter Phase <i>(do not draw a random Encounter </i>Ĥ<i> this turn)</i>. Otherwise, remove that Clue Ġ from the board.</p>            <p style=" margin-left: 0px; ">If any adventurer is able to <b>Catch</b> a bog whisp <i>(by passing the AGI Test)</i>, you may keep the Bog Whisps card & sell <i>(discard)</i> it for 3D6+4 GPĎ when you Rest in Bold č stance at the Bandit Camp. When you sell the bog whisp, remove all remaining facedown Clue Ġ counters from the board - the wizard will only pay for one bog whisp.</p>            </div>
-            <div id="result-1-5" class="hidden-text">
+            <div id="result-8-5" class="hidden-text">
             <p style=" margin-left: 0px; ">A wealthy guildsman has been invited to an exclusive masquerade ball at the Hunt Lodge, but having taken ill from contaminated meat, his health won't allow him to make it to the event. Not wishing to seem rude he intends to send you as his representative.</p>            <p style=" margin-left: 0px; ">ĝ <b>Clever Disguise</b> <i>(Loot)</i>: you may buy this when you <b>Trade</b></p>            <p style=" margin-left: 0px; ">Place Clue Ġ6 at the Hunt Lodge. If you Rest there in Bold č stance, you may attend the masquerade at the end of the Map Action Phase. Any adventurer without an equipped Head Item is not allowed to attend. Each adventurer wearing a Head Item may attempt a MRL Test to blend in <i>(roll 3 dice & use any 2 if you are a Merchant or Performer)</i>. If more adventurers pass than fail, move Clue Ġ6 to Pigskin Port, otherwise raise the Bounty Level.</p>            <p style=" margin-left: 0px; ">If the Bounty Level goes up for any reason during this mission, remove Clue Ġ6 from the board.</p>            <p style=" margin-left: 0px; ">If you Rest at Clue Ġ6 after it has been moved to Pigskin Port, remove the counter & each adventurer in the party is paid 2D6+4 GPĎ for their efforts. If you are alone, you are paid 2D6+8 GPĎ instead.</p>            </div>
             <br><br><h2><center>REWARD</center></h2>
             <p style=" margin-left: 0px; ">Each adventurer gains 1 Luck Ğ, then remove 2 yellow Doom ğ counters from the Doom track.</p>
@@ -307,16 +308,16 @@
     </div>
     <script>
 
-      function showText_dicegroup0(dice) {
-        var buttons = document.querySelectorAll('.dice-section .dicegroup0');
-        var isActive = buttons[dice].classList.contains('active_dicegroup0');
+      function showText_dicegroup7(dice) {
+        var buttons = document.querySelectorAll('.dice-section .dicegroup7');
+        var isActive = buttons[dice].classList.contains('active_dicegroup7');
         buttons.forEach(function(button) {
-          button.classList.remove('active_dicegroup0');
+          button.classList.remove('active_dicegroup7');
         });
-        var resultElement = document.getElementById('0-result');
+        var resultElement = document.getElementById('7-result');
         if (!isActive) {
-          buttons[dice].classList.add('active_dicegroup0');
-          var resultId = 'result-0-' + dice;
+          buttons[dice].classList.add('active_dicegroup7');
+          var resultId = 'result-7-' + dice;
           resultElement.innerHTML = document.getElementById(resultId).innerHTML;
           resultElement.classList.add('show');
         } else {
@@ -324,16 +325,16 @@
           resultElement.classList.remove('show');
         }
       }
-      function showText_dicegroup1(dice) {
-        var buttons = document.querySelectorAll('.dice-section .dicegroup1');
-        var isActive = buttons[dice].classList.contains('active_dicegroup1');
+      function showText_dicegroup8(dice) {
+        var buttons = document.querySelectorAll('.dice-section .dicegroup8');
+        var isActive = buttons[dice].classList.contains('active_dicegroup8');
         buttons.forEach(function(button) {
-          button.classList.remove('active_dicegroup1');
+          button.classList.remove('active_dicegroup8');
         });
-        var resultElement = document.getElementById('1-result');
+        var resultElement = document.getElementById('8-result');
         if (!isActive) {
-          buttons[dice].classList.add('active_dicegroup1');
-          var resultId = 'result-1-' + dice;
+          buttons[dice].classList.add('active_dicegroup8');
+          var resultId = 'result-8-' + dice;
           resultElement.innerHTML = document.getElementById(resultId).innerHTML;
           resultElement.classList.add('show');
         } else {
